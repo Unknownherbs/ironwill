@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a1712">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ironwill">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Ironwill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=DM+Sans:wght@400;500;700&family=Bricolage+Grotesque:wght@600;800&family=JetBrains+Mono:wght@500;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: one 720px column, glass cards over a ground tinted by a single user-set hue, six-tab bar pinned to the bottom. */
+:root{
+  --h:150;
+  --fd:'Fraunces',Georgia,serif;
+  --fb:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:dark;
+  --bg:hsl(var(--h) 40% 6%);
+  --tx:hsl(var(--h) 28% 94%);
+  --mu:hsl(var(--h) 14% 68%);
+  --ac:hsl(var(--h) calc(62%*var(--sm,1)) 76%);
+  --ok:hsl(calc(var(--h) + 18 + var(--ho,0)) 52% 66%);
+  --on:hsl(var(--h) 50% 8%);
+  --sf:hsla(0,0%,100%,calc(.1*var(--op,1)));
+  --sf0:hsla(0,0%,100%,calc(.04*var(--op,1)));
+  --sf2:hsla(0,0%,100%,.11);
+  --bd:hsla(0,0%,100%,.17);
+  --hi:hsla(0,0%,100%,.22);
+  --sh:rgba(0,0,0,.3);
+  --b1:hsl(var(--h) calc(45%*var(--sm,1)) 24%);
+  --b2:hsl(calc(var(--h) + 25 + var(--ho,0)) 40% 17%);
+  --b3:hsl(calc(var(--h) - 20 + var(--ho,0)) 40% 19%);
+  --navbg:hsla(var(--h),40%,9%,.78);
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --bg:hsl(var(--h) 35% 95%);
+    --tx:hsl(var(--h) 45% 9%);
+    --mu:hsl(var(--h) 16% 33%);
+    --ac:hsl(var(--h) calc(62%*var(--sm,1)) 26%);
+    --ok:hsl(calc(var(--h) + 18 + var(--ho,0)) 55% 28%);
+    --on:hsl(var(--h) 40% 97%);
+    --sf:hsla(0,0%,100%,calc(.7*var(--op,1)));
+    --sf0:hsla(0,0%,100%,calc(.45*var(--op,1)));
+    --sf2:hsla(var(--h),30%,30%,.09);
+    --bd:hsla(var(--h),30%,20%,.17);
+    --hi:hsla(0,0%,100%,.95);
+    --sh:hsla(var(--h),40%,20%,.12);
+    --b1:hsl(var(--h) calc(60%*var(--sm,1)) 84%);
+    --b2:hsl(calc(var(--h) + 25 + var(--ho,0)) 55% 88%);
+    --b3:hsl(calc(var(--h) - 20 + var(--ho,0)) 55% 86%);
+    --navbg:hsla(var(--h),40%,98%,.82);
+  }
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:hsl(var(--h) 35% 95%);
+  --tx:hsl(var(--h) 45% 9%);
+  --mu:hsl(var(--h) 16% 33%);
+  --ac:hsl(var(--h) calc(62%*var(--sm,1)) 26%);
+  --ok:hsl(calc(var(--h) + 18 + var(--ho,0)) 55% 28%);
+  --on:hsl(var(--h) 40% 97%);
+  --sf:hsla(0,0%,100%,calc(.7*var(--op,1)));
+  --sf0:hsla(0,0%,100%,calc(.45*var(--op,1)));
+  --sf2:hsla(var(--h),30%,30%,.09);
+  --bd:hsla(var(--h),30%,20%,.17);
+  --hi:hsla(0,0%,100%,.95);
+  --sh:hsla(var(--h),40%,20%,.12);
+  --b1:hsl(var(--h) calc(60%*var(--sm,1)) 84%);
+  --b2:hsl(calc(var(--h) + 25 + var(--ho,0)) 55% 88%);
+  --b3:hsl(calc(var(--h) - 20 + var(--ho,0)) 55% 86%);
+  --navbg:hsla(var(--h),40%,98%,.82);
+}
+:root[data-font="sharp"]{--fd:'Bricolage Grotesque','DM Sans',system-ui,sans-serif}
+:root[data-font="serif"]{--fd:'Fraunces',Georgia,serif;--fb:Georgia,'Times New Roman',serif}
+:root[data-font="rounded"]{--fd:ui-rounded,'SF Pro Rounded','Nunito',system-ui,sans-serif;--fb:ui-rounded,'SF Pro Rounded','Nunito',system-ui,sans-serif}
+:root[data-bg="plain"] body{background:var(--bg)}
+:root[data-bg="fade"] body{background:linear-gradient(160deg,var(--b1),var(--bg) 65%) fixed,var(--bg)}
+:root[data-bg="grid"] body{background:linear-gradient(var(--sf2) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,var(--sf2) 1px,transparent 1px) 0 0/30px 30px,var(--bg);background-attachment:fixed}
+:root[data-bg="dots"] body{background:radial-gradient(var(--bd) 1.4px,transparent 1.6px) 0 0/22px 22px,var(--bg);background-attachment:fixed}
+/* surface styles */
+:root[data-card="frost"] .card,:root[data-card="frost"] .h,:root[data-card="frost"] .lvl{background:linear-gradient(145deg,hsla(0,0%,100%,.3),hsla(0,0%,100%,.08));border-color:hsla(0,0%,100%,.4);-webkit-backdrop-filter:blur(calc(var(--bl,18px)*1.7)) saturate(190%);backdrop-filter:blur(calc(var(--bl,18px)*1.7)) saturate(190%)}
+:root[data-card="solid"] .card,:root[data-card="solid"] .h{background:var(--sf2);backdrop-filter:none;-webkit-backdrop-filter:none}
+:root[data-card="outline"] .card,:root[data-card="outline"] .h{background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;border-width:max(1.5px,var(--bw,1px))}
+:root[data-card="soft"] .card,:root[data-card="soft"] .h{background:var(--bg);border-color:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:calc(8px*var(--sd,1)) calc(8px*var(--sd,1)) calc(18px*var(--sd,1)) var(--sh),calc(-6px*var(--sd,1)) calc(-6px*var(--sd,1)) calc(14px*var(--sd,1)) var(--hi)}
+:root[data-card="neon"] .card,:root[data-card="neon"] .h{background:transparent;border:max(1.5px,var(--bw,1px)) solid var(--ac);backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 0 calc(14px*var(--sd,1)) color-mix(in srgb,var(--ac) 55%,transparent),inset 0 0 calc(10px*var(--sd,1)) color-mix(in srgb,var(--ac) 25%,transparent)}
+:root[data-card="brutal"] .card,:root[data-card="brutal"] .h{background:var(--bg);border:max(2px,var(--bw,1px)) solid var(--tx);backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:calc(5px*var(--sd,1)) calc(5px*var(--sd,1)) 0 var(--tx)}
+:root[data-card="gradient"] .card,:root[data-card="gradient"] .h{background:linear-gradient(135deg,color-mix(in srgb,var(--ac) 32%,transparent),color-mix(in srgb,var(--ok) 12%,transparent));backdrop-filter:none;-webkit-backdrop-filter:none}
+:root[data-card="minimal"] .card,:root[data-card="minimal"] .h{background:transparent;border-width:0 0 var(--bw,1px) 0;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+/* more backgrounds */
+:root[data-bg="stripes"] body{background:repeating-linear-gradient(135deg,var(--sf2) 0 2px,transparent 2px 18px),var(--bg);background-attachment:fixed}
+:root[data-bg="mesh"] body{background:radial-gradient(at 20% 15%,var(--b1),transparent 55%),radial-gradient(at 85% 25%,var(--b3),transparent 50%),radial-gradient(at 30% 90%,var(--b2),transparent 55%),radial-gradient(at 90% 85%,var(--b1),transparent 50%),var(--bg);background-attachment:fixed}
+:root[data-bg="noise"] body{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(160deg,var(--b1),var(--bg) 70%);background-attachment:fixed}
+:root[data-bg="stars"] body{background:radial-gradient(1.4px 1.4px at 20px 30px,var(--tx),transparent),radial-gradient(1px 1px at 90px 70px,var(--tx),transparent),radial-gradient(1.6px 1.6px at 150px 20px,var(--ac),transparent),radial-gradient(1px 1px at 60px 120px,var(--tx),transparent),var(--bg);background-size:180px 160px;background-attachment:fixed}
+:root[data-bg="image"] body{background:linear-gradient(color-mix(in srgb,var(--bg) calc(var(--dim,.35)*100%),transparent),color-mix(in srgb,var(--bg) calc(var(--dim,.35)*100%),transparent)),var(--bgi,none) center/cover no-repeat fixed,var(--bg)}
+/* layout */
+:root[data-nav="float"] nav{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));border-radius:26px;border:1px solid var(--bd);padding-bottom:6px}
+:root[data-nav="icons"] nav button{font-size:0;gap:0;padding:10px 2px}:root[data-nav="icons"] nav button svg{width:26px;height:26px}
+:root[data-ck="square"] .chk{border-radius:5px}:root[data-ck="squircle"] .chk{border-radius:11px}:root[data-ck="leaf"] .chk{border-radius:50% 6px 50% 6px}
+:root[data-ics="bare"] .h .ic{background:none;width:34px}:root[data-ics="big"] .h .ic{width:54px;height:54px;font-size:1.9rem;border-radius:16px}
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}.hgrid .h{margin-bottom:0;flex-direction:column;align-items:flex-start;text-align:left;gap:8px}.hgrid .h .chk{align-self:flex-end;margin-top:-34px}.hgrid .card{grid-column:1/-1;margin-bottom:0}
+:root[data-am="off"] *,:root[data-am="off"] *::before,:root[data-am="off"] *::after{transition:none!important;animation:none!important}
+:root[data-am="calm"] *{animation-duration:2.4s!important;transition-duration:.5s!important}
+:root[data-font="hand"]{--fd:'Segoe Print','Bradley Hand','Comic Sans MS','Chalkboard SE',cursive;--fb:'Segoe Print','Bradley Hand','Comic Sans MS','Chalkboard SE',cursive}
+:root[data-font="bold"]{--fd:'Arial Black','Helvetica Neue',Impact,sans-serif;--fb:'Helvetica Neue',Arial,sans-serif}
+:root[data-font="elegant"]{--fd:Palatino,'Palatino Linotype','Book Antiqua',Georgia,serif;--fb:Palatino,'Palatino Linotype',Georgia,serif}
+.q{display:flex;align-items:center;gap:10px;margin:6px 0}.q .qt{flex:1}.q.ok .qt{opacity:.55;text-decoration:line-through}
+.moods{display:flex;gap:6px;margin:8px 0}.moods button{flex:1;font-size:1.5rem;padding:8px 0;border-radius:14px;border:1px solid var(--bd);background:var(--sf2)}.moods button.on{background:var(--ac);border-color:var(--ac)}
+.goal{display:flex;justify-content:space-between;gap:10px;align-items:center}.goal b{font-size:1.15rem;color:var(--ac)}
+.avs{display:flex;flex-wrap:wrap;gap:6px}.avs button{font-size:1.4rem;width:44px;height:44px;border-radius:12px;border:1px solid var(--bd);background:var(--sf)}.avs button.on{background:var(--ac)}
+html{--ho:0}
+:root[data-fw="light"] body{font-weight:300}:root[data-fw="bold"] body{font-weight:600}
+.scene.sc-sunset{background:linear-gradient(#ff8f5a 0,#ffd9a0 52%,#5f9c4f 52%,#2f6a38 100%)}.scene.sc-sunset::before{content:'🌇'}
+.scene.sc-night{background:linear-gradient(#0a0e2c 0,#2b3270 52%,#1d4a3a 52%,#10281f 100%)}.scene.sc-night::before{content:'🌙'}.sc-night .tile small{color:#e8edff!important}
+.scene.sc-snow{background:linear-gradient(#9db6d3 0,#e9f1f9 52%,#f5f9fd 52%,#d5e1ed 100%)}.scene.sc-snow::before{content:'❄️'}
+.scene.sc-desert{background:linear-gradient(#7cc3e8 0,#f7e5b5 52%,#e2b979 52%,#c08c4b 100%)}
+.scene.sc-sea{background:linear-gradient(#6ccff2 0,#c0ebf7 52%,#f3dba8 52%,#58b6d2 100%)}.scene.sc-sea::before{content:'🌊'}
+.scene .em.walk{animation:walk 7s ease-in-out infinite alternate}
+@keyframes walk{from{transform:translateX(-16px)}to{transform:translateX(16px)}}
+.tile .sub{font-size:.68rem;color:var(--mu)}.tile .x{position:absolute;top:4px;right:4px;border:0;background:rgba(0,0,0,.25);color:#fff;border-radius:50%;width:22px;height:22px;font-size:.7rem;line-height:1}.tile{position:relative}
+.arena{position:relative;height:280px;border-radius:16px;background:var(--sf2);overflow:hidden;margin-top:10px;touch-action:manipulation}
+.tgt{position:absolute;width:64px;height:64px;font-size:2rem;border-radius:50%;border:0;background:var(--ac);transform:translate(-50%,-50%)}
+.cols{display:flex;gap:8px;flex-wrap:wrap}.cols button{width:34px;height:34px;border-radius:50%;border:2px solid var(--bd)}.cols button.on{outline:3px solid var(--tx)}
+.boss{display:flex;gap:12px;align-items:center}.boss .big{font-size:2.2rem}.boss .bar{height:10px;margin-top:6px}
+.thumb{display:block;max-width:100%;max-height:180px;border-radius:12px;margin:8px 0}
+.swatch{width:100%;height:44px;padding:2px;border-radius:12px;border:1px solid var(--bd);background:var(--sf2)}
+:root[data-font="terminal"]{--fd:'JetBrains Mono',ui-monospace,Consolas,monospace}
+
+html{font-size:calc(16px*var(--fs,1))}
+*{box-sizing:border-box;margin:0}
+body{
+  background:
+    radial-gradient(900px 600px at 85% -10%,var(--b1),transparent 60%),
+    radial-gradient(700px 600px at -10% 45%,var(--b2),transparent 60%),
+    radial-gradient(800px 700px at 70% 115%,var(--b3),transparent 60%),
+    var(--bg);
+  background-attachment:fixed;
+  color:var(--tx);
+  font:1rem/1.5 var(--fb);
+  min-height:100%;
+  padding-bottom:92px;
+}
+h1,h2,h3,.timer,.streak,.stat b{font-family:var(--fd);letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:1.6rem;font-weight:600;line-height:1.15}
+h2{font-size:1.25rem;font-weight:600}
+h3{font-size:1.05rem;font-weight:600}
+main{
+  max-width:var(--mw,720px);margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-top:20px;padding-bottom:20px;
+}
+.mu{color:var(--mu)}
+small{color:var(--mu);font-size:.82rem}
+button{font:inherit;cursor:pointer;color:inherit}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.top>div:first-child{min-width:0}
+.date{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-weight:700}
+.lvl{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:8px 14px;font-weight:700;font-size:.82rem;min-width:150px;backdrop-filter:blur(14px)}
+.lvl .bar{margin-top:6px}
+.bar{height:7px;background:var(--sf2);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ac);border-radius:9px;transition:width .5s}
+
+.card{
+  background:linear-gradient(145deg,var(--sf),var(--sf0));
+  border:var(--bw,1px) solid var(--bd);border-radius:var(--r,20px);padding:calc(16px*var(--sp,1));margin-bottom:calc(12px*var(--sp,1));
+  box-shadow:inset 0 1px 0 var(--hi),0 calc(10px*var(--sd,1)) calc(30px*var(--sd,1)) var(--sh);
+  -webkit-backdrop-filter:blur(var(--bl,18px)) saturate(140%);backdrop-filter:blur(var(--bl,18px)) saturate(140%);
+}
+.card>p+p,.card p+.row{margin-top:8px}
+.hero{
+  display:grid;grid-template-columns:auto 1fr;gap:6px 20px;align-items:center;
+  border-radius:28px;padding:20px;
+}
+.ring{position:relative;width:116px;height:116px}
+.ring svg{transform:rotate(-90deg);display:block}
+.r0{fill:none;stroke:var(--sf2);stroke-width:11}
+.r1{fill:none;stroke:var(--ac);stroke-width:11;stroke-linecap:round;transition:stroke-dashoffset .6s}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:800 1.7rem var(--fd);font-variant-numeric:tabular-nums}
+.rk{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-weight:700}
+.streak{font-size:2.9rem;font-weight:800;line-height:1.05;color:var(--ac);font-variant-numeric:tabular-nums}
+.streak span{font:500 .95rem var(--fb);color:var(--mu);letter-spacing:0;margin-left:6px}
+.hmsg{margin-top:4px;font-weight:500}
+.week{grid-column:1/-1;display:flex;justify-content:space-between;gap:4px;padding-top:12px;border-top:1px solid var(--bd);margin-top:8px}
+.wd{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+.wd small{font-size:.68rem;font-weight:700;letter-spacing:.06em}
+.wd.now small{color:var(--tx)}
+.dot{width:28px;height:28px;border-radius:50%;background:conic-gradient(var(--ac) calc(var(--p)*1%),var(--sf2) 0);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 5px),#000 calc(100% - 4px));
+  mask:radial-gradient(farthest-side,transparent calc(100% - 5px),#000 calc(100% - 4px))}
+.dot.met{background:var(--ac);-webkit-mask:none;mask:none}
+.dot.rest{background:none;-webkit-mask:none;mask:none;border:2px dashed var(--bd)}
+@media(max-width:440px){.hero{grid-template-columns:1fr;justify-items:center;text-align:center}.streak span{display:block;margin:0}}
+
+.quote{border-left:3px solid var(--ac);padding:2px 14px;margin:4px 2px 18px;color:var(--mu)}
+.quote b{display:block;color:var(--tx);font:600 1.02rem/1.4 var(--fd);margin-bottom:4px;font-weight:600}
+.quote small{font-style:italic}
+
+.cat{display:flex;justify-content:space-between;align-items:baseline;margin:20px 4px 8px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--mu)}
+.cat em{font-style:normal;font-variant-numeric:tabular-nums}
+.h{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  background:linear-gradient(145deg,var(--sf),var(--sf0));border:var(--bw,1px) solid var(--bd);border-radius:calc(var(--r,20px)*.9);
+  padding:calc(12px*var(--sp,1)) 14px;margin-bottom:calc(8px*var(--sp,1));
+  box-shadow:inset 0 1px 0 var(--hi),0 calc(6px*var(--sd,1)) calc(18px*var(--sd,1)) var(--sh);
+  -webkit-backdrop-filter:blur(var(--bl,18px));backdrop-filter:blur(var(--bl,18px));
+  transition:transform .15s,background .2s,border-color .2s;
+}
+.h:active{transform:scale(.985)}
+.h .ic{font-size:1.4rem;width:42px;height:42px;display:grid;place-items:center;background:var(--sf2);border-radius:13px;flex:none}
+.h .nm{flex:1;min-width:0;font-weight:500;overflow-wrap:anywhere}
+.h .nm small{display:block;font-weight:400}
+.chk{width:30px;height:30px;flex:none;border-radius:50%;border:2px solid var(--bd);display:grid;place-items:center;color:transparent;transition:.25s}
+.chk svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.h.done{background:color-mix(in srgb,var(--ok) 16%,var(--sf));border-color:var(--ok)}
+.h.done .chk{background:var(--ok);border-color:var(--ok);color:var(--on);animation:pop .4s}
+.h.done .nm>span{text-decoration:line-through;opacity:.7}
+.h.lock{opacity:.5}
+.h b{color:var(--ac);white-space:nowrap}
+.static{cursor:default}
+[data-dense="1"] .h{padding:7px 12px;margin-bottom:5px;border-radius:14px}
+[data-dense="1"] .h .ic{width:34px;height:34px;font-size:1.15rem}
+[data-dense="1"] .h .nm small{display:inline;margin-left:8px}
+@keyframes pop{50%{transform:scale(1.35)}}
+
+.btn{background:var(--ac);color:var(--on);border:0;border-radius:calc(var(--r,20px)*.7);padding:12px 20px;font-weight:700}
+.btn.g{background:var(--sf2);color:var(--tx);border:1px solid var(--bd)}
+.btn.big{width:100%;padding:16px;font-size:1.05rem;margin-top:8px}
+.btn:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.row.c{justify-content:center}
+.pill{border:1px solid var(--bd);background:var(--sf);color:var(--tx);border-radius:99px;padding:8px 16px;font-weight:700;font-size:.9rem}
+.pill.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.pill:disabled{opacity:.5;cursor:default}
+.sw{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:-1px}
+.seg{display:flex;gap:4px;padding:4px;background:var(--sf2);border-radius:16px;margin-bottom:14px}
+.seg button{flex:1;border:0;background:none;padding:9px 6px;border-radius:12px;font-weight:700;font-size:.9rem;color:var(--mu)}
+.seg button.on{background:var(--tx);color:var(--bg)}
+
+input[type=text],input[type=number],textarea,select{width:100%;background:var(--sf2);border:1px solid var(--bd);border-radius:12px;padding:11px 12px;color:var(--tx);font:inherit}
+input[type=number]{width:96px}
+input[type=range]{width:100%;accent-color:var(--ac);padding:0}
+select option{color:#111;background:#fff}
+textarea{resize:vertical;min-height:64px}
+label{display:block;color:var(--mu);font-size:.82rem;margin:14px 0 5px;font-weight:500}
+label.inl{display:inline;margin:0}
+.hint{color:var(--mu);font-size:.82rem;margin-top:6px}
+.fm{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fm>div{min-width:0}
+.emgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:6px}
+.emgrid button{aspect-ratio:1;border-radius:12px;border:1px solid var(--bd);background:var(--sf);font-size:1.25rem;line-height:1}
+.emgrid button.on{background:var(--ac);border-color:var(--ac)}
+.days{display:flex;gap:6px;flex-wrap:wrap}
+.days .pill{padding:7px 12px}
+
+.timer{font-size:clamp(3rem,16vw,4.6rem);font-weight:800;text-align:center;margin:12px 0;font-variant-numeric:tabular-nums}
+.breath{width:150px;height:150px;border-radius:50%;background:var(--ok);opacity:.75;margin:20px auto;animation:br 8s ease-in-out infinite}
+@keyframes br{0%,100%{transform:scale(.6)}50%{transform:scale(1.1)}}
+.two{display:grid;grid-template-columns:1fr 1fr;text-align:center;gap:8px}
+.two b{display:block;font:800 1.6rem var(--fd);font-variant-numeric:tabular-nums}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin-bottom:12px}
+.stats .card{margin:0;text-align:center;padding:14px 8px}
+.stat b{display:block;font-size:1.7rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat small{display:block}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.grid div{aspect-ratio:1;border-radius:8px;background:var(--sf2);display:grid;place-items:center;font-size:.7rem;color:var(--mu);font-variant-numeric:tabular-nums}
+.grid .hd{background:none;aspect-ratio:auto;font-weight:700;letter-spacing:.06em}
+.grid .fut{background:none;border:1px dashed var(--bd)}
+.grid .l1{background:color-mix(in srgb,var(--ok) 32%,var(--sf2))}
+.grid .l2{background:color-mix(in srgb,var(--ok) 65%,var(--sf2));color:var(--tx)}
+.grid .l3{background:var(--ok);color:var(--on);font-weight:700}
+.rate{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:4px 10px;align-items:center;margin-top:12px}
+.rate span{overflow-wrap:anywhere;font-size:.92rem}
+.rate b{text-align:right;font-variant-numeric:tabular-nums;font-size:.88rem}
+.rate .bar{grid-column:1/-1}
+.bdg{display:inline-flex;gap:6px;align-items:center;padding:8px 12px;border-radius:12px;background:var(--sf2);margin:4px 4px 0 0;font-size:.85rem;opacity:.42}
+.bdg.on{opacity:1;background:color-mix(in srgb,var(--ac) 24%,var(--sf2))}
+.medal{width:40px;height:40px;border-radius:13px;background:var(--sf2);display:grid;place-items:center;font:800 1rem var(--fd);flex:none}
+.top3 .medal{background:var(--ac);color:var(--on)}
+
+.plot{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:10px;margin-bottom:6px}
+.tile{text-align:center;padding:12px 6px;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;min-height:140px}
+.tile .em{line-height:1.1;transition:font-size .5s}
+.scene{position:relative;padding:14px;border-radius:26px;background:linear-gradient(#78c4f0 0,#cdeaf7 52%,#6cbf5e 52%,#3f8a45 100%);border:1px solid var(--bd);min-height:200px;align-items:end;margin-bottom:12px}
+.scene::before{content:'☀️';position:absolute;top:8px;right:14px;font-size:1.6rem}
+.scene .tile{background:none;box-shadow:none;border:0;-webkit-backdrop-filter:none;backdrop-filter:none}
+.scene .tile small{color:#10301a;font-weight:700}
+.scene .pill{background:rgba(0,40,20,.7);color:#fff;border-color:transparent}
+.scene .em{animation:sway 4s ease-in-out infinite;transform-origin:bottom}
+@keyframes sway{50%{transform:rotate(4deg)}}
+
+.packs{display:grid;gap:8px;margin:10px 0}
+.pack{display:block;text-align:left;width:100%;padding:12px 14px;border-radius:16px;border:1px solid var(--bd);background:var(--sf)}
+.pack.on{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 18%,var(--sf))}
+.pack b{display:block}
+.pack small{display:block}
+
+nav{
+  position:fixed;left:0;right:0;bottom:0;z-index:5;
+  display:flex;justify-content:center;gap:2px;
+  padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));
+  background:var(--navbg);border-top:1px solid var(--bd);border-radius:24px 24px 0 0;
+  -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+}
+nav button{flex:1;max-width:120px;background:none;border:0;color:var(--mu);padding:6px 2px;border-radius:14px;font-size:.68rem;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--tx);background:var(--sf2)}
+
+.toast{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:99px;font-weight:700;z-index:9;animation:tin .3s;max-width:calc(100vw - 32px);text-align:center}
+@keyframes tin{from{opacity:0;transform:translate(-50%,-10px)}}
+.cf{position:fixed;top:-30px;font-size:1.5rem;z-index:9;pointer-events:none;animation:fall 1.9s ease-in forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+.h.pend{border-style:dashed;border-color:var(--ac);background:color-mix(in srgb,var(--ac) 10%,var(--sf))}
+.h.pend .chk{color:var(--ac);border-color:var(--ac);border-style:dashed;font-weight:800}
+.rem{display:flex;gap:10px;align-items:center;margin:8px 0}.rem input[type=time]{flex:1;min-width:0;padding:10px;border-radius:12px;border:1px solid var(--bd,#8884);background:transparent;color:inherit;font:inherit}
+.tag{display:inline-block;margin-right:6px;padding:0 8px;border-radius:99px;border:1px solid var(--ac);color:var(--ac);font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;line-height:1.6;white-space:nowrap;vertical-align:1px}
+a.btn{display:inline-block;text-decoration:none;text-align:center}
+input[type=time]{background:var(--sf2);border:1px solid var(--bd);border-radius:12px;padding:9px 10px;color:var(--tx);font:inherit}
+.rem{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:8px 0;flex-wrap:wrap}
+.nudge{border-color:var(--ac)}
+.nudge b{font-family:var(--fd)}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--bd)}
+.kv span{min-width:0;overflow-wrap:anywhere}
+.kv b{text-align:right;font-variant-numeric:tabular-nums;max-width:60%;overflow-wrap:anywhere}
+.card h3+.kv{margin-top:8px}
+.card h2+p,.card h3+p{margin-top:6px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<main id="app"></main>
+<nav id="nav" aria-label="Sections"></nav>
+
+<script>
+const CATS={detox:'Digital detox',study:'Study',body:'Body',mind:'Confidence',social:'Communication',work:'Work',faith:'Faith and spirit',personal:'Personal'};
+const LIB=[
+['detox','🌙','Phone charges outside the bedroom',20],['detox','⏳','No social media before noon',30],['detox','🚫','Under 45 min of scrolling today',30],['detox','📖','Read 10 pages instead of scrolling',20],['detox','🔕','Notifications off for 3 hours',15],
+['study','🎓','2 focus sessions on studies',30],['study','📝','Review notes for 20 min',20],['study','🗓️','Plan tomorrow tonight',15],['study','❓','Practice questions / active recall',25],
+['body','🏋️','Workout (gym or home)',40],['body','🚶','Walk 8,000+ steps',20],['body','💧','Drink 2 litres of water',10],['body','🍗','Hit your protein target',20],['body','😴','In bed by 11 pm',20],['body','🧘','10 min stretching',15],
+['mind','🚿','Cold shower',25],['mind','🧍','Posture check: shoulders back, chin up',10],['mind','🗯️','Say your affirmations out loud',10],['mind','😨','Do one thing that scares you',40],['mind','📔','Journal: 3 wins from today',15],
+['social','👋','Start a conversation with someone new',40],['social','🤝','Give a genuine compliment',15],['social','📞','Call or message a friend',20],['social','👁️','Hold eye contact in every chat',15],
+['work','🐸','Do the hardest task first',35],['work','⏱️','90-minute deep work block',40],['work','📥','Clear your to-do list for today',20],
+['mind','🙏','Write down 3 things you are grateful for',10],['body','🥗','No sugary drinks',15],['study','🎧','Listen to one lesson or podcast',15],['detox','📴','Screen-free hour before bed',25],['work','✉️','Reply to pending messages',15],['social','🙋','Say yes to one invitation',20],
+['faith','🙏','Daily prayer or devotion',30],['faith','🌅','Morning prayer or meditation',25],['faith','📖','Read scripture or a sacred text for 10 minutes',25],['faith','📿','Quiet remembrance: prayer beads, mantra or chant',15],['faith','🌙','Fast today',40],['faith','🛐','Attend or hold weekly worship',30],['faith','🤲','Prayer of thanks',10],['faith','💝','Give charity, however small',20],['faith','🎧','Listen to a sermon, talk or recitation',15],['faith','🧎','Meditate or reflect in silence for 10 minutes',20],['faith','🕯️','Evening reflection',15]];
+const PACKS=[
+{id:'balanced',n:'Balanced',d:'Study, body, confidence and work in one short list.',h:[1,5,9,15,19,20,24]},
+{id:'student',n:'Student',d:'Focus blocks, active recall and an early night.',h:[3,5,6,7,8,11,13]},
+{id:'strength',n:'Strength',d:'Train, move, eat well, recover.',h:[9,10,11,12,13,14,28]},
+{id:'detox',n:'Digital detox',d:'Take your attention back from the phone.',h:[0,1,2,3,4,30,19]},
+{id:'faith',n:'Faith and spirit',d:'Prayer or devotion, scripture, quiet reflection, gratitude, charity and an evening review. Works for any faith. Rename habits or set days to match your own practice.',h:[33,35,42,27,40,43,9]},
+{id:'blank',n:'Start empty',d:'Build your own list from the library.',h:[]}];
+const QUOTES=['Discipline is choosing what you want most over what you want now.','You don\'t rise to your goals. You fall to your daily systems.','Be the person who keeps promises to themselves.','Motivation starts it. Showing up finishes it.','One rep, one page, one call. That counts.','The urge passes in 10 minutes. The result lasts.','Your future physique is built on boring Tuesdays.','Confidence is just evidence from kept promises.'];
+const RANKS=['Initiate','Cadet','Soldier','Veteran','Ranger','Captain','Warden','Commander','Legend'];
+const BADGES=[['🔥','60-day streak',s=>s.best>=60],['🌋','100-day streak',s=>s.best>=100],['🧠','1000 focus min',s=>s.focus>=1000],['🕉️','100 urges beaten',s=>s.urges>=100],['🔟','10 perfect days',s=>s.perfect>=10],['📆','30 perfect days',s=>s.perfect>=30],['💪','500 habits done',s=>s.done>=500],['🏔️','1000 habits done',s=>s.done>=1000],['⭐','Level 15',s=>s.lvl>=15],['🌌','Level 20',s=>s.lvl>=20],['🌿','5 garden items',s=>s.gn>=5],['🏞️','15 garden items',s=>s.gn>=15],['🌸','First harvest',s=>s.gh>=1],['🧺','25 harvests',s=>s.gh>=25],['💗','Fed 20 times',s=>s.gf>=20],['🦋','10 species',s=>s.sp>=10],['🏰','Garden rating 100',s=>s.gr>=100],['🎁','First reward claimed',s=>s.rwn>=1],['📓','10 journal lines',s=>s.jr>=10],['😊','7 moods logged',s=>s.mo>=7],['🎖️','20 quests done',s=>s.qn>=20],['🕹️','Quick tap 30+',s=>s.gm>=30],['🔥','3-day streak',s=>s.best>=3],['⚡','7-day streak',s=>s.best>=7],['🌟','14-day streak',s=>s.best>=14],['👑','30-day streak',s=>s.best>=30],['🎯','100 focus min',s=>s.focus>=100],['⏳','500 focus min',s=>s.focus>=500],['🛡️','5 urges beaten',s=>s.urges>=5],['🧱','25 urges beaten',s=>s.urges>=25],['💯','Perfect day',s=>s.perfect>=1],['✅','100 habits done',s=>s.done>=100],['🚀','Level 5',s=>s.lvl>=5],['🏆','Level 10',s=>s.lvl>=10],['🧾','5 habits verified',s=>s.vd>=5],['🤝','Trusted witness',s=>s.vc>=5],['🎁','10 chests opened',s=>(s.chests||0)>=10],['🗡️','Boss slayer',s=>(s.bosses||0)>=1]];
+const SHOP=[['🌱','Sprout',30,'p',1],['🪴','Snake plant',60,'p',1],['🌵','Cactus',90,'p',1],['🌺','Orchid',160,'p',2],['🌳','Oak tree',320,'p',3],['⛲','Fountain',250,'d',2],['🐢','Turtle',200,'a',2],['🦆','Duck',260,'a',3],['🐼','Panda',600,'a',4],['🦁','Lion',900,'a',6],['🐘','Elephant',1500,'a',8],
+['🌻','Sunflower',45,'p',1],['🌷','Tulip',70,'p',1],['🌹','Rose',140,'p',2],['🍓','Strawberry',110,'p',2],['🎋','Bamboo',220,'p',3],['🌴','Palm tree',280,'p',3],['🌸','Cherry blossom',450,'p',5],['🍎','Apple tree',500,'p',5],
+['🪨','Rock garden',90,'d',1],['🪁','Kite',80,'d',1],['🪑','Bench',120,'d',2],['🏮','Lantern',150,'d',2],['🔥','Campfire',200,'d',3],['⛺','Tent',260,'d',3],['🌉','Bridge',380,'d',4],['🗿','Statue',520,'d',5],['🏡','Cottage',700,'d',5],
+['🐇','Rabbit',150,'a',1],['🦋','Butterfly',120,'a',1],['🐝','Bee',130,'a',2],['🐓','Chicken',180,'a',2],['🐑','Sheep',320,'a',3],['🦊','Fox',480,'a',4],['🦜','Parrot',520,'a',4],['🐧','Penguin',700,'a',5],['🦒','Giraffe',1100,'a',7],['🦄','Unicorn',3000,'a',10],['🐉','Dragon',5000,'a',12]];
+const HUES=[['Forest',150],['Ocean',200],['Sunset',22],['Night',262],['Rose',335],['Gold',46]];
+const EM=['⭐','🎸','🎨','🧹','🍎','🏃','🧗','🛏️','💊','🙏','🌞','✍️','🎧','🧊','📚','💻','🧠','🥗','🚴','🏊','🪥','📵','🌿','☕','🎯','🔥','💪','🧘','🛁','🗓️','🎹','🧩'];
+const DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const ICONS={
+today:'<circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/>',
+focus:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9.5 2.5h5"/>',
+garden:'<path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c3-5 6-8 9-10"/>',
+progress:'<path d="M5 20V10M12 20V4M19 20v-7"/>',
+habits:'<path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>',
+settings:'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>'};
+const TABS=[['today','Today'],['focus','Focus'],['garden','Garden'],['progress','Progress'],['habits','Habits'],['settings','Settings']];
+const CHECK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const K='ironwill.v2';
+
+const DEF=()=>({habits:[],fr:[],xd:{},pend:{},sh:0,shd:[],vc:0,vd:0,vs:[],tm:'auto',hp:true,vn:1,nd:true,gs:'auto',ho:0,fw:'normal',rs:'ring',fxp:'default',cq:[],qn:0,gh:0,gf:0,gm:0,gmd:{},sm:100,rad:20,fs:100,bgs:'aurora',cs:'glass',bl:18,op:100,bdw:1,sd:100,sp:100,dim:35,nv:'bar',ck:'circle',lay:'list',ics:'tile',am:'full',mw:'normal',amb:'off',bgi:'',mood:{},jr:{},qd:{},rw:[],rwn:0,goals:[],av:'🙂',ti:'',sn:false,chest:'',chests:0,bw:'',bosses:0,lbk:'',rm:{m:'07:30',e:'20:30',s:'20:00',tm:1,te:1,ts:1},log:{},focus:{},wlog:{},pd:{},uday:{},urges:0,xp:0,coins:0,water:0,name:'',lb:false,t:0,hue:150,font:'classic',dense:false,fx:true,hs:true,qt:true,ws:1,ud:5,thr:.6,garden:[],best:0,perfect:0,ob:false,mantra:'I keep the promises I make to myself.',swaps:['20 pushups','Drink water','Walk outside','Read 2 pages','Text a friend','Stretch 3 min','Study 10 min']});
+function norm(o){
+ const s=Object.assign(DEF(),o&&typeof o==='object'&&!Array.isArray(o)?o:{});
+ ['log','focus','wlog','pd','uday','xd','pend'].forEach(k=>{if(!s[k]||typeof s[k]!=='object'||Array.isArray(s[k]))s[k]={}});
+ ['xp','coins','water','urges','best','perfect','t','sh','vc','vd'].forEach(k=>{s[k]=Number.isFinite(+s[k])?+s[k]:0});
+ s.habits=(Array.isArray(s.habits)?s.habits:[]).filter(h=>h&&typeof h.id==='string'&&(h.c||(Number.isInteger(h.l)&&LIB[h.l]))).map(h=>{
+  const r={id:h.id.slice(0,40)};if(h.v)r.v=1;if(Number.isInteger(h.l)&&LIB[h.l])r.l=h.l;
+  if(h.c)r.c=String(h.c).slice(0,60);if(h.e)r.e=String(h.e).slice(0,8);if(h.cat&&CATS[h.cat])r.cat=h.cat;
+  if(Number.isFinite(+h.xp)&&+h.xp>0)r.xp=Math.min(100,+h.xp);if(h.col!==null&&h.col!==undefined&&h.col!==''&&Number.isFinite(+h.col))r.col=Math.max(0,Math.min(360,Math.round(+h.col)));
+  r.d=Array.isArray(h.d)?h.d.filter(n=>Number.isInteger(n)&&n>=0&&n<=6):[];return r});
+ s.garden=(Array.isArray(s.garden)?s.garden:[]).filter(o=>o&&SHOP[o.k]).slice(0,80).map(o=>({k:o.k,g:Math.max(0,Math.min(5,+o.g||0)),f:typeof o.f==='string'?o.f:'',h:typeof o.h==='string'?o.h:''}));
+ s.swaps=(Array.isArray(s.swaps)?s.swaps:DEF().swaps).map(x=>String(x).slice(0,40)).filter(Boolean).slice(0,20);
+ s.fr=(Array.isArray(s.fr)?s.fr:[]).filter(f=>f&&typeof f.n==='string').slice(0,30).map(f=>{const h={};if(f.h&&typeof f.h==='object')Object.keys(f.h).slice(-12).forEach(k=>{if(/^\d{4}-\d\d-\d\d$/.test(k)&&Number.isFinite(+f.h[k]))h[k]=+f.h[k]});return{n:f.n.slice(0,20),l:+f.l||1,x:+f.x||0,s:+f.s||0,b:+f.b||0,t:+f.t||0,w:typeof f.w==='string'?f.w:'',wx:+f.wx||0,h,g:typeof f.g==='string'&&/^[0-9a-f]{20,40}$/.test(f.g)?f.g:''}});
+ s.hue=Math.min(360,Math.max(0,Math.round(+s.hue||0)));
+ if(!['classic','sharp','terminal'].includes(s.font))s.font='classic';
+ s.thr=Math.min(1,Math.max(.2,+s.thr||.6));s.ws=s.ws===0?0:1;s.ud=[3,5,10,15].includes(+s.ud)?+s.ud:5;
+ s.name=String(s.name||'').slice(0,20);s.mantra=String(s.mantra||'').slice(0,200);
+ s.shd=(Array.isArray(s.shd)?s.shd:[]).filter(x=>typeof x==='string').slice(-60);s.vs=(Array.isArray(s.vs)?s.vs:[]).filter(x=>typeof x==='string').slice(-300);
+ if(!['auto','light','dark'].includes(s.tm))s.tm='auto';s.hp=s.hp!==false;s.nd=s.nd!==false;s.vn=s.vn===2?2:1;
+ {const r=s.rm&&typeof s.rm==='object'?s.rm:{},ok=t=>/^([01]\d|2[0-3]):[0-5]\d$/.test(t||'');s.rm={m:ok(r.m)?r.m:'07:30',e:ok(r.e)?r.e:'20:30',s:ok(r.s)?r.s:'20:00',tm:r.tm===0?0:1,te:r.te===0?0:1,ts:r.ts===0?0:1}}
+ s.ns=!!s.ns;
+ {const cl=(v,a,b,d)=>Number.isFinite(+v)?Math.min(b,Math.max(a,+v)):d;s.sm=cl(s.sm,40,150,100);s.rad=cl(s.rad,4,34,20);s.fs=cl(s.fs,88,130,100);
+  const oneOf=(v,a,d)=>a.includes(v)?v:d;
+  s.bgs=oneOf(s.bgs,['aurora','fade','plain','grid','dots','stripes','mesh','noise','stars','image'],'aurora');
+  s.cs=oneOf(s.cs,['glass','frost','solid','outline','soft','neon','brutal','gradient','minimal'],'glass');
+  s.font=oneOf(s.font,['classic','sharp','terminal','serif','rounded','hand','bold','elegant'],'classic');s.sn=!!s.sn;
+  s.nv=oneOf(s.nv,['bar','float','icons'],'bar');s.ck=oneOf(s.ck,['circle','square','squircle','leaf'],'circle');s.lay=oneOf(s.lay,['list','grid'],'list');
+  s.ics=oneOf(s.ics,['tile','bare','big'],'tile');s.am=oneOf(s.am,['full','calm','off'],'full');s.mw=oneOf(s.mw,['narrow','normal','wide'],'normal');s.amb=oneOf(s.amb,['off','rain','brown','ocean'],'off');
+  s.bl=cl(s.bl,0,40,18);s.op=cl(s.op,20,200,100);s.bdw=Math.round(cl(s.bdw,0,3,1)*2)/2;s.sd=cl(s.sd,0,200,100);s.sp=cl(s.sp,60,150,100);s.dim=cl(s.dim,0,90,35);
+  s.bgi=typeof s.bgi==='string'&&/^data:image\//.test(s.bgi)&&s.bgi.length<700000?s.bgi:'';if(s.bgs==='image'&&!s.bgi)s.bgs='aurora';
+  ['mood','jr','qd'].forEach(k=>{if(!s[k]||typeof s[k]!=='object'||Array.isArray(s[k]))s[k]={}});
+  Object.keys(s.mood).forEach(k=>{const v=+s.mood[k];if(!(v>=1&&v<=5))delete s.mood[k];else s.mood[k]=Math.round(v)});
+  Object.keys(s.jr).forEach(k=>{if(typeof s.jr[k]!=='string'||!s.jr[k].trim())delete s.jr[k];else s.jr[k]=s.jr[k].slice(0,300)});
+  Object.keys(s.qd).forEach(k=>{s.qd[k]=Array.isArray(s.qd[k])?s.qd[k].filter(Number.isInteger).slice(0,6):[]});
+  s.rw=(Array.isArray(s.rw)?s.rw:[]).filter(r=>r&&typeof r.n==='string'&&r.n.trim()&&+r.c>0).slice(0,30).map(r=>({n:r.n.slice(0,40),c:Math.min(99999,Math.round(+r.c))}));
+  s.goals=(Array.isArray(s.goals)?s.goals:[]).filter(g=>g&&typeof g.n==='string'&&g.n.trim()&&/^\d{4}-\d\d-\d\d$/.test(g.d||'')).slice(0,10).map(g=>({n:g.n.slice(0,40),d:g.d}));
+  s.rwn=Math.max(0,Math.floor(+s.rwn||0));s.av=typeof s.av==='string'&&s.av.trim()?[...s.av].slice(0,2).join(''):'🙂';s.ti=typeof s.ti==='string'?s.ti.slice(0,30):'';
+  s.gs=oneOf(s.gs,['auto','day','sunset','night','snow','desert','sea'],'auto');s.fw=oneOf(s.fw,['normal','light','bold'],'normal');s.rs=oneOf(s.rs,['ring','pie','number'],'ring');
+  s.fxp=oneOf(s.fxp,['default','party','nature','space','food','animals'],'default');s.ho=cl(s.ho,-60,60,0);
+  s.cq=(Array.isArray(s.cq)?s.cq:[]).map(x=>String(x).trim().slice(0,140)).filter(Boolean).slice(0,30);
+  ['qn','gh','gf','gm'].forEach(k=>{s[k]=Math.max(0,Math.floor(+s[k]||0))});if(!s.gmd||typeof s.gmd!=='object'||Array.isArray(s.gmd))s.gmd={};
+  s.chest=typeof s.chest==='string'?s.chest:'';s.bw=typeof s.bw==='string'?s.bw:'';s.lbk=typeof s.lbk==='string'?s.lbk:'';
+  s.chests=Math.max(0,Math.floor(+s.chests||0));s.bosses=Math.max(0,Math.floor(+s.bosses||0))}
+ s.dense=!!s.dense;s.fx=s.fx!==false;s.hs=s.hs!==false;s.qt=s.qt!==false;s.lb=!!s.lb;s.ob=!!s.ob||s.habits.length>0;
+ return s}
+var storeOK=true;try{localStorage.setItem('iw.t','1');localStorage.removeItem('iw.t')}catch(e){storeOK=false}
+let S=DEF();
+try{const r=localStorage.getItem(K);if(r)S=norm(JSON.parse(r))}catch(e){}
+const persist=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const save=()=>{S.t=Date.now();persist();if(typeof ghQueue==='function')ghQueue()};
+
+const $=s=>document.querySelector(s);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const dk=d=>{d=d||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const back=n=>{const d=new Date();d.setDate(d.getDate()-n);return dk(d)};
+const wd=d=>new Date(+d.slice(0,4),+d.slice(5,7)-1,+d.slice(8,10)).getDay();
+var tmOwn=false;
+function hsl2hex(h,sa){const l=.5,a=sa/100*Math.min(l,1-l),f=n=>{const k=(n+h/30)%12,c=l-a*Math.max(-1,Math.min(k-3,9-k,1));return Math.round(255*c).toString(16).padStart(2,'0')};return '#'+f(0)+f(8)+f(4)}
+function look(){const r=document.documentElement;r.style.setProperty('--h',S.hue);r.style.setProperty('--sm',S.sm/100);r.style.setProperty('--ho',S.ho);r.dataset.fw=S.fw;r.style.setProperty('--r',S.rad+'px');r.style.setProperty('--fs',S.fs/100);r.dataset.bg=S.bgs;r.dataset.card=S.cs;r.style.setProperty('--bl',S.bl+'px');r.style.setProperty('--op',S.op/100);r.style.setProperty('--bw',S.bdw+'px');r.style.setProperty('--sd',S.sd/100);r.style.setProperty('--sp',S.sp/100);r.style.setProperty('--dim',S.dim/100);r.style.setProperty('--mw',{narrow:'560px',normal:'720px',wide:'980px'}[S.mw]);r.style.setProperty('--bgi',S.bgi?'url("'+S.bgi+'")':'none');['nv','ck','lay','ics','am'].forEach(k=>{r.dataset[k]=S[k]});r.dataset.font=S.font;r.dataset.dense=S.dense?'1':'0';
+ if(S.tm!=='auto'){r.dataset.theme=S.tm;tmOwn=true}else if(tmOwn){r.removeAttribute('data-theme');tmOwn=false}}
+look();
+
+const info=h=>{const b=Number.isInteger(h.l)?LIB[h.l]:null;return{cat:h.cat||(b?b[0]:'personal'),ic:h.e||(b?b[1]:'⭐'),nm:h.c||(b?b[2]:'Habit'),xp:h.xp||(b?b[3]:20)}};
+const sched=(h,d)=>!h.d||!h.d.length||h.d.includes(wd(d));
+const hsOn=d=>S.habits.filter(h=>sched(h,d));
+const pct=d=>{const l=hsOn(d);if(!l.length)return 0;const g=S.log[d]||[];return l.filter(h=>g.includes(h.id)).length/l.length};
+const lvl=()=>Math.floor(Math.sqrt(S.xp/60))+1;
+const rank=l=>RANKS[Math.min(l-1,RANKS.length-1)];
+const lvlPct=()=>{const l=lvl()-1,a=60*l*l,b=60*(l+1)*(l+1);return Math.round((S.xp-a)/(b-a)*100)};
+function streak(){let n=0;for(let i=0;i<400;i++){const d=back(i);if(!hsOn(d).length||S.shd.includes(d))continue;if(pct(d)>=S.thr-1e-9)n++;else if(i>0)break}return n}
+function hstreak(h){let n=0;for(let i=0;i<200;i++){const d=back(i);if(!sched(h,d))continue;if((S.log[d]||[]).includes(h.id))n++;else if(i>0)break}return n}
+const sumFocus=()=>Object.values(S.focus).reduce((a,b)=>a+b,0);
+const mkd=ds=>new Date(+ds.slice(0,4),+ds.slice(5,7)-1,+ds.slice(8,10));
+const addDays=(ds,n)=>{const d=mkd(ds);d.setDate(d.getDate()+n);return dk(d)};
+const wkStart=ds=>addDays(ds,-((wd(ds)+6)%7));
+const curWeek=()=>wkStart(dk());
+const weekXp=w=>{let t=0;for(let i=0;i<7;i++)t+=S.xd[addDays(w,i)]||0;return Math.max(0,t)};
+const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+
+let deferredInstall=null,installNo=false,proofOpen=null,CF=null,CFcode='',CFmsg='',bm='week',tab='today',sub={focus:'timer',progress:'stats',settings:'you'},fcus=25,fDur=25,fEnd=0,tmr=null,uEnd=0,urgeT=null,packSel='balanced',DR=null,editing=null,armed=null,bkText='',curDay=dk();
+
+const FXP={default:['🎉','✨','🍃','⭐'],party:['🎉','🎊','🥳','🎈'],nature:['🍃','🌸','🌼','🦋'],space:['🚀','⭐','🌙','🪐'],food:['🍓','🍕','🍩','🍉'],animals:['🐶','🐱','🐼','🦊']};
+function fx(a){if(!S.fx)return;a=a||FXP[S.fxp]||FXP.default;for(let i=0;i<22;i++){const x=document.createElement('span');x.className='cf';x.textContent=a[i%a.length];x.style.left=Math.random()*100+'vw';x.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(x);setTimeout(()=>x.remove(),2600)}}
+function toast(t){const e=document.createElement('div');e.className='toast';e.setAttribute('role','status');e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),2000)}
+function greet(){const h=new Date().getHours();return (h<12?'Good morning':h<18?'Good afternoon':'Good evening')+(S.name?', '+esc(S.name):'')}
+const buzz=()=>{if(S.hp&&navigator.vibrate)try{navigator.vibrate(18)}catch(e){}};
+const nonce=()=>Math.random().toString(36).slice(2,10);
+async function notify(t,b){try{
+ if(!S.ns||!('Notification' in window)||Notification.permission!=='granted')return;
+ const reg=navigator.serviceWorker&&await navigator.serviceWorker.getRegistration();
+ if(reg&&reg.showNotification)reg.showNotification(t,{body:b,icon:'icon-192.png',badge:'icon-192.png',tag:'ironwill'});else new Notification(t,{body:b,icon:'icon-192.png'})}catch(e){}}
+function copyText(t,ok,ta){const fail=()=>{const e=ta&&$(ta);if(e){e.focus();e.select()}toast('Select and copy the text')};try{navigator.clipboard.writeText(t).then(()=>toast(ok),fail)}catch(e){fail()}}
+function gain(x,msg){const before=lvl();S.xp+=x;S.coins+=x;{const dd=dk();S.xd[dd]=(S.xd[dd]||0)+x}if(lvl()>before){fx();toast('Level '+lvl()+' reached: '+rank(lvl()))}else if(msg)toast(msg+(x?' +'+x+' XP':''));const s=streak();if(s>S.best)S.best=s;save()}
+
+/* ---------- GitHub: backup gist, live score gist ---------- */
+let lbSort='xp',busy=false,GHF=0,ghT=null;
+function typing(){const a=document.activeElement;return a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)}
+function rr(){if(typing())return;if(tab==='settings'||(tab==='progress'&&sub.progress==='ranks'))render()}
+const GHK='ironwill.gh',GH0=()=>({tok:'',gid:'',pid:'',auto:false,pub:false,last:0,msg:''});
+let GH=(()=>{try{return Object.assign(GH0(),JSON.parse(localStorage.getItem(GHK)||'{}'))}catch(e){return GH0()}})();
+const ghSave=()=>{try{localStorage.setItem(GHK,JSON.stringify(GH))}catch(e){}};
+async function ghApi(method,path,body,anon){
+ const h={'Accept':'application/vnd.github+json'};if(body)h['Content-Type']='application/json';if(GH.tok&&!anon)h.Authorization='Bearer '+GH.tok;
+ const r=await fetch('https://api.github.com'+path,{method,headers:h,body:body?JSON.stringify(body):undefined});
+ if(!r.ok){const e=new Error('HTTP '+r.status);e.status=r.status;throw e}return r.json()}
+const ghErr=e=>e&&e.status===401?'GitHub rejected the token. Make a new one with the gist box ticked.':e&&e.status===404?'GitHub could not find that gist.':e&&e.status===403?'GitHub is limiting requests. Try again in a few minutes.':e&&e.status===422?'GitHub refused the data. Try again.':'Could not reach GitHub. Check your connection.';
+const gistId=t=>{const m=String(t||'').match(/[0-9a-f]{20,40}/i);return m?m[0].toLowerCase():''};
+async function gistText(g,name){const f=g.files&&g.files[name];if(!f)return null;if(f.truncated&&f.raw_url){const r=await fetch(f.raw_url);return r.ok?r.text():null}return f.content}
+function scoreDoc(){const cw=curWeek(),hw={};for(let k=0;k<=6;k++){const w=addDays(cw,-7*k),v=weekXp(w);if(v>0)hw[w]=v}
+ return {v:1,n:S.name||'Player',l:lvl(),x:S.xp,s:streak(),b:S.best,t:Date.now(),w:cw,wx:weekXp(cw),hw,a:S.av}}
+function fromScore(o){const f=decScore(JSON.stringify(o)&&enc(o,'IW2'));if(!f)return null;f.h={};
+ if(o.hw&&typeof o.hw==='object')Object.keys(o.hw).slice(0,8).forEach(k=>{if(/^\d{4}-\d\d-\d\d$/.test(k)&&Number.isFinite(+o.hw[k]))f.h[k]=Math.max(0,+o.hw[k])});
+ if(f.w)f.h[f.w]=Math.max(f.h[f.w]||0,f.wx);return f}
+const nowT=()=>new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+async function ghPush(){
+ if(!GH.tok||busy)return;busy=true;
+ try{
+  const files={'ironwill.json':{content:JSON.stringify(S)}};
+  if(GH.gid)await ghApi('PATCH','/gists/'+GH.gid,{files});
+  else{const g=await ghApi('POST','/gists',{description:'Ironwill backup (private)',public:false,files});GH.gid=g.id}
+  if(GH.pub){const f2={'ironwill-score.json':{content:JSON.stringify(scoreDoc())}};
+   if(GH.pid)await ghApi('PATCH','/gists/'+GH.pid,{files:f2});
+   else{const g=await ghApi('POST','/gists',{description:'Ironwill live score',public:true,files:f2});GH.pid=g.id}}
+  GH.last=Date.now();GH.msg='Saved to GitHub at '+nowT()+'.';
+ }catch(e){GH.msg=ghErr(e)}
+ ghSave();busy=false;rr()}
+async function ghLoad(silent){
+ if(!GH.tok||!GH.gid){GH.msg='Nothing saved on GitHub yet.';rr();return false}
+ try{const g=await ghApi('GET','/gists/'+GH.gid),t=await gistText(g,'ironwill.json');if(!t)throw{status:404};
+  const o=JSON.parse(t);if(!o||!Array.isArray(o.habits))throw{status:422};
+  if(silent&&!((+o.t||0)>(S.t||0)))return false;
+  S=norm(o);S.ob=true;persist();look();GH.msg='Loaded from GitHub at '+nowT()+'.';ghSave();render();toast('Loaded your GitHub backup');return true
+ }catch(e){GH.msg=ghErr(e);ghSave();rr();return false}}
+function ghQueue(){if(!GH.tok||!GH.auto)return;clearTimeout(ghT);ghT=setTimeout(ghPush,20000)}
+async function ghFriends(){let n=0;
+ for(const f of S.fr){if(!f.g)continue;
+  try{const g=await ghApi('GET','/gists/'+f.g,null,!GH.tok),t=await gistText(g,'ironwill-score.json'),o=t&&JSON.parse(t),d=o&&fromScore(o);
+   if(d){const h={...f.h,...d.h};Object.assign(f,{n:d.n,l:d.l,x:d.x,s:d.s,b:d.b,t:d.t,w:d.w,wx:d.wx,h});n++}}catch(e){}}
+ GHF=Date.now();if(n){save();}render();return n}
+function ghAuto(){if(!S.fr.some(f=>f.g)||Date.now()-GHF<300000||typeof fetch!=='function')return;GHF=Date.now();ghFriends()}
+async function addGistFriend(txt){const id=gistId(txt);if(!id)return toast('Paste your friend\'s live score ID or link');
+ if(S.fr.some(f=>f.g===id))return toast('That friend is already on your board');if(id===GH.pid)return toast('That is your own score');
+ try{const g=await ghApi('GET','/gists/'+id,null,!GH.tok),t=await gistText(g,'ironwill-score.json');if(!t)throw{status:404};
+  const d=fromScore(JSON.parse(t));if(!d)throw{status:422};d.g=id;
+  const k=S.fr.findIndex(x=>x.n.toLowerCase()===d.n.toLowerCase());if(k>=0)d.h={...S.fr[k].h,...d.h};
+  if(k>=0)S.fr[k]=d;else S.fr.push(d);save();render();toast(d.n+' is on your board, live')}
+ catch(e){toast(ghErr(e))}}
+async function ghInit(){if(GH.tok&&GH.gid&&GH.auto)await ghLoad(true);ghAuto()}
+
+/* ---------- views ---------- */
+function ring(p){
+ if(S.rs==='number')return `<b style="position:static;font-size:2.6rem;display:block;text-align:center;padding-top:30px">${Math.round(p*100)}%</b>`;
+ if(S.rs==='pie')return `<div style="width:116px;height:116px;border-radius:50%;background:conic-gradient(var(--ac) ${Math.round(p*360)}deg,var(--sf2) 0)"></div><b>${Math.round(p*100)}%</b>`;
+ return ring0(p)}
+function ring0(p){const c=2*Math.PI*52;return `<svg viewBox="0 0 120 120" width="116" height="116" aria-hidden="true"><circle class="r0" cx="60" cy="60" r="52"/><circle class="r1" cx="60" cy="60" r="52" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-p)}"/></svg><b>${Math.round(p*100)}%</b>`}
+function strip(){let h='';for(let i=6;i>=0;i--){const d=back(i),n=hsOn(d).length,p=pct(d);h+=`<div class="wd ${i===0?'now':''}" title="${d}"><span class="dot ${n===0?'rest':n&&p>=S.thr-1e-9?'met':''}" style="--p:${Math.round(p*100)}"></span><small>${'SMTWTFS'[wd(d)]}</small></div>`}return `<div class="week" aria-hidden="true">${h}</div>`}
+
+function welcome(){
+ return `<section class="card"><h2>Welcome to Ironwill</h2><p class="mu">Build discipline one kept promise at a time. Pick a starting set. Everything can be changed later.</p>
+ <label for="wn">What should we call you?</label><input type="text" id="wn" maxlength="20" value="${esc(S.name)}" placeholder="Your name">
+ <label>Starting set</label><div class="packs">${PACKS.map(p=>`<button class="pack ${packSel===p.id?'on':''}" data-a="pack" data-v="${p.id}" aria-pressed="${packSel===p.id}"><b>${p.n}</b><small>${p.d}</small></button>`).join('')}</div>
+ <button class="btn big" data-a="start">Start my first day</button></section>`}
+
+const reqCode=(x,pe)=>enc({n:S.name||'Player',h:info(x).nm.slice(0,40),d:dk(),k:pe.k},'IWR');
+function proofPanel(x,pe){const i=info(x),ev=PROOF[x.id]||{note:'',url:''},ok=proofReady(x.id);
+ const step1=`<b>Step 1: show your proof</b><p class="mu">This habit does not count until you show proof. Add a photo or write what you did (at least 8 characters).</p><label for="pimg">Photo</label><input type="file" id="pimg" accept="image/*" capture="environment">${ev.url?`<img class="thumb" src="${esc(ev.url)}" alt="Your proof photo">`:''}<label for="pnote">Note</label><textarea id="pnote" rows="2" maxlength="140" placeholder="What did you do? Be specific.">${esc(ev.note)}</textarea>`;
+ if(!ok)return `<div class="card">${step1}<p class="hint">Sending unlocks once your proof is added.</p><div class="row"><button class="btn g" data-a="pcancel" data-id="${esc(x.id)}">Cancel</button></div></div>`;
+ return `<div class="card">${step1}<hr style="border:0;border-top:1px solid var(--bd);margin:14px 0"><b>Step 2: ask ${S.vn} friend${S.vn>1?'s':''} to confirm</b><p class="mu">Send the request${ev.file?' with your photo':''}. When they confirm, they send back a confirmation code.</p><label for="preq">Your proof request</label><textarea id="preq" rows="2" readonly>${esc(reqCode(x,pe))}</textarea><div class="row">${sendRow(reqMsg(x,pe),'rq'+x.id)}<button class="btn g" data-a="copyreq" data-id="${esc(x.id)}">Copy request</button><button class="btn g" data-a="pcancel" data-id="${esc(x.id)}">Cancel</button></div>${ev.file?'<p class="hint">On WhatsApp, attach your photo to the message too. The Share button sends it together when your phone allows.</p>':''}<label for="pconf">Paste the confirmation code</label><textarea id="pconf" rows="2" placeholder="Paste a code that starts with IWC."></textarea><div class="row"><button class="btn g" data-a="paste" data-t="#pconf">Paste from clipboard</button></div><button class="btn big" data-a="pcheck" data-id="${esc(x.id)}">Check confirmation</button></div>`}
+function today(){
+ if(!S.ob)return welcome();
+ const d=dk(),list=hsOn(d),done=S.log[d]||[],p=pct(d),s=streak(),nd=list.filter(h=>done.includes(h.id)).length;
+ const gl=goalCards();
+ const need=Math.max(1,Math.ceil(list.length*S.thr-1e-9)-nd);
+ const msg=!list.length?'Rest day. Nothing is scheduled.':p===1?'Perfect day. You earned it.':p>=S.thr-1e-9?'Day counted. Keep it alive tomorrow.':'Finish '+need+' more to count today.';
+ let h=`<section class="card hero"><div class="ring">${ring(p)}</div><div><div class="rk">Level ${lvl()} · ${rank(lvl())}${S.ti?' · '+esc(S.ti):''}</div><div class="streak">${s}<span>day streak</span></div><p class="hmsg">${msg}</p></div>${strip()}</section>${gl}`;
+ if(deferredInstall&&!installNo&&!standalone())h+=`<div class="card nudge"><b>Put Ironwill on your home screen</b><p class="mu">Install it and open it like any other app.</p><div class="row"><button class="btn" data-a="install">Install app</button><button class="btn g" data-a="installno">Not now</button></div></div>`;
+ {const old=S.lbk?(Date.now()-Date.parse(S.lbk))/864e5:(S.xp>=150?99:0);if(old>=14)h+=`<div class="card nudge"><b>Back up your progress</b><p class="mu">${S.lbk?'Your last backup is '+Math.floor(old)+' days old.':'You have not saved a backup yet.'} It takes one tap and needs no account.</p><div class="row"><button class="btn" data-a="bkdl">Download backup</button></div></div>`}
+ if(S.nd&&list.length&&p<S.thr-1e-9&&new Date().getHours()>=18)h+=`<div class="card nudge"><b>Evening check</b><p class="mu">${need} more to count today. Your ${s}-day streak is on the line.</p></div>`;
+ {const y=back(1);if(S.sh>0&&hsOn(y).length&&pct(y)<S.thr-1e-9&&!S.shd.includes(y))h+=`<div class="card nudge"><b>You missed yesterday</b><p class="mu">Use a streak shield to protect your streak. You have ${S.sh}.</p><div class="row"><button class="btn" data-a="useshield">Use a shield</button></div></div>`}
+ h+=chestCard();
+ if(S.qt)h+=`<div class="quote"><b>${esc(S.mantra)}</b><small>${esc((S.cq.length?S.cq:QUOTES)[new Date().getDate()%(S.cq.length||QUOTES.length)])}</small></div>`;
+ for(const c in CATS){const g=list.filter(x=>info(x).cat===c);if(!g.length)continue;
+  h+=`<div class="cat"><span>${CATS[c]}</span><em>${g.filter(x=>done.includes(x.id)).length}/${g.length}</em></div>`;
+  if(S.lay==='grid')h+='<div class="hgrid">';
+  g.forEach(x=>{const i=info(x),dn=done.includes(x.id),st=S.hs?hstreak(x):0,pe=!dn&&S.pend[d]&&S.pend[d][x.id];
+   h+=`<button class="h ${dn?'done':''} ${pe?'pend':''}" data-a="tog" data-id="${esc(x.id)}" aria-pressed="${dn}" ${x.col!=null?`style="border-left:5px solid hsl(${x.col} 70% 58%)"`:''}><span class="ic">${i.ic}</span><span class="nm"><span>${esc(i.nm)}</span><small>${pe?(proofReady(x.id)?'Waiting for a friend to confirm ('+pe.c.length+'/'+S.vn+')':'Proof needed: tap to add it'):(x.v?'<span class="tag">Friend confirms</span> ':'')+'+'+i.xp+' XP'+(st>1?' · '+st+' days in a row':'')}</small></span><span class="chk">${pe?'…':CHECK}</span></button>`;
+   if(pe&&proofOpen===x.id)h+=proofPanel(x,pe)});if(S.lay==='grid')h+='</div>'}
+ if(!S.habits.length)h+='<div class="card">No habits yet. <button class="pill" data-a="go" data-v="habits">Open the library</button></div>';
+ else if(!list.length)h+='<div class="card mu">None of your habits are scheduled for today. Rest well.</div>';
+ if(S.habits.length)h+=bossCard()+questCard();
+ h+=reflectCard();
+ return h}
+
+const pills=(g,arr)=>`<div class="seg">${arr.map(a=>`<button class="${sub[g]===a[0]?'on':''}" data-a="sub" data-g="${g}" data-v="${a[0]}" aria-pressed="${sub[g]===a[0]}">${a[1]}</button>`).join('')}</div>`;
+
+let GM=null,GMt=null;
+function gameView(){const d=dk(),used=S.gmd[d]||0;
+ if(GM)return `<div class="card"><div class="goal"><b id="gt">${Math.max(0,Math.ceil((GM.end-Date.now())/1000))}s</b><b id="gs">${GM.n} hits</b></div><div class="arena"><button class="tgt" id="tgt" data-a="hit" aria-label="Target" style="left:${GM.x}%;top:${GM.y}%">${GM.e}</button></div></div>`;
+ return `<div class="card"><h2>Quick tap</h2><p class="mu">A one minute break. Tap the target as many times as you can in 15 seconds. Earn 1 coin for every 2 hits, up to 15. ${Math.max(0,3-used)} play${3-used===1?'':'s'} left today. Best: ${S.gm} hits.</p><button class="btn big" data-a="gstart" ${used>=3?'disabled':''}>Play</button></div>`}
+function gameEnd(){clearInterval(GMt);GMt=null;if(!GM)return;const d=dk(),n=GM.n,c=Math.min(15,Math.floor(n/2));GM=null;S.gmd[d]=(S.gmd[d]||0)+1;
+ Object.keys(S.gmd).sort().slice(0,-7).forEach(k=>delete S.gmd[k]);const nb=n>S.gm;S.gm=Math.max(S.gm,n);S.coins+=c;save();if(tab==='focus')render();toast(n+' hits. +'+c+' coins'+(nb?'. New best!':''));if(c)chime(1)}
+function gameTick(){if(GM&&Date.now()>=GM.end){gameEnd();return}const e=$('#gt');if(e&&GM)e.textContent=Math.max(0,Math.ceil((GM.end-Date.now())/1000))+'s'}
+function focusTab(){return pills('focus',[['timer','Focus timer'],['urge','Urge control'],['play','Play']])+(sub.focus==='urge'?urge():sub.focus==='play'?gameView():focusView())}
+function focusView(){const run=!!tmr,left=run?Math.max(0,Math.round((fEnd-Date.now())/1000)):fcus*60;
+ return `<div class="card"><h2>Deep focus</h2><p class="mu">Phone away, one task. Finish the timer to earn 1 XP per minute plus a 10 XP bonus.</p>
+ <div class="timer" id="tm" role="timer">${fmt(left)}</div>
+ <div class="row c">${[15,25,45,60,90].map(m=>`<button class="pill ${m===fcus?'on':''}" data-a="fc" data-v="${m}" ${run?'disabled':''}>${m} min</button>`).join('')}</div>
+ <div class="row c"><label class="inl" for="fc">Custom</label><input type="number" id="fc" min="5" max="180" value="${fcus}" ${run?'disabled':''}><span class="mu">minutes</span></div>
+ <label>Ambient sound</label><div class="row c" style="margin-top:0">${[['off','Off'],['rain','Rain'],['brown','Deep'],['ocean','Ocean']].map(a=>`<button class="pill ${S.amb===a[0]?'on':''}" data-a="opt" data-k="amb" data-v="${a[0]}" aria-pressed="${S.amb===a[0]}">${a[1]}</button>`).join('')}</div>
+ <button class="btn big" data-a="fgo">${run?'Give up (−10 XP)':'Start focus'}</button></div>
+ <div class="card two"><div><b>${S.focus[dk()]||0}</b><small>min today</small></div><div><b>${sumFocus()}</b><small>min total</small></div></div>`}
+function urge(){
+ if(urgeT)return `<div class="card" style="text-align:center"><h2>Breathe. Wait it out.</h2><div class="breath"></div><div class="timer" id="ut" role="timer">${fmt(Math.max(0,Math.round((uEnd-Date.now())/1000)))}</div><p class="mu">The craving peaks and fades. You do not have to obey it.</p><div class="row c"><button class="btn g" data-a="ugive">I gave in</button></div></div>`;
+ return `<div class="card" style="text-align:center"><h2>Want to doomscroll?</h2><p class="mu">Do not fight it. Delay it ${S.ud} minutes first. Most urges are gone by then.</p><button class="btn big" data-a="ugo">Start ${S.ud}-minute delay</button><p class="hint">Edit the delay and your swap list in Settings. The first 3 urges a day earn XP.</p></div>
+ <div class="card"><b>Swap it for one of these</b><div class="row">${S.swaps.map(x=>`<span class="pill">${esc(x)}</span>`).join('')||'<span class="mu">Add swaps in Settings.</span>'}</div></div>
+ <div class="card two"><div><b>${S.urges}</b><small>urges beaten</small></div><div><b>${S.uday[dk()]||0}</b><small>today</small></div></div>`}
+
+const GRANK=[[0,'Bare plot'],[10,'Seedling patch'],[30,'Tidy garden'],[70,'Lush garden'],[140,'Paradise'],[260,'Eden'],[450,'Wonderland']];
+const gScore=()=>Math.round(S.garden.reduce((n,o)=>{const t=SHOP[o.k][3];return n+(t==='p'?(o.g>=5?4:1+o.g*.5):t==='d'?5:6)},0));
+const gRank=()=>{const v=gScore();let r=GRANK[0];GRANK.forEach(x=>{if(v>=x[0])r=x});return r[1]};
+const gScene=()=>{if(S.gs!=='auto')return S.gs;const h=new Date().getHours();return h>=6&&h<17?'day':h<19?'sunset':'night'};
+const harvestPay=k=>Math.max(2,Math.ceil(SHOP[k][2]/12)),giftPay=k=>Math.max(2,Math.ceil(SHOP[k][2]/25));
+function grow(o){o.g=Math.min(5,o.g+1);if(o.g>=5){S.coins+=25;fx(['🌸','✨','🍃']);return true}return false}
+function garden(){const own=S.garden,d=dk();
+ const spp=new Set(own.map(o=>o.k)).size;
+ let h=`<div class="stats" style="grid-template-columns:repeat(3,1fr)"><div class="card stat"><b>${S.coins}</b><small>Coins</small></div><div class="card stat"><b>${S.water}</b><small>Water</small></div><div class="card stat"><b>${gScore()}</b><small>${gRank()}</small></div></div><div class="quote"><small>Coins and water only come from habits you complete. Grown plants pay a harvest each day. Fed animals leave a gift. Collection: ${spp} of ${SHOP.length}.</small></div>`;
+ h+=`<label style="margin:0 2px">Scenery</label><div class="row" style="margin-top:2px">${[['auto','Auto'],['day','Meadow'],['sunset','Sunset'],['night','Night'],['snow','Snow'],['desert','Desert'],['sea','Beach']].map(x=>`<button class="pill ${S.gs===x[0]?'on':''}" data-a="opt" data-k="gs" data-v="${x[0]}" aria-pressed="${S.gs===x[0]}">${x[1]}</button>`).join('')}</div>`;
+ h+=own.length?`<div class="plot scene sc-${gScene()}">${own.map((o,i)=>{const s=SHOP[o.k],t=s[3];
+  const act=t==='p'?(o.g<5?`<button class="pill" data-a="water" data-i="${i}">Water</button>`:o.h===d?'<span class="sub">Harvested</span>':`<button class="pill" data-a="harvest" data-i="${i}">Harvest +${harvestPay(o.k)}</button>`):t==='a'?(o.f===d?'<span class="sub">💗 Happy today</span>':`<button class="pill" data-a="feed" data-i="${i}">Feed +${giftPay(o.k)}</button>`):'';
+  return `<div class="card tile"><button class="x" data-a="sell" data-i="${i}" aria-label="Sell ${s[1]}">${armed==='sell'+i?'?':'✕'}</button><div class="em ${t==='a'?'walk':''}" style="font-size:${t==='p'?1.5+o.g*.5:2.8}rem">${s[0]}</div><small>${s[1]}${t==='p'&&o.g>=5?' · grown':''}</small>${act}</div>`}).join('')}</div>${own.some(o=>SHOP[o.k][3]==='p'&&o.g<5)?`<div class="row"><button class="btn g" data-a="waterall">Water all plants</button></div>`:''}`:'<div class="card">Your plot is empty. Buy your first sprout below.</div>';
+ h+=`<div class="cat"><span>Discipline</span></div><button class="h" data-a="buyshield"><span class="ic">🛡️</span><span class="nm"><span>Streak shield</span><small>Protects your streak after one missed day. Owned: ${S.sh}</small></span><b>120 coins</b></button>`;
+ h+=`<div class="cat"><span>Surprises</span></div><button class="h" data-a="mystery" data-v="p"><span class="ic">🎲</span><span class="nm"><span>Mystery seed</span><small>A random plant you can unlock</small></span><b>60 coins</b></button><button class="h" data-a="mystery" data-v="a"><span class="ic">🥚</span><span class="nm"><span>Mystery egg</span><small>A random animal you can unlock</small></span><b>250 coins</b></button>`;
+ for(const t of ['p','d','a']){h+=`<div class="cat"><span>${{p:'Plants',d:'Decor',a:'Zoo animals'}[t]}</span></div>`;SHOP.forEach((s,k)=>{if(s[3]!==t)return;const lk=lvl()<s[4];h+=`<button class="h ${lk?'lock':''}" data-a="buy" data-k="${k}"><span class="ic">${s[0]}</span><span class="nm"><span>${s[1]}</span><small>${lk?'Unlocks at level '+s[4]:'Owned: '+own.filter(o=>o.k===k).length}</small></span><b>${s[2]} coins</b></button>`})}
+ h+=rewardCard();
+ return h}
+
+function progress(){return pills('progress',[['stats','Stats'],['journal','Journal'],['ranks','Board'],['confirm','Confirm']])+(sub.progress==='ranks'?board():sub.progress==='confirm'?confirmView():sub.progress==='journal'?journalView():stats())}
+function rates(n){n=n||30;return S.habits.map(h=>{let s=0,c=0;for(let i=0;i<n;i++){const d=back(i);if(!sched(h,d))continue;s++;if((S.log[d]||[]).includes(h.id))c++}return{h,s,c,r:s?c/s:0}}).filter(x=>x.s).sort((a,b)=>b.r-a.r)}
+function review(){
+ let xp=0,pxp=0,dc=0,dt=0,pf=0,fm=0;
+ for(let i=0;i<14;i++){const d=back(i),v=S.xd[d]||0;
+  if(i<7){xp+=v;fm+=S.focus[d]||0;if(hsOn(d).length){dt++;if(pct(d)>=S.thr-1e-9)dc++;if(pct(d)===1)pf++}}else pxp+=v}
+ xp=Math.max(0,xp);pxp=Math.max(0,pxp);
+ const rt=rates(7).filter(x=>x.s>=2),best=rt[0],worst=rt.length>1?rt[rt.length-1]:null,diff=xp-pxp;
+ const kv=(a,b)=>`<div class="kv"><span>${a}</span><b>${b}</b></div>`,hn=x=>info(x.h).ic+' '+esc(info(x.h).nm)+' · '+Math.round(x.r*100)+'%';
+ return `<div class="card"><h3>Your last 7 days</h3>${kv('XP earned',xp+' ('+(diff>=0?'+':'')+diff+' vs the 7 days before)')}${kv('Days counted',dc+' of '+dt)}${kv('Perfect days',pf)}${kv('Focus time',fm+' min')}${best?kv('Strongest habit',hn(best)):''}${worst&&best&&worst.h.id!==best.h.id&&worst.r<1?kv('Needs work',hn(worst)):''}</div>`}
+function stats(){
+ const f=sumFocus(),s=bstate(),doneAll=s.done;
+ const off=(wd(dk())-S.ws+7)%7,hd=S.ws===1?[1,2,3,4,5,6,0]:[0,1,2,3,4,5,6];
+ let g=hd.map(n=>`<div class="hd">${'SMTWTFS'[n]}</div>`).join('');
+ for(let k=0;k<35;k++){const n=off+28-k;if(n<0){g+='<div class="fut"></div>';continue}const d=back(n),c=hsOn(d).length,p=pct(d);g+=`<div class="${!c?'':p>=1?'l3':p>=S.thr-1e-9?'l2':p>0?'l1':''}" title="${d}">${d.slice(8)}</div>`}
+ const rt=rates().slice(0,12);
+ return `<div class="stats"><div class="card stat"><b>${lvl()}</b><small>${rank(lvl())}</small></div><div class="card stat"><b>${streak()}</b><small>Streak</small></div><div class="card stat"><b>${S.best}</b><small>Best streak</small></div><div class="card stat"><b>${S.xp}</b><small>Total XP</small></div></div>
+ <div class="card"><div class="row" style="justify-content:space-between;margin-top:0"><b>Next level</b><small>${Math.round(60*lvl()*lvl()-S.xp)} XP to go</small></div><div class="bar"><i style="width:${lvlPct()}%"></i></div></div>
+ <div class="stats"><div class="card stat"><b>${doneAll}</b><small>Habits done</small></div><div class="card stat"><b>${f}</b><small>Focus min</small></div><div class="card stat"><b>${S.perfect}</b><small>Perfect days</small></div><div class="card stat"><b>${S.urges}</b><small>Urges beaten</small></div><div class="card stat"><b>${S.vd}</b><small>Habits verified</small></div><div class="card stat"><b>${S.vc}</b><small>Friends verified</small></div></div>
+ ${review()}
+ <div class="card"><h3 style="margin-bottom:10px">Last 5 weeks</h3><div class="grid">${g}</div></div>
+ ${rt.length?`<div class="card"><h3>Habit consistency, last 30 days</h3>${rt.map(x=>`<div class="rate"><span>${info(x.h).ic} ${esc(info(x.h).nm)}</span><b>${Math.round(x.r*100)}%</b><div class="bar"><i style="width:${Math.round(x.r*100)}%"></i></div></div>`).join('')}</div>`:''}
+ <div class="card"><h3>Badges</h3><div>${BADGES.map(b=>`<span class="bdg ${b[2](s)?'on':''}">${b[0]} ${b[1]}</span>`).join('')}</div></div>`}
+
+/* ---------- no-account challenge: swap short codes in a group chat ---------- */
+const enc=(o,p)=>(p||'IW2')+'.'+btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+function dec(c,ps){const m=String(c).match(new RegExp('(?:'+(ps||'IW1|IW2')+')\\.[A-Za-z0-9_-]+'));if(!m)return null;
+ try{const t=m[0];let b=t.slice(t.indexOf('.')+1).replace(/-/g,'+').replace(/_/g,'/');while(b.length%4)b+='=';
+  const o=JSON.parse(decodeURIComponent(escape(atob(b))));return o&&typeof o==='object'?o:null}catch(e){return null}}
+function decScore(c){const o=dec(c,'IW1|IW2');if(!o||typeof o.n!=='string')return null;
+ return{n:o.n.slice(0,20)||'Player',l:+o.l||1,x:+o.x||0,s:+o.s||0,b:+o.b||0,t:+o.t||0,w:/^\d{4}-\d\d-\d\d$/.test(o.w||'')?o.w:'',wx:Math.max(0,+o.wx||0)}}
+const myCode=()=>{const w=curWeek();return enc({n:S.name||'Player',l:lvl(),x:S.xp,s:streak(),b:S.best,t:Date.now(),w,wx:weekXp(w)},'IW2')};
+const fmtW=w=>mkd(w).toLocaleDateString(undefined,{day:'numeric',month:'short'});
+function winners(){const cw=curWeek(),out=[];
+ for(let k=1;k<=6;k++){const w=addDays(cw,-7*k),rows=[],mine=weekXp(w);
+  if(mine>0)rows.push({n:S.name||'You',x:mine,me:1});
+  S.fr.forEach(f=>{if(f.h&&f.h[w]>0)rows.push({n:f.n,x:f.h[w]})});
+  rows.sort((a,b)=>b.x-a.x);if(rows.length)out.push({w,rows:rows.slice(0,3)})}
+ return out}
+/* ---------- sharing: one tap to send a request, and links that finish the job when hosted ---------- */
+const SH={},PROOF={};
+const proofReady=id=>{const e=PROOF[id];return !!e&&(!!e.file||e.note.trim().length>=8)};
+let AC=null;function chime(up){if(!S.sn)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime;[up?523:392,up?784:330].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,t+i*.09);g.gain.exponentialRampToValueAtTime(.12,t+i*.09+.02);g.gain.exponentialRampToValueAtTime(.0001,t+i*.09+.22);o.connect(g);g.connect(AC.destination);o.start(t+i*.09);o.stop(t+i*.09+.25)})}catch(e){}}
+const PRESETS=[['Forest',150,100,'dark','aurora','glass',20,'classic',{}],['Midnight',262,90,'dark','dots','glass',24,'sharp',{}],['Paper',46,55,'light','plain','outline',10,'serif',{}],['Neon',320,145,'dark','grid','neon',8,'terminal',{}],['Ocean',200,110,'auto','fade','solid',28,'rounded',{}],['Sunrise',22,120,'light','fade','solid',22,'rounded',{}],
+['Frosted',210,80,'dark','mesh','frost',26,'rounded',{bl:26,op:130}],['Soft UI',230,40,'light','plain','soft',26,'rounded',{sd:100}],['Brutalist',50,120,'light','plain','brutal',2,'bold',{bdw:2}],['Cyber',165,150,'dark','stars','neon',6,'terminal',{ck:'square'}],['Sakura',335,70,'light','mesh','gradient',30,'elegant',{ck:'leaf'}],['Minimal',0,10,'auto','plain','minimal',0,'classic',{ics:'bare',sp:90}],['Mocha',28,60,'dark','noise','solid',16,'serif',{}],['Aero',195,100,'light','mesh','frost',22,'classic',{bl:30,op:150}]];
+const MOODS=['😞','😕','😐','🙂','😄'],AVS=['🙂','😎','🤓','🥷','🦊','🐺','🦁','🐯','🐼','🐸','🦉','🐲','🦄','🚀','🔥','⚡','🌱','🌊','🏔️','🧘','🏋️','📚','🎯','👑'];
+const QP=[['Finish 3 habits',x=>x.nd>=3],['Complete a focus session',x=>x.fm>=15],['Beat an urge',x=>x.ur>=1],['Finish every habit today',x=>x.list>0&&x.nd>=x.list],['Log your mood',x=>x.mood],['Write a journal line',x=>x.jr],['Focus for 45 minutes',x=>x.fm>=45],['Do habits from 2 categories',x=>x.cats>=2],['Finish 5 habits',x=>x.nd>=5],['Reach 60% of today',x=>x.p>=.6]];
+function qctx(){const d=dk(),list=hsOn(d),done=S.log[d]||[];return{nd:done.length,list:list.length,p:pct(d),fm:S.focus[d]||0,ur:S.uday[d]||0,mood:!!S.mood[d],jr:!!S.jr[d],cats:new Set(list.filter(h=>done.includes(h.id)).map(h=>info(h).cat)).size}}
+function todayQ(){const d=dk();let seed=0;for(const c of d)seed=(seed*31+c.charCodeAt(0))>>>0;const a=[],pool=QP.map((_,i)=>i);
+ while(a.length<3){seed=(seed*1664525+1013904223)>>>0;const k=seed%pool.length;a.push(pool.splice(k,1)[0])}return a}
+function questCard(){const d=dk(),c=qctx(),got=S.qd[d]||[],ids=todayQ();
+ return `<div class="card"><h3>Daily quests</h3>${ids.map(i=>{const ok=!!QP[i][1](c),g=got.includes(i);return `<div class="q ${g?'ok':''}"><span>${g?'✅':ok?'🎉':'⬜'}</span><span class="qt">${QP[i][0]}</span>${g?'<small>+20</small>':ok?`<button class="pill" data-a="qclaim" data-v="${i}">Claim +20</button>`:'<small>+20</small>'}</div>`}).join('')}<small>${got.length>=3?'Quest sweep complete. +30 bonus claimed.':'Finish all three for a 30 coin bonus.'}</small></div>`}
+function reflectCard(){const d=dk();
+ return `<div class="card"><h3>Reflect</h3><p class="mu">How do you feel today?</p><div class="moods">${MOODS.map((m,i)=>`<button class="${S.mood[d]===i+1?'on':''}" data-a="mood" data-v="${i+1}" aria-label="Mood ${i+1} of 5" aria-pressed="${S.mood[d]===i+1}">${m}</button>`).join('')}</div><label for="jr">One line: grateful for, proud of, or learned</label><textarea id="jr" rows="2" maxlength="300" placeholder="Today I...">${esc(S.jr[d]||'')}</textarea></div>`}
+function goalCards(){const t=Date.parse(dk());return S.goals.map(g=>{const n=Math.round((Date.parse(g.d)-t)/864e5);return `<div class="card goal"><span>${esc(g.n)}<small style="display:block">${esc(g.d)}</small></span><b>${n>0?n+' day'+(n>1?'s':'')+' left':n===0?'Today!':'Done'}</b></div>`}).join('')}
+function journalView(){const ks=[...new Set([...Object.keys(S.jr),...Object.keys(S.mood)])].sort().reverse().slice(0,40);
+ const vals=Object.values(S.mood),avg=vals.length?(vals.reduce((a,b)=>a+b,0)/vals.length):0;
+ return `<div class="card two"><div><b>${vals.length?MOODS[Math.round(avg)-1]:'–'}</b><small>average mood</small></div><div><b>${Object.keys(S.jr).length}</b><small>journal lines</small></div></div>`+(ks.length?ks.map(k=>`<div class="card"><div class="goal"><b style="font-size:.9rem">${esc(k)}</b><span style="font-size:1.4rem">${S.mood[k]?MOODS[S.mood[k]-1]:''}</span></div>${S.jr[k]?`<p>${esc(S.jr[k])}</p>`:''}</div>`).join(''):'<div class="card mu">Nothing yet. Log your mood and a line from the Today tab.</div>')}
+function rewardCard(){return `<div class="card"><h3>Real-life rewards</h3><p class="mu">Set a treat you actually want. Spend the coins you earned to claim it, guilt free.</p>
+ ${S.rw.map((r,i)=>`<div class="goal" style="margin:8px 0"><span>${esc(r.n)}</span><span><button class="pill" data-a="rwbuy" data-i="${i}" ${S.coins<r.c?'disabled':''}>${r.c} coins</button> <button class="pill" data-a="rwdel" data-i="${i}" aria-label="Remove ${esc(r.n)}">✕</button></span></div>`).join('')}
+ <div class="fm"><div><label for="rwn">Reward</label><input type="text" id="rwn" maxlength="40" placeholder="Movie night"></div><div><label for="rwc">Cost in coins</label><input type="number" id="rwc" min="10" max="9999" value="200"></div></div><div class="row"><button class="btn g" data-a="rwadd">Add reward</button></div>${S.rwn?`<p class="hint">Rewards claimed so far: ${S.rwn}</p>`:''}</div>`}
+let AMB=null;
+function ambStop(){try{if(AMB){AMB.src.stop();AMB.g.disconnect();if(AMB.o)AMB.o.stop()}}catch(e){}AMB=null}
+function ambStart(){ambStop();if(S.amb==='off')return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();
+ const n=AC.sampleRate*3,buf=AC.createBuffer(1,n,AC.sampleRate),d=buf.getChannelData(0);let l=0;
+ for(let i=0;i<n;i++){const w=Math.random()*2-1;if(S.amb==='rain')d[i]=w;else{l=(l+.02*w)/1.02;d[i]=l*3.5}}
+ const src=AC.createBufferSource();src.buffer=buf;src.loop=true;const g=AC.createGain(),f=AC.createBiquadFilter();
+ g.gain.value=S.amb==='rain'?.07:.5;f.type=S.amb==='rain'?'highpass':'lowpass';f.frequency.value=S.amb==='rain'?1200:S.amb==='ocean'?500:900;
+ src.connect(f);f.connect(g);g.connect(AC.destination);let o=null;
+ if(S.amb==='ocean'){o=AC.createOscillator();const og=AC.createGain();o.frequency.value=.12;og.gain.value=.25;o.connect(og);og.connect(g.gain);o.start()}
+ src.start();AMB={src,g,o}}catch(e){AMB=null}}
+const bstate=()=>({best:S.best,focus:sumFocus(),urges:S.urges,perfect:S.perfect,lvl:lvl(),done:Object.values(S.log).reduce((a,l)=>a+l.length,0),vc:S.vc,vd:S.vd,chests:S.chests,bosses:S.bosses,gn:S.garden.length,gh:S.gh,gf:S.gf,sp:new Set(S.garden.map(o=>o.k)).size,gr:gScore(),rwn:S.rwn,jr:Object.keys(S.jr).length,mo:Object.keys(S.mood).length,qn:S.qn,gm:S.gm});
+const unlocked=()=>{const st=bstate();return BADGES.filter(b=>{try{return b[2](st)}catch(e){return false}}).map(b=>b[1])};
+const BOSSES=[['🐉','Procrastination Dragon'],['👹','Snooze Ogre'],['🧟','Doomscroll Zombie'],['🦂','Excuse Scorpion'],['🐍','Comfort-Zone Serpent'],['👻','Lazy Ghost']];
+const bossT=()=>Math.max(100,Math.round(S.habits.reduce((a,h)=>a+info(h).xp,0)*7*.6));
+function bossCard(){if(!S.habits.length)return '';
+ const cw=curWeek(),t=bossT(),x=weekXp(cw),b=BOSSES[Math.floor(Date.parse(cw)/6048e5)%BOSSES.length],hp=Math.max(0,t-x),dead=hp===0;
+ return `<div class="card"><div class="boss"><span class="big">${dead?'💥':b[0]}</span><div style="flex:1"><b>Weekly boss: ${b[1]}</b><small style="display:block">${dead?(S.bw===cw?'Defeated. Rewards claimed.':'Defeated! Claim your reward.'):hp+' HP left. Earn '+hp+' more XP this week to defeat it.'}</small><div class="bar"><i style="width:${Math.min(100,Math.round(x/t*100))}%"></i></div></div></div>${dead&&S.bw!==cw?'<div class="row"><button class="btn" data-a="boss">Claim 100 coins</button></div>':''}</div>`}
+function chestCard(){const d=dk();if(!S.habits.length||S.chest===d||pct(d)<S.thr-1e-9)return '';
+ return `<div class="card nudge"><b>🎁 Daily chest ready</b><p class="mu">Your day counted. Open the chest for a surprise.</p><div class="row"><button class="btn" data-a="chest">Open chest</button></div></div>`}
+function lootRoll(){const r=Math.random();
+ if(r<.05){S.coins+=150;return '🌟 Jackpot! +150 coins'}
+ if(r<.15){S.sh++;return '🛡️ A streak shield'}
+ if(r<.40){const n=50+Math.floor(Math.random()*41);S.coins+=n;return '💰 +'+n+' coins'}
+ const n=15+Math.floor(Math.random()*26);S.coins+=n;return '🪙 +'+n+' coins'}
+const hostLink=()=>/^https?:$/.test(location.protocol)?location.origin+location.pathname:'';
+const withLink=code=>hostLink()?hostLink()+'#'+code:code;
+const waUrl=t=>'https://wa.me/?text='+encodeURIComponent(t);
+function sendRow(text,id){SH[id]=text;return `<a class="btn" href="${waUrl(text)}" target="_blank" rel="noopener">Send on WhatsApp</a>`+(navigator.share?`<button class="btn g" data-a="share" data-i="${esc(id)}">Share</button>`:'')}
+const reqMsg=(x,pe)=>'Ironwill: please confirm my habit "'+info(x).nm+'" ('+dk()+').'+(PROOF[x.id]&&PROOF[x.id].note.trim()?'\nMy proof: '+PROOF[x.id].note.trim():'')+(PROOF[x.id]&&PROOF[x.id].file?'\n(photo attached)':'')+'\n'+withLink(reqCode(x,pe))+(hostLink()?'':'\nIn Ironwill open Progress, then Confirm, and paste the code.');
+function loadReq(text){const r=dec(text,'IWR');
+ if(!r||typeof r.n!=='string'||typeof r.k!=='string'||typeof r.h!=='string'||!/^\d{4}-\d\d-\d\d$/.test(r.d||''))return toast('That is not a valid proof request');
+ const age=(new Date(dk())-new Date(r.d))/864e5;if(age>2||age<-1)return toast('That request is out of date');
+ if(S.name&&r.n.toLowerCase()===S.name.toLowerCase())return toast('You cannot confirm your own habit');
+ CF={n:r.n.slice(0,20),h:r.h.slice(0,40),d:r.d,k:r.k.slice(0,16)};CFcode='';CFmsg='';render()}
+function applyConf(id,text){const d=dk(),pe=S.pend[d]&&S.pend[d][id];if(!pe)return;
+ const c=dec(text,'IWC');
+ if(!c||c.k!==pe.k)return toast('That confirmation does not match this request');
+ const nm=String(c.n||'Friend').slice(0,20);
+ if(pe.c.some(x=>x.toLowerCase()===nm.toLowerCase()))return toast(nm+' already confirmed this one');
+ if(S.name&&nm.toLowerCase()===S.name.toLowerCase())return toast('You cannot confirm your own habit');
+ pe.c.push(nm);
+ if(pe.c.length>=S.vn){proofOpen=null;toggle(id,true)}else{save();render();toast('Confirmed by '+nm+'. One more friend needed')}}
+function addFriend(text){const f=decScore(text);if(!f)return toast('That is not a valid challenge code');
+ const k=S.fr.findIndex(x=>x.n.toLowerCase()===f.n.toLowerCase());
+ const h=k>=0?{...S.fr[k].h}:{};if(f.w)h[f.w]=Math.max(h[f.w]||0,f.wx);
+ if(k>=0&&S.fr[k].t>f.t&&f.t){S.fr[k].h=h;save();render();return toast('Kept your newer code from '+f.n+' and added its weekly score')}
+ f.h=h;if(k>=0)S.fr[k]=f;else S.fr.push(f);
+ save();render();toast(f.n+' is on your board')}
+function handleHash(){
+ const h=String(location.hash||'').slice(1);if(!/^(IWR|IWC|IW1|IW2)\./.test(h))return;
+ try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+ if(h.startsWith('IWR.')){tab='progress';sub.progress='confirm';loadReq(h)}
+ else if(h.startsWith('IWC.')){tab='today';const c=dec(h,'IWC'),pd=S.pend[dk()]||{};const id=c&&Object.keys(pd).find(k=>pd[k].k===c.k);
+  if(id)applyConf(id,h);else{render();toast('That confirmation is not for a habit waiting on this phone')}}
+ else{tab='progress';sub.progress='ranks';bm='week';addFriend(h)}}
+function confirmView(){
+ let h=`<div class="card"><h3>Confirm a friend's habit</h3><p class="mu">When a friend asks you to confirm a habit, look at the photo or message they sent. If you believe them, paste their request here. Never confirm something you did not see.</p><label for="rq">Their proof request</label><textarea id="rq" rows="2" placeholder="Paste a code that starts with IWR."></textarea><div class="row"><button class="btn" data-a="rqread">Read request</button><button class="btn g" data-a="paste" data-t="#rq">Paste</button></div></div>`;
+ if(CF)h+=`<div class="card"><b>${esc(CF.n)} says they did:</b><p style="font-size:1.1rem;margin:6px 0">${esc(CF.h)}</p><small>${esc(CF.d)}</small><p class="mu" style="margin-top:8px">Did you see proof?</p><div class="row"><button class="btn" data-a="rqyes">Yes, confirm</button><button class="btn g" data-a="rqno">No</button></div></div>`;
+ if(CFcode)h+=`<div class="card"><b>Confirmation ready</b><p class="mu">Send this code back to your friend.</p><textarea id="cfc" rows="2" readonly>${esc(CFcode)}</textarea><div class="row">${sendRow(CFmsg||CFcode,'cf')}<button class="btn g" data-a="copyconf">Copy confirmation</button></div></div>`;
+ h+=`<div class="card two"><div><b>${S.vc}</b><small>friends you verified</small></div><div><b>${S.vd}</b><small>habits verified for you</small></div></div>`;
+ return h}
+function localBoard(){
+ const cw=curWeek(),left=7-((wd(dk())+6)%7);
+ const me={n:S.name||'You',l:lvl(),x:S.xp,s:streak(),b:S.best,wx:weekXp(cw),me:1};
+ const ago=t=>{if(!t)return '';const d=Math.floor((Date.now()-t)/864e5);return d<1?'updated today':'updated '+d+' day'+(d>1?'s':'')+' ago'};
+ const line=(r,i,sub,val)=>`<div class="h static ${r.me?'done':''} ${i<3?'top3':''}"><span class="medal">${i+1}</span><span class="nm"><span>${esc(r.n)}${r.me?' (you)':''}</span><small>${sub}</small></span><b>${val}</b>${r.me?'':`<button class="pill" data-a="rmfr" data-i="${r.i}" aria-label="Remove ${esc(r.n)}">Remove</button>`}</div>`;
+ let h=`<div class="card"><h3>Challenge your friends</h3><p class="mu">No account needed. Copy your code, post it in your group chat, and paste your friends' codes below. A code is a snapshot, so send a fresh one whenever you want your score updated, and once more on the last night of the week.</p>
+ <label for="mycode">Your code</label><textarea id="mycode" rows="2" readonly>${esc(myCode())}</textarea><div class="row">${sendRow('Ironwill challenge: here is my score code for this week.\n'+withLink(myCode()),'sc')}<button class="btn g" data-a="copycode">Copy my code</button></div>
+ <label for="fcode">Add a friend's code</label><textarea id="fcode" rows="2" placeholder="Paste a code that starts with IW."></textarea><div class="row"><button class="btn g" data-a="addfr">Add to board</button><button class="btn g" data-a="paste" data-t="#fcode">Paste</button></div>${S.name?'':'<p class="hint">Set your name in Settings so friends know which score is yours.</p>'}</div>`;
+ h+=`<div class="seg">${[['week','This week'],['all','All time'],['hall','Winners']].map(x=>`<button class="${bm===x[0]?'on':''}" data-a="bm" data-v="${x[0]}" aria-pressed="${bm===x[0]}">${x[1]}</button>`).join('')}</div>`;
+ if(bm==='hall'){const wl=winners();
+  return h+(wl.length?wl.map(o=>`<div class="card"><div class="row" style="justify-content:space-between;margin:0 0 4px"><b>Week of ${fmtW(o.w)}</b><small>${o.rows.length>1?'From the codes you collected':'Only you scored'}</small></div>${o.rows.map((r,i)=>`<div class="kv"><span>${['1st','2nd','3rd'][i]} · ${esc(r.n)}${r.me?' (you)':''}</span><b>${r.x} XP</b></div>`).join('')}</div>`).join(''):'<div class="card mu">No finished weeks yet. Winners appear here after the first Monday reset, once you have collected your friends\' weekly codes.</div>')}
+ if(bm==='week'){
+  const all=[me,...S.fr.map((f,i)=>({...f,i,wx:f.h&&f.h[cw]!==undefined?f.h[cw]:null}))];
+  const have=all.filter(r=>r.me||r.wx!==null).sort((a,b)=>b.wx-a.wx),miss=all.filter(r=>!r.me&&r.wx===null);
+  h+=`<p class="hint" style="margin:0 2px 10px">Week of ${fmtW(cw)}, Monday to Sunday. Resets in ${left} day${left>1?'s':''}.</p>`;
+  h+=have.map((r,i)=>line(r,i,r.me?`Level ${r.l} · ${r.s} day streak`:`Level ${r.l} · ${r.s} day streak · ${ago(r.t)}`,r.wx+' XP')).join('');
+  if(miss.length)h+=`<div class="card mu">Still waiting for this week's code from ${miss.map(r=>esc(r.n)).join(', ')}.</div>`;
+  return h}
+ const key={xp:'x',streak:'s',best:'b'}[lbSort]||'x';
+ h+=`<div class="seg">${[['xp','XP'],['streak','Streak'],['best','Best streak']].map(x=>`<button class="${lbSort===x[0]?'on':''}" data-a="ls" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>`;
+ const all=[me,...S.fr.map((f,i)=>({...f,i}))].sort((a,b)=>b[key]-a[key]);
+ return h+all.map((r,i)=>line(r,i,`Level ${r.l} · ${r.x} XP · ${r.s} day streak${r.me?'':' · '+ago(r.t)}`,key==='x'?r.x:r[key]+' d')).join('')}
+function liveCard(){const msg=GH.pub&&GH.pid?'Add me on Ironwill. My live score ID: '+GH.pid:'';
+ return `<div class="card"><h3>Live friends</h3><p class="mu">Friends who share their score live update by themselves. Paste their live score ID or link.</p>
+ <label for="gfid">Friend's live score ID</label><textarea id="gfid" rows="1" placeholder="Paste a GitHub gist ID or link"></textarea><div class="row"><button class="btn" data-a="gfadd">Add live friend</button><button class="btn g" data-a="paste" data-t="#gfid">Paste</button><button class="btn g" data-a="gfref">Refresh</button></div>
+ ${GH.pub&&GH.pid?`<label for="mygid">Your live score ID</label><textarea id="mygid" rows="1" readonly>${esc(GH.pid)}</textarea><div class="row">${sendRow(msg,'lv')}<button class="btn g" data-a="copygid">Copy ID</button></div>`:'<p class="hint">To share your own score live, connect GitHub in Settings, then Data.</p>'}</div>`}
+function board(){return liveCard()+localBoard()}
+
+function hform(){const f=DR;
+ const xps=[[10,'Easy'],[20,'Medium'],[30,'Solid'],[40,'Hard']];if(!xps.some(x=>x[0]===f.xp))xps.push([f.xp,'Current']);xps.sort((a,b)=>a[0]-b[0]);
+ return `<div class="card"><label for="hf-n" style="margin-top:0">Habit name</label><input type="text" id="hf-n" maxlength="60" value="${esc(f.c)}" placeholder="e.g. Learn guitar 20 min">
+ <label>Icon</label><div class="emgrid">${EM.map(e=>`<button type="button" class="${f.e===e?'on':''}" data-a="em" data-v="${e}" aria-pressed="${f.e===e}">${e}</button>`).join('')}</div>
+ <div class="fm"><div><label for="hf-c">Category</label><select id="hf-c">${Object.keys(CATS).map(c=>`<option value="${c}" ${f.cat===c?'selected':''}>${CATS[c]}</option>`).join('')}</select></div>
+ <div><label for="hf-x">Effort</label><select id="hf-x">${xps.map(x=>`<option value="${x[0]}" ${f.xp===x[0]?'selected':''}>${x[1]} · +${x[0]} XP</option>`).join('')}</select></div></div>
+ <label>Repeats on</label><div class="days">${[1,2,3,4,5,6,0].map(n=>`<button type="button" class="pill ${f.d.includes(n)?'on':''}" data-a="day" data-v="${n}" aria-pressed="${f.d.includes(n)}">${DN[n]}</button>`).join('')}</div><p class="hint">Pick no days for every day. Days off do not break your streak.</p>
+ <label>Colour tag</label><div class="cols"><button type="button" class="${f.col==null?'on':''}" data-a="hcol" data-v="" aria-label="No colour" style="background:var(--sf2)">∅</button>${[0,28,50,120,170,210,262,320].map(c=>`<button type="button" class="${f.col===c?'on':''}" data-a="hcol" data-v="${c}" aria-label="Colour ${c}" style="background:hsl(${c} 70% 55%)"></button>`).join('')}</div>
+ <label>Proof</label><button type="button" class="pill ${f.v?'on':''}" data-a="vtog" aria-pressed="${!!f.v}">Needs proof and a friend to confirm: ${f.v?'On':'Off'}</button><p class="hint">${f.v&&f.id&&(S.habits.find(h=>h.id===f.id)||{}).v?'Locked on. You cannot switch proof off for a habit that already needs it, so there is no shortcut.':'The habit only counts after you show a photo or note and a friend confirms it. Once saved, this cannot be switched off.'}</p>
+ <div class="row"><button class="btn" data-a="hsave">Save habit</button><button class="btn g" data-a="hcancel">Cancel</button>${f.id?`<button class="btn g" data-a="hdel">${armed==='hdel'?'Tap again to remove':'Remove'}</button>`:''}</div></div>`}
+
+function habits(){
+ let h='';
+ if(editing==='new'&&DR)h+=hform();else h+='<button class="btn big" style="margin:0 0 4px" data-a="hnew">New habit</button>';
+ h+=`<div class="cat"><span>Your habits</span><em>${S.habits.length}</em></div>`;
+ if(S.habits.length)h+='<p class="hint" style="margin:0 4px 10px">Tap a habit to edit it. Switch on "Needs a friend to confirm" and a Friend confirms tag appears on it.</p>';
+ if(!S.habits.length)h+='<div class="card mu">Nothing here yet. Add a habit above or pick from the library below.</div>';
+ S.habits.forEach(x=>{const i=info(x);
+  const when=!x.d||!x.d.length?'Every day':[1,2,3,4,5,6,0].filter(n=>x.d.includes(n)).map(n=>DN[n]).join(' ');
+  h+=`<button class="h" data-a="hedit" data-id="${esc(x.id)}"><span class="ic">${i.ic}</span><span class="nm"><span>${esc(i.nm)}</span><small>${x.v?'<span class="tag">Friend confirms</span> ':''}${CATS[i.cat]||'Personal'} · ${when} · +${i.xp} XP</small></span><small>Edit</small></button>`;
+  if(editing===x.id&&DR)h+=hform()});
+ const have=new Set(S.habits.filter(x=>Number.isInteger(x.l)).map(x=>x.l));
+ h+='<div class="cat" style="margin-top:28px"><span>Library</span></div>';
+ for(const c in CATS){const items=LIB.map((x,i)=>[x,i]).filter(p=>p[0][0]===c);if(!items.length)continue;
+  h+=`<div class="cat"><span>${CATS[c]}</span></div>`;
+  items.forEach(([x,i])=>{const on=have.has(i);h+=`<button class="h ${on?'done':''}" data-a="lib" data-i="${i}" aria-pressed="${on}"><span class="ic">${x[1]}</span><span class="nm"><span>${x[2]}</span><small>+${x[3]} XP</small></span><span class="chk">${on?CHECK:''}</span></button>`})}
+ return h}
+
+function dlFile(name,type,text){
+ try{const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();
+  setTimeout(()=>{a.remove();URL.revokeObjectURL(url)},2000);return true}catch(e){toast('Your browser blocked the download');return false}}
+function buildIcs(){
+ const r=S.rm,pad=n=>String(n).padStart(2,'0'),n=new Date();
+ const stamp=n.getUTCFullYear()+pad(n.getUTCMonth()+1)+pad(n.getUTCDate())+'T'+pad(n.getUTCHours())+pad(n.getUTCMinutes())+pad(n.getUTCSeconds())+'Z';
+ const today=dk().replace(/-/g,''),sun=new Date();sun.setDate(sun.getDate()+((7-sun.getDay())%7));const nextSun=dk(sun).replace(/-/g,'');
+ const ev=(uid,day,time,title,desc,rule)=>['BEGIN:VEVENT','UID:ironwill-'+uid+'@ironwill.app','DTSTAMP:'+stamp,'DTSTART:'+day+'T'+time.replace(':','')+'00','DURATION:PT15M','RRULE:'+rule,'SUMMARY:'+title,'DESCRIPTION:'+desc,'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+title,'TRIGGER:PT0M','END:VALARM','END:VEVENT'];
+ let L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ironwill//Reminders//EN','CALSCALE:GREGORIAN'];
+ if(r.tm)L=L.concat(ev('morning',today,r.m,'Ironwill: start your day','Read your identity statement and pick your first habit.','FREQ=DAILY'));
+ if(r.te)L=L.concat(ev('evening',today,r.e,'Ironwill: finish your habits','Check off what you did today to keep your streak.','FREQ=DAILY'));
+ if(r.ts)L=L.concat(ev('weekly',nextSun,r.s,'Ironwill: send your weekly code','Copy your score code and post it in the group chat before Monday.','FREQ=WEEKLY;BYDAY=SU'));
+ L.push('END:VCALENDAR');return L.join('\r\n')+'\r\n'}
+function remCard(){
+ const r=S.rm,row=(k,t,label)=>`<div class="rem"><button class="pill ${r[k==='m'?'tm':k==='e'?'te':'ts']?'on':''}" data-a="rtg" data-v="${k}" aria-pressed="${!!r[k==='m'?'tm':k==='e'?'te':'ts']}">${label}: ${r[k==='m'?'tm':k==='e'?'te':'ts']?'On':'Off'}</button><input type="time" id="rm-${k}" value="${t}" aria-label="${label} time"></div>`;
+ return `<div class="card"><h3>Reminders</h3><p class="mu">A web app cannot send alerts while it is closed. Ironwill gives you calendar reminders instead, and your phone's calendar app shows them like any other alert.</p>${row('m',r.m,'Morning start')}${row('e',r.e,'Evening check')}${row('s',r.s,'Sunday: send your code')}<button class="pill ${S.ns?'on':''}" data-a="nsw" aria-pressed="${!!S.ns}" style="margin:10px 0">Timer alerts while the app is open: ${S.ns?'On':'Off'}</button><br><button class="btn big" data-a="ics" style="margin-top:4px">Add reminders to my calendar</button><p class="hint">This downloads a calendar file. Open it once and your calendar adds the repeating reminders. To change them later, edit the events in your calendar app.</p></div>`}
+const standalone=()=>{try{return (typeof matchMedia==='function'&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true}catch(e){return false}};
+function installCard(){
+ const web=/^https?:$/.test(location.protocol),ios=/iphone|ipad|ipod/i.test(navigator.userAgent||'');
+ let b;
+ if(standalone())b='<p class="mu">You are using the installed app.</p>';
+ else if(deferredInstall)b='<p class="mu">Add Ironwill to your home screen. It opens full screen like any other app.</p><div class="row"><button class="btn" data-a="install">Install app</button></div>';
+ else if(web&&ios)b='<p class="mu">Tap the Share button in Safari, then Add to Home Screen. The icon opens Ironwill full screen.</p>';
+ else if(web)b='<p class="mu">Your browser has not offered to install it yet. Open the browser menu and choose Install app or Add to Home Screen.</p>';
+ else b='<p class="mu">This copy was opened from a file, so the browser cannot put an icon on your home screen. Put the app on GitHub Pages and open that address to install it.</p>';
+ return `<div class="card"><h3>Install</h3>${b}</div>`}
+function ghCard(){
+ const on=!!GH.tok;
+ return `<div class="card"><h3>GitHub sync</h3><p class="mu">Save your progress to a private GitHub gist and load it on any device. Optional.</p>
+ ${on?`<p class="mu">${esc(GH.msg||'Connected.')}</p>
+ <div class="row"><button class="btn" data-a="ghpush">Save to GitHub</button><button class="btn g" data-a="ghload">Load from GitHub</button></div>
+ <div class="row">${[['auto',GH.auto,'Auto-save'],['pub',GH.pub,'Share my score live']].map(x=>`<button class="pill ${x[1]?'on':''}" data-a="ghtg" data-v="${x[0]}" aria-pressed="${!!x[1]}">${x[2]}: ${x[1]?'On':'Off'}</button>`).join('')}</div>
+ <p class="hint">Live score is a public gist with only your name, level, streak and XP. Friends add its ID on the Board. Turn it off any time.</p>
+ <div class="row"><button class="btn g" data-a="ghoff">${armed==='ghoff'?'Tap again to disconnect':'Disconnect this device'}</button></div>`
+ :`<ol class="mu" style="margin:8px 0 0 18px"><li>On GitHub open Settings, Developer settings, Personal access tokens, Tokens (classic).</li><li>Generate new token (classic). Tick only the <b>gist</b> box.</li><li>Copy the token and paste it here.</li></ol>
+ <label for="ghtok">GitHub token</label><input type="password" id="ghtok" autocomplete="off" placeholder="ghp_..."><div class="row"><button class="btn" data-a="ghcon">Connect</button></div>
+ <p class="hint">The token stays on this device only. It is never put in backups or shared. If you lose a device, delete the token on GitHub.</p>`}</div>`}
+function settings(){
+ const sel=(id,opts,cur)=>`<select id="${id}">${opts.map(o=>`<option value="${o[0]}" ${String(cur)===String(o[0])?'selected':''}>${o[1]}</option>`).join('')}</select>`;
+ const tg=(a,on,label)=>`<button class="pill ${on?'on':''}" data-a="${a}" aria-pressed="${on}">${label}: ${on?'On':'Off'}</button>`;
+ 
+ const pl=(k,arr)=>`<div class="row" style="margin-top:0">${arr.map(x=>`<button class="pill ${S[k]===x[0]?'on':''}" data-a="opt" data-k="${k}" data-v="${x[0]}" aria-pressed="${S[k]===x[0]}">${x[1]}</button>`).join('')}</div>`;
+ const sl=(id,label,val,min,max,unit,step)=>`<label for="${id}">${label}: ${val}${unit}</label><input type="range" id="${id}" min="${min}" max="${max}" ${step?'step="'+step+'"':''} value="${val}">`;
+ const earned=unlocked();
+ const youX=`<div class="card"><h3>Avatar and title</h3><label>Avatar</label><div class="avs">${AVS.map(a=>`<button class="${S.av===a?'on':''}" data-a="av" data-v="${a}" aria-pressed="${S.av===a}">${a}</button>`).join('')}</div>
+ <label for="sti">Title</label><select id="sti"><option value="">None</option>${earned.map(n=>`<option value="${esc(n)}" ${S.ti===n?'selected':''}>${esc(n)}</option>`).join('')}</select><p class="hint">Titles come from badges you have earned.</p></div>
+ <div class="card"><h3>Goals and countdowns</h3><p class="mu">Add a date you are working toward. It shows on Today.</p>${S.goals.map((g,k)=>`<div class="goal" style="margin:8px 0"><span>${esc(g.n)}<small style="display:block">${esc(g.d)}</small></span><button class="pill" data-a="gdel" data-i="${k}" aria-label="Remove ${esc(g.n)}">✕</button></div>`).join('')}
+ <div class="fm"><div><label for="gn">Goal</label><input type="text" id="gn" maxlength="40" placeholder="Exam day"></div><div><label for="gd">Date</label><input type="date" id="gd"></div></div><div class="row"><button class="btn g" data-a="gadd">Add goal</button></div></div>`;
+ const themeC=`<div class="card"><h3>Theme</h3><label>Quick themes</label><div class="row" style="margin-top:0">${PRESETS.map((p,k)=>`<button class="pill" data-a="preset" data-v="${k}"><span class="sw" style="background:hsl(${p[1]} 60% 60%)"></span>${p[0]}</button>`).join('')}</div>
+ <label>Colour</label><div class="row" style="margin-top:0">${HUES.map(x=>`<button class="pill ${S.hue===x[1]?'on':''}" data-a="hue" data-v="${x[1]}"><span class="sw" style="background:hsl(${x[1]} 60% 60%)"></span>${x[0]}</button>`).join('')}</div>
+ <label for="hs">Fine tune hue</label><input type="range" id="hs" min="0" max="360" value="${S.hue}">
+ <label for="scol">Pick any colour</label><input type="color" class="swatch" id="scol" value="${hsl2hex(S.hue,Math.round(62*S.sm/100))}">
+ ${sl('ssm','Colour strength',S.sm,40,150,'%')}
+ <label>Mode</label>${[['auto','Auto'],['light','Light'],['dark','Dark']].map(x=>`<button class="pill ${S.tm===x[0]?'on':''}" data-a="tm" data-v="${x[0]}" aria-pressed="${S.tm===x[0]}">${x[1]}</button>`).join(' ')}<p class="hint">Auto follows your phone's light or dark setting.</p></div>`;
+ const surfC=`<div class="card"><h3>Surfaces</h3><label>Card style</label>${pl('cs',[['glass','Glass'],['frost','Frosted'],['solid','Solid'],['outline','Outline'],['soft','Soft'],['neon','Neon'],['brutal','Brutalist'],['gradient','Gradient'],['minimal','Minimal']])}
+ ${sl('sbl','Blur',S.bl,0,40,'px')}${sl('sop','Transparency (higher is more solid)',S.op,20,200,'%')}${sl('sbw','Border thickness',S.bdw,0,3,'px','.5')}${sl('ssd','Shadow depth',S.sd,0,200,'%')}${sl('srad','Corner roundness',S.rad,4,34,'px')}${sl('ssp','Spacing',S.sp,60,150,'%')}</div>`;
+ const bgC=`<div class="card"><h3>Background</h3>${pl('bgs',[['aurora','Aurora'],['mesh','Mesh'],['fade','Fade'],['noise','Grain'],['stars','Stars'],['grid','Grid'],['dots','Dots'],['stripes','Stripes'],['plain','Plain']].concat(S.bgi?[['image','My photo']]:[]))}
+ <label for="bgimg">Use your own photo</label><input type="file" id="bgimg" accept="image/*">${S.bgi?`<div class="row"><button class="btn g" data-a="bgclr">Remove photo</button></div>`+sl('sdim','Dim the photo',S.dim,0,90,'%'):''}<p class="hint">The photo stays on this device and is included in your backup.</p></div>`;
+ const layC=`<div class="card"><h3>Layout and type</h3><label>Typeface</label>${pl('font',[['classic','Classic'],['sharp','Sharp'],['terminal','Terminal'],['serif','Serif'],['rounded','Rounded'],['hand','Handwritten'],['bold','Bold'],['elegant','Elegant']])}
+ ${sl('sfs','Text size',S.fs,88,130,'%')}<label>Habit list</label>${pl('lay',[['list','List'],['grid','Grid']])}<label>Habit icons</label>${pl('ics',[['tile','Tile'],['bare','Bare'],['big','Big']])}<label>Check shape</label>${pl('ck',[['circle','Circle'],['square','Square'],['squircle','Squircle'],['leaf','Leaf']])}
+ <label>Navigation</label>${pl('nv',[['bar','Bar'],['float','Floating'],['icons','Icons only']])}<label>Page width</label>${pl('mw',[['narrow','Narrow'],['normal','Normal'],['wide','Wide']])}<label>Motion</label>${pl('am',[['full','Full'],['calm','Calm'],['off','None']])}</div>`;
+ const moreC=`<div class="card"><h3>Extras</h3>${sl('sho','Second colour shift',S.ho,-60,60,'°')}<label>Text weight</label>${pl('fw',[['light','Light'],['normal','Normal'],['bold','Bold']])}<label>Progress style</label>${pl('rs',[['ring','Ring'],['pie','Pie'],['number','Number']])}<label>Celebration</label>${pl('fxp',[['default','Classic'],['party','Party'],['nature','Nature'],['space','Space'],['food','Food'],['animals','Animals']])}<label for="scq">Your own quotes, one per line</label><textarea id="scq" rows="4" placeholder="Leave empty to use the built in quotes">${esc(S.cq.join('\n'))}</textarea></div>
+ <div class="card"><h3>Share your look</h3><p class="mu">Copy a code for this theme and send it to a friend. Paste theirs to wear it.</p><textarea id="thc" rows="2" readonly>${esc(themeCode())}</textarea><div class="row"><button class="btn" data-a="thcopy">Copy my theme</button></div><label for="thin">Paste a theme code</label><textarea id="thin" rows="2" placeholder="Starts with IWT."></textarea><div class="row"><button class="btn g" data-a="thuse">Use this theme</button><button class="btn g" data-a="paste" data-t="#thin">Paste</button></div></div>`;
+ const togC=`<div class="card"><h3>Features</h3><div class="row" style="margin-top:0">${tg('dense',S.dense,'Compact list')}${tg('fx',S.fx,'Celebrations')}${tg('hs',S.hs,'Habit streaks')}${tg('qt',S.qt,'Daily quote')}${tg('hp',S.hp,'Vibration')}${tg('nd',S.nd,'Evening check')}${tg('sn',S.sn,'Sounds')}</div></div>`;
+ const pg=sub.settings||'you';
+ return pills('settings',[['you','You'],['look','Look'],['rules','Rules'],['data','Data']])+(pg==='look'?themeC+surfC+bgC+layC+moreC+togC:pg==='rules'?`<div class="card"><h3>Rules</h3><div class="fm"><div><label for="sth">A day counts when you finish</label>${sel('sth',[[.4,'40% of habits'],[.6,'60% of habits'],[.8,'80% of habits'],[1,'Every habit']],S.thr)}</div><div><label for="sws">Heatmap week starts on</label>${sel('sws',[[1,'Monday'],[0,'Sunday']],S.ws)}</div></div>
+ <label for="svn">Friends needed to confirm a proof habit</label>${sel('svn',[[1,'1 friend'],[2,'2 friends']],S.vn)}
+ <label for="sud">Urge delay</label>${sel('sud',[[3,'3 minutes'],[5,'5 minutes'],[10,'10 minutes'],[15,'15 minutes']],S.ud)}
+ <label for="ssw">Urge swaps, one per line</label><textarea id="ssw" rows="4">${esc(S.swaps.join('\n'))}</textarea></div>
+ ${remCard()}`:pg==='data'?`${ghCard()}
+ <div class="card"><h3>Backup</h3><p class="mu">Copy everything as text and keep it somewhere safe. Paste it back to restore.</p><div class="row"><button class="btn" data-a="bkdl">Download backup file</button><button class="btn g" data-a="copybk">Copy backup</button></div>
+ <label for="bkf">Open a backup file</label><input type="file" id="bkf" accept=".json,application/json">${S.lbk?`<p class="hint">Last backup: ${esc(S.lbk.slice(0,10))}</p>`:''}
+ <label for="bk">Paste a backup to restore</label><textarea id="bk" rows="3" placeholder="Paste backup text here">${esc(bkText)}</textarea><div class="row"><button class="btn g" data-a="restore">Restore from text</button></div></div>
+ <div class="row"><button class="btn g" data-a="reset">${armed==='reset'?'Tap again to delete everything':'Reset all data'}</button></div>`:`${installCard()}<div class="card"><h3>You</h3><label for="sn">Name</label><input type="text" id="sn" maxlength="20" value="${esc(S.name)}"><label for="sm">Your identity statement</label><textarea id="sm" rows="2" maxlength="200">${esc(S.mantra)}</textarea><p class="hint">Shown on Today. Read it every morning.</p></div>${youX}`)}
+
+function render(){
+ const v={today,focus:focusTab,garden,progress,habits,settings}[tab]();
+ const t={today:greet(),focus:'Focus',garden:'Garden',progress:'Progress',habits:'Habits',settings:'Settings'}[tab];
+ const dt=new Date().toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
+ $('#app').innerHTML=`<div class="top"><div><div class="date">${esc(dt)}</div><h1>${t}</h1></div><div class="lvl">${esc(S.av)} Lv ${lvl()} · ${S.coins} coins · ${S.water} water<div class="bar"><i style="width:${lvlPct()}%"></i></div></div></div>${storeOK?'':'<div class="card nudge"><b>Progress cannot be saved here</b><p class="mu">This view blocks the browser storage the app needs, so everything resets when you close it. Open the app from its web link instead, and use Backup in Settings to keep a copy.</p></div>'}${v}`;
+ if(tab==='progress'&&sub.progress==='ranks')ghAuto();
+ $('#nav').innerHTML=TABS.map(n=>`<button data-a="go" data-v="${n[0]}" class="${tab===n[0]?'on':''}" ${tab===n[0]?'aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[n[0]]}</svg>${n[1]}</button>`).join('')}
+
+/* ---------- actions ---------- */
+function restoreText(t){try{const o=JSON.parse(t);if(!o||typeof o!=='object'||!Array.isArray(o.habits))throw 0;S=norm(o);S.ob=true;bkText='';look();save();render();toast('Backup restored')}catch(e){toast('That is not a valid Ironwill backup')}}
+function toggle(id,verified){
+ const d=dk(),a=S.log[d]=S.log[d]||[],h=S.habits.find(x=>x.id===id);if(!h)return;const x=info(h).xp;
+ if(!a.includes(id)&&h.v&&!verified){
+  Object.keys(S.pend).forEach(k=>{if(k!==d)delete S.pend[k]});S.pend[d]=S.pend[d]||{};
+  if(S.pend[d][id])proofOpen=proofOpen===id?null:id;
+  else{S.pend[d][id]={k:nonce(),c:[]};proofOpen=id;toast('Proof needed. Add a photo or note first')}
+  save();render();return}
+ if(a.includes(id)){
+  a.splice(a.indexOf(id),1);S.xp=Math.max(0,S.xp-x);S.coins=Math.max(0,S.coins-x);S.xd[d]=(S.xd[d]||0)-x;if(S.pend[d])delete S.pend[d][id];
+  if(S.pd[d]&&pct(d)<1){delete S.pd[d];S.perfect=Math.max(0,S.perfect-1);S.xp=Math.max(0,S.xp-50);S.coins=Math.max(0,S.coins-50);S.xd[d]=(S.xd[d]||0)-50}
+ }else{
+  a.push(id);const wl=S.wlog[d]=S.wlog[d]||[];if(!wl.includes(id)){wl.push(id);S.water++}
+  buzz();chime(1);if(S.pend[d])delete S.pend[d][id];delete PROOF[id];if(verified)S.vd++;
+  gain(x,verified?'Verified':'Done');
+  if(pct(d)===1&&!S.pd[d]){S.pd[d]=1;S.perfect++;fx();gain(50,'Perfect day')}
+ }
+ save();render()}
+function tickF(){const left=Math.max(0,Math.round((fEnd-Date.now())/1000)),e=$('#tm');if(e)e.textContent=fmt(left);
+ if(left<=0&&tmr){clearInterval(tmr);tmr=null;ambStop();const d=dk();S.focus[d]=(S.focus[d]||0)+fDur;S.water+=2;gain(fDur+10,'Focus complete');notify('Focus complete','Nice work. '+fDur+' minutes done.');fx(['🎯','✨','⭐']);if(tab==='focus')render()}}
+function tickU(){const left=Math.max(0,Math.round((uEnd-Date.now())/1000)),e=$('#ut');if(e)e.textContent=fmt(left);
+ if(left<=0&&urgeT){clearInterval(urgeT);urgeT=null;const d=dk(),n=S.uday[d]=(S.uday[d]||0)+1;S.urges++;S.water++;gain(n<=3?15:0,'Urge beaten');notify('Urge beaten','You waited it out. Well done.');if(tab==='focus')render()}}
+function twostep(key,fn){if(armed!==key){armed=key;render();setTimeout(()=>{if(armed===key){armed=null;render()}},4000);return}armed=null;fn()}
+function newDraft(){return{c:'',e:'⭐',cat:'personal',xp:20,d:[],v:0,col:null}}
+
+function act(a,ds){
+ if(!DR&&['day','em','vtog','hcol','hsave','hdel'].includes(a))return;
+ switch(a){
+  case'go':if(!TABS.some(t=>t[0]===ds.v))break;tab=ds.v;armed=null;render();window.scrollTo(0,0);break;
+  case'sub':sub[ds.g]=ds.v;render();break;
+  case'tog':toggle(ds.id);break;
+  case'pack':packSel=ds.v;render();break;
+  case'start':{const p=PACKS.find(x=>x.id===packSel)||PACKS[0];S.habits=p.h.map(i=>({id:'s'+i,l:i,d:[...(LIB[i][4]||[])]}));S.ob=true;save();render();toast('Day one starts now');break}
+  case'fc':fcus=+ds.v;render();break;
+  case'fgo':
+   if(tmr){clearInterval(tmr);tmr=null;S.xp=Math.max(0,S.xp-10);S.coins=Math.max(0,S.coins-10);S.xd[dk()]=(S.xd[dk()]||0)-10;save();ambStop();toast('Session abandoned. −10 XP');render();break}
+   fDur=fcus;fEnd=Date.now()+fDur*60000;tmr=setInterval(tickF,500);ambStart();render();break;
+  case'ugo':uEnd=Date.now()+S.ud*60000;urgeT=setInterval(tickU,500);render();break;
+  case'ugive':clearInterval(urgeT);urgeT=null;toast('Okay. Reset and go again.');render();break;
+  case'buy':{const k=+ds.k,i=SHOP[k];if(!i)break;if(lvl()<i[4])return toast('Reach level '+i[4]+' to unlock');if(S.coins<i[2])return toast('Need '+(i[2]-S.coins)+' more coins');if(S.garden.length>=80)return toast('Your garden is full');S.coins-=i[2];S.garden.push({k,g:0,f:'',h:''});save();toast(i[0]+' added to your garden');render();break}
+  case'water':{const o=S.garden[+ds.i];if(!o||SHOP[o.k][3]!=='p'||o.g>=5)break;if(S.water<1)return toast('No water. Complete habits to earn more');S.water--;if(grow(o))toast('Fully grown! +25 coins');save();render();break}
+  case'waterall':{let n=0,done=0;for(const o of S.garden){if(SHOP[o.k][3]!=='p'||o.g>=5)continue;if(S.water<1)break;S.water--;n++;if(grow(o))done++}if(!n)return toast(S.water<1?'No water. Complete habits to earn more':'Nothing to water');save();render();toast('Watered '+n+(done?'. '+done+' fully grown! +'+done*25+' coins':''));break}
+  case'harvest':{const o=S.garden[+ds.i],d=dk();if(!o||SHOP[o.k][3]!=='p'||o.g<5||o.h===d)break;const c=harvestPay(o.k);o.h=d;S.coins+=c;S.gh++;chime(1);save();render();toast(SHOP[o.k][0]+' harvested. +'+c+' coins');break}
+  case'feed':{const o=S.garden[+ds.i],d=dk();if(!o||SHOP[o.k][3]!=='a'||o.f===d)break;if(S.water<1)return toast('No water. Complete habits to earn more');S.water--;const c=giftPay(o.k);o.f=d;S.coins+=c;S.gf++;chime(1);save();render();toast(SHOP[o.k][0]+' is happy. A gift of '+c+' coins');break}
+  case'sell':{const i=+ds.i,o=S.garden[i];if(!o)break;twostep('sell'+i,()=>{const r=Math.floor(SHOP[o.k][2]/2);S.garden.splice(i,1);S.coins+=r;save();render();toast('Sold for '+r+' coins')});break}
+  case'mystery':{const t=ds.v==='a'?'a':'p',cost=t==='a'?250:60;const pool=SHOP.map((x,k)=>k).filter(k=>SHOP[k][3]===t&&SHOP[k][4]<=lvl());if(S.coins<cost)return toast('Need '+(cost-S.coins)+' more coins');if(S.garden.length>=80)return toast('Your garden is full');
+   const k=pool[Math.floor(Math.random()*pool.length)];S.coins-=cost;S.garden.push({k,g:0,f:'',h:''});fx([SHOP[k][0],'✨','🎉']);chime(1);save();render();toast('You got '+SHOP[k][0]+' '+SHOP[k][1]+'!');break}
+  case'lib':{const i=+ds.i,k=S.habits.findIndex(h=>h.l===i);if(k>=0){if(editing===S.habits[k].id){editing=null;DR=null}S.habits.splice(k,1)}else S.habits.push({id:'s'+i,l:i,d:[...(LIB[i][4]||[])]});save();render();break}
+  case'hnew':editing='new';DR=newDraft();render();break;
+  case'hedit':{const h=S.habits.find(x=>x.id===ds.id);if(!h)break;if(editing===h.id){editing=null;DR=null}else{const i=info(h);editing=h.id;DR={id:h.id,c:i.nm,e:i.ic,cat:i.cat,xp:i.xp,d:[...(h.d||[])],v:h.v?1:0,col:h.col===undefined?null:h.col}}armed=null;render();break}
+  case'hcancel':editing=null;DR=null;armed=null;render();break;
+  case'em':DR.e=ds.v;render();break;
+  case'day':{const n=+ds.v,k=DR.d.indexOf(n);if(k>=0)DR.d.splice(k,1);else DR.d.push(n);render();break}
+  case'hsave':{
+   const name=(DR.c||'').trim();if(!name)return toast('Give the habit a name');
+   const days=DR.d.length===7?[]:[...DR.d];
+   if(editing==='new')S.habits.push({id:'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),c:name.slice(0,60),e:DR.e,cat:DR.cat,xp:DR.xp,d:days,v:DR.v?1:0,...(DR.col!==null&&DR.col!==undefined?{col:DR.col}:{})});
+   else{const h=S.habits.find(x=>x.id===DR.id);if(h){h.c=name.slice(0,60);h.e=DR.e;h.cat=DR.cat;h.xp=DR.xp;h.d=days;h.v=DR.v?1:0;if(DR.col===null||DR.col===undefined)delete h.col;else h.col=DR.col}}
+   editing=null;DR=null;save();render();toast('Habit saved');break}
+  case'hdel':twostep('hdel',()=>{S.habits=S.habits.filter(x=>x.id!==DR.id);editing=null;DR=null;save();render();toast('Habit removed')});break;
+  case'hue':S.hue=+ds.v;look();save();render();break;
+  case'font':S.font=ds.v;look();save();render();break;
+  case'dense':S.dense=!S.dense;look();save();render();break;
+  case'fx':S.fx=!S.fx;save();render();break;
+  case'hs':S.hs=!S.hs;save();render();break;
+  case'qt':S.qt=!S.qt;save();render();break;
+  case'ls':lbSort=ds.v;render();break;
+  case'copybk':{const j=JSON.stringify(S);S.lbk=new Date().toISOString();save();
+   const fail=()=>{bkText=j;render();const t=$('#bk');if(t){t.focus();t.select()}toast('Select and copy the text below')};
+   try{navigator.clipboard.writeText(j).then(()=>toast('Backup copied'),fail)}catch(e){fail()}break}
+  case'restore':restoreText($('#bk').value);break;
+  case'install':{if(!deferredInstall)break;const ev=deferredInstall;ev.prompt();Promise.resolve(ev.userChoice).then(r=>{deferredInstall=null;if(r&&r.outcome==='accepted')toast('Installing Ironwill');render()},()=>{deferredInstall=null;render()});break}
+  case'installno':installNo=true;render();break;
+  case'paste':{const t=$(ds.t);if(!t)break;try{navigator.clipboard.readText().then(v=>{t.value=v;toast('Pasted')},()=>{t.focus();toast('Long-press the box and choose Paste')})}catch(e){t.focus();toast('Long-press the box and choose Paste')}break}
+  case'nsw':{if(S.ns){S.ns=false;save();render();break}if(!('Notification' in window))return toast('This browser has no alerts. Use the calendar reminders');Notification.requestPermission().then(p=>{S.ns=p==='granted';save();render();toast(S.ns?'Timer alerts on':'Alerts were blocked in browser settings')});break}
+  case'rtg':{const k={m:'tm',e:'te',s:'ts'}[ds.v];if(k){S.rm[k]=S.rm[k]?0:1;save();render()}break}
+  case'ics':if(dlFile('Ironwill-reminders.ics','text/calendar',buildIcs()))toast('Open the file to add the reminders');break;
+  case'share':{const t=SH[ds.i];if(!t||!navigator.share)break;const f=ds.i.startsWith('rq')&&PROOF[ds.i.slice(2)]&&PROOF[ds.i.slice(2)].file;
+   try{if(f&&navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({text:t,files:[f]}).catch(()=>{});break}}catch(e){}
+   navigator.share({text:t}).catch(()=>{});break}
+  case'chest':{const d=dk();if(S.chest===d||pct(d)<S.thr-1e-9)break;S.chest=d;S.chests++;const m=lootRoll();chime(1);fx(['🎁','✨','💰']);save();render();toast('Chest: '+m);break}
+  case'boss':{const cw=curWeek();if(S.bw===cw||weekXp(cw)<bossT())break;S.bw=cw;S.bosses++;S.coins+=100;chime(1);fx(['🗡️','💥','🏆']);save();render();toast('Boss defeated. +100 coins');break}
+  case'preset':{const p=PRESETS[+ds.v];if(!p)break;Object.assign(S,{bl:18,op:100,bdw:1,sd:100,sp:100,ck:'circle',ics:'tile'},{hue:p[1],sm:p[2],tm:p[3],bgs:p[4],cs:p[5],rad:p[6],font:p[7]},p[8]||{});S=norm(S);look();save();render();break}
+  case'bgs':S.bgs=ds.v;look();save();render();break;
+  case'cs':S.cs=ds.v;look();save();render();break;
+  case'gstart':{const d=dk();if((S.gmd[d]||0)>=3||GM)break;GM={end:Date.now()+15000,n:0,x:50,y:50,e:['🎯','⭐','🍀','💎'][Math.floor(Math.random()*4)]};GMt=setInterval(gameTick,250);render();break}
+  case'hit':{if(!GM)break;GM.n++;GM.x=10+Math.random()*80;GM.y=10+Math.random()*80;const t=$('#tgt'),g=$('#gs');if(t){t.style.left=GM.x+'%';t.style.top=GM.y+'%'}if(g)g.textContent=GM.n+' hits';buzz();break}
+  case'thcopy':copyText(themeCode(),'Theme code copied','#thc');break;
+  case'thuse':{const o=dec($('#thin').value,'IWT');if(!o)return toast('That is not a theme code');const t={};THEMEK.forEach(k=>{if(o[k]!==undefined)t[k]=o[k]});S=norm({...S,...t});look();save();render();toast('Theme applied');break}
+  case'opt':{if(!['nv','ck','lay','ics','am','mw','amb','font','bgs','cs','gs','fw','rs','fxp'].includes(ds.k))break;S[ds.k]=ds.v;S=norm(S);look();save();if(ds.k==='amb'&&tmr)ambStart();render();break}
+  case'mood':{const v=+ds.v;if(!(v>=1&&v<=5))break;S.mood[dk()]=v;save();render();break}
+  case'qclaim':{const i=+ds.v,d=dk(),got=S.qd[d]=S.qd[d]||[];if(got.includes(i)||!todayQ().includes(i)||!QP[i]||!QP[i][1](qctx()))break;
+   got.push(i);S.qn++;S.coins+=20;let m='Quest done. +20 coins';if(got.length>=3){S.coins+=30;m='Quest sweep! +50 coins';fx(['🏅','✨','🎉'])}
+   Object.keys(S.qd).sort().slice(0,-14).forEach(k=>delete S.qd[k]);chime(1);save();render();toast(m);break}
+  case'rwadd':{const n=($('#rwn').value||'').trim().slice(0,40),c=Math.round(+$('#rwc').value);if(!n||!(c>=10))return toast('Enter a reward and a cost of at least 10 coins');if(S.rw.length>=30)return toast('That is plenty of rewards');S.rw.push({n,c});save();render();break}
+  case'rwdel':S.rw.splice(+ds.i,1);save();render();break;
+  case'rwbuy':{const r=S.rw[+ds.i];if(!r)break;if(S.coins<r.c)return toast('Not enough coins yet');S.coins-=r.c;S.rwn++;chime(1);fx(['🎉','🎁','✨']);save();render();toast('Enjoy: '+r.n+'. You earned it.');break}
+  case'av':S.av=ds.v;save();render();break;
+  case'gadd':{const n=($('#gn').value||'').trim().slice(0,40),d=$('#gd').value;if(!n||!/^\d{4}-\d\d-\d\d$/.test(d||''))return toast('Enter a goal name and a date');if(S.goals.length>=10)return toast('Ten goals is the limit');S.goals.push({n,d});S.goals.sort((a,b)=>a.d.localeCompare(b.d));save();render();break}
+  case'gdel':S.goals.splice(+ds.i,1);save();render();break;
+  case'bgclr':S.bgi='';if(S.bgs==='image')S.bgs='aurora';look();save();render();break;
+  case'sn':S.sn=!S.sn;save();render();chime(1);break;
+  case'bkdl':if(dlFile('ironwill-backup-'+dk()+'.json','application/json',JSON.stringify(S))){S.lbk=new Date().toISOString();save();render();toast('Backup saved to your Downloads')}break;
+  case'bm':bm=ds.v;render();break;
+  case'tm':S.tm=ds.v;look();save();render();break;
+  case'hp':S.hp=!S.hp;save();render();break;
+  case'nd':S.nd=!S.nd;save();render();break;
+  case'hcol':DR.col=ds.v===''?null:+ds.v;render();break;
+  case'vtog':{const o=DR.id&&S.habits.find(h=>h.id===DR.id);if(o&&o.v){toast('Proof cannot be turned off once it is on');break}DR.v=DR.v?0:1;render();break}
+  case'buyshield':if(S.coins<120)return toast('Need '+(120-S.coins)+' more coins');S.coins-=120;S.sh++;save();toast('Streak shield added');render();break;
+  case'useshield':{const y=back(1);if(S.sh>0&&!S.shd.includes(y)){S.shd.push(y);S.sh--;save();render();toast('Shield used. Your streak is safe')}break}
+  case'copyreq':{const pe=S.pend[dk()]&&S.pend[dk()][ds.id],x=S.habits.find(h=>h.id===ds.id);if(pe&&x)copyText(reqMsg(x,pe),'Request copied. Send it with your proof','#preq');break}
+  case'pcancel':if(S.pend[dk()])delete S.pend[dk()][ds.id];proofOpen=null;save();render();break;
+  case'pcheck':applyConf(ds.id,$('#pconf').value);break;
+  case'rqread':loadReq($('#rq').value);break;
+  case'rqyes':{if(!CF)break;CFcode=enc({n:S.name||'Friend',k:CF.k,rn:CF.n,h:CF.h,d:CF.d},'IWC');CFmsg='Ironwill: I confirm your habit "'+CF.h+'". Tap to finish it:\n'+withLink(CFcode)+(hostLink()?'':'\nPaste this code in Ironwill under the habit that is waiting for confirmation.');
+   if(!S.vs.includes(CF.k)){S.vs.push(CF.k);S.vc++}
+   CF=null;save();render();toast('Confirmed. Send the code back');break}
+  case'rqno':CF=null;CFcode='';render();break;
+  case'copyconf':copyText(CFmsg||CFcode,'Confirmation copied','#cfc');break;
+  case'copycode':{const c=myCode();
+   const fail=()=>{const t=$('#mycode');if(t){t.focus();t.select()}toast('Select and copy the code')};
+   try{navigator.clipboard.writeText(c).then(()=>toast('Code copied. Send it to your friends'),fail)}catch(e){fail()}break}
+  case'addfr':addFriend($('#fcode').value);break;
+  case'rmfr':S.fr.splice(+ds.i,1);save();render();break;
+  case'ghcon':{const t=($('#ghtok').value||'').trim();if(!/^(ghp_|github_pat_|gho_)?[A-Za-z0-9_]{20,255}$/.test(t))return toast('That does not look like a GitHub token');
+   GH.tok=t;GH.msg='Connected.';ghSave();toast('Connecting...');ghApi('GET','/gists?per_page=1').then(()=>{GH.msg='Connected. Tap Save to GitHub to make your first backup.';ghSave();render()},e=>{GH.tok='';GH.msg='';ghSave();render();toast(ghErr(e))});break}
+  case'ghpush':GH.msg='Saving...';render();ghPush();break;
+  case'ghload':ghLoad(false);break;
+  case'ghtg':{const k=ds.v;if(k!=='auto'&&k!=='pub')break;GH[k]=!GH[k];ghSave();render();if(k==='pub'&&GH.pub)ghPush();break}
+  case'ghoff':twostep('ghoff',()=>{GH=GH0();ghSave();render();toast('Disconnected')});break;
+  case'gfadd':addGistFriend($('#gfid').value);break;
+  case'gfref':toast('Refreshing...');ghFriends().then(n=>toast(n?'Updated '+n+' friend'+(n>1?'s':''):'No live friends to update'));break;
+  case'copygid':copyText(GH.pid,'ID copied','#mygid');break;
+  case'reset':twostep('reset',()=>{
+   try{localStorage.removeItem(GHK)}catch(e){}GH=GH0();
+   try{localStorage.removeItem(K)}catch(e){}
+   S=DEF();look();tab='today';packSel='balanced';render();toast('All data cleared')});break;
+ }}
+
+const app=$('#app'),nav=$('#nav');
+function onClick(e){const t=e.target.closest('[data-a]');if(!t||t.disabled)return;act(t.dataset.a,t.dataset)}
+app.addEventListener('click',onClick);nav.addEventListener('click',onClick);
+function hex2hsl(hx){const m=/^#([0-9a-f]{6})$/i.exec(hx);if(!m)return null;const n=parseInt(m[1],16),r=(n>>16&255)/255,g=(n>>8&255)/255,b=(n&255)/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),d=mx-mn;let h=0;
+ if(d){h=mx===r?((g-b)/d)%6:mx===g?(b-r)/d+2:(r-g)/d+4;h=Math.round(h*60);if(h<0)h+=360}
+ const l=(mx+mn)/2,sa=d?d/(1-Math.abs(2*l-1)):0;return{h,s:Math.round(sa*100)}}
+const THEMEK=['hue','sm','tm','bgs','cs','rad','font','bl','op','bdw','sd','sp','nv','ck','lay','ics','am','mw','ho','fw','rs','fxp','gs'];
+const themeCode=()=>{const o={};THEMEK.forEach(k=>{o[k]=S[k]});return enc(o,'IWT')};
+const SL={sho:['ho',-60,60],ssm:['sm',40,150],srad:['rad',4,34],sfs:['fs',88,130],sbl:['bl',0,40],sop:['op',20,200],sbw:['bdw',0,3],ssd:['sd',0,200],ssp:['sp',60,150],sdim:['dim',0,90]};
+app.addEventListener('input',e=>{
+ const id=e.target.id,v=e.target.value;
+ if(SL[id]){const c=SL[id];S[c[0]]=Math.min(c[2],Math.max(c[1],+v||c[1]));look();return}
+ if(id==='pnote'&&proofOpen){PROOF[proofOpen]=PROOF[proofOpen]||{note:'',url:''};PROOF[proofOpen].note=v;return}
+ if(id==='hf-n'&&DR)DR.c=v;
+ else if(id==='wn'){S.name=v.slice(0,20)}
+ else if(id==='hs'){S.hue=+v;look()}
+});
+app.addEventListener('change',e=>{
+ const id=e.target.id,v=e.target.value;
+ if(SL[id]){const c=SL[id];S[c[0]]=Math.min(c[2],Math.max(c[1],+v||c[1]));look();save();render();return}
+ if(id==='scol'){const c=hex2hsl(v);if(c){S.hue=c.h;S.sm=Math.min(150,Math.max(40,Math.round(c.s/62*100)));look();save();render()}return}
+ if(id==='pnote'){render();return}
+ if(id==='jr'){const t=v.slice(0,300);if(t.trim())S.jr[dk()]=t;else delete S.jr[dk()];save();render();return}
+ if(id==='sti'){S.ti=v;save();render();return}
+ if(id==='scq'){S.cq=v.split('\n').map(x=>x.trim().slice(0,140)).filter(Boolean).slice(0,30);save();render();return}
+ if(id==='bgimg'){const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{try{const k=Math.min(1,1000/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);const u=c.toDataURL('image/jpeg',.6);if(u.length>690000)return toast('That image is too large. Try a smaller one');S.bgi=u;S.bgs='image';look();save();render()}catch(x){toast('Could not use that image')}};im.onerror=()=>toast('That is not an image I can read');im.src=String(r.result)};r.readAsDataURL(f);return}
+ if(id==='pimg'&&proofOpen){const f=e.target.files&&e.target.files[0];if(f){const o=PROOF[proofOpen]=PROOF[proofOpen]||{note:'',url:''};try{if(o.url)URL.revokeObjectURL(o.url);o.url=URL.createObjectURL(f)}catch(x){o.url=''}o.file=f;render()}return}
+ if(id==='bkf'){const f=e.target.files&&e.target.files[0];if(f){const r=new FileReader();r.onload=()=>restoreText(String(r.result));r.onerror=()=>toast('Could not read that file');r.readAsText(f)}return}
+ if(id==='hf-c'&&DR)DR.cat=v;
+ else if(id==='hf-x'&&DR)DR.xp=+v;
+ else if(id==='fc'){fcus=Math.min(180,Math.max(5,+v||25));render()}
+ else if(id==='sn'){S.name=v.trim().slice(0,20);save();render()}
+ else if(id==='sm'){S.mantra=v.slice(0,200);save()}
+ else if(id==='hs'){S.hue=+v;save();render()}
+ else if(id==='sth'){S.thr=+v;save();render()}
+ else if(id==='sws'){S.ws=+v;save();render()}
+ else if(/^rm-[mes]$/.test(id)){if(/^([01]\d|2[0-3]):[0-5]\d$/.test(v)){S.rm[id.slice(3)]=v;save()}}
+ else if(id==='svn'){S.vn=+v===2?2:1;save();render()}
+ else if(id==='sud'){S.ud=+v;save();render()}
+ else if(id==='ssw'){S.swaps=v.split('\n').map(x=>x.trim().slice(0,40)).filter(Boolean).slice(0,20);save();render()}
+});
+function dayCheck(){if(dk()!==curDay){curDay=dk();if(!typing())render()}}
+setInterval(dayCheck,20000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)dayCheck()});
+if(window.addEventListener){
+ window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;if(!typing()&&(tab==='settings'||tab==='today'))render()});
+ window.addEventListener('appinstalled',()=>{deferredInstall=null;toast('Ironwill installed');render()});
+ window.addEventListener('hashchange',handleHash)}
+handleHash();
+render();ghInit();
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
