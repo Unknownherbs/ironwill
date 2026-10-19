@@ -11,14 +11,12 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Ironwill</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=DM+Sans:wght@400;500;700&family=Bricolage+Grotesque:wght@600;800&family=JetBrains+Mono:wght@500;800&display=swap" rel="stylesheet">
 <style>
 /* Layout: one 720px column, glass cards over a ground tinted by a single user-set hue, six-tab bar pinned to the bottom. */
 :root{
   --h:150;
-  --fd:'Fraunces',Georgia,serif;
-  --fb:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --fd:'Young Serif',Georgia,serif;
+  --fb:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   color-scheme:dark;
   --bg:hsl(var(--h) 40% 6%);
   --tx:hsl(var(--h) 28% 94%);
@@ -77,9 +75,6 @@
   --b3:hsl(calc(var(--h) - 20 + var(--ho,0)) 55% 86%);
   --navbg:hsla(var(--h),40%,98%,.82);
 }
-:root[data-font="sharp"]{--fd:'Bricolage Grotesque','DM Sans',system-ui,sans-serif}
-:root[data-font="serif"]{--fd:'Fraunces',Georgia,serif;--fb:Georgia,'Times New Roman',serif}
-:root[data-font="rounded"]{--fd:ui-rounded,'SF Pro Rounded','Nunito',system-ui,sans-serif;--fb:ui-rounded,'SF Pro Rounded','Nunito',system-ui,sans-serif}
 :root[data-bg="plain"] body{background:var(--bg)}
 :root[data-bg="fade"] body{background:linear-gradient(160deg,var(--b1),var(--bg) 65%) fixed,var(--bg)}
 :root[data-bg="grid"] body{background:linear-gradient(var(--sf2) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(90deg,var(--sf2) 1px,transparent 1px) 0 0/30px 30px,var(--bg);background-attachment:fixed}
@@ -107,15 +102,12 @@
 .hgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}.hgrid .h{margin-bottom:0;flex-direction:column;align-items:flex-start;text-align:left;gap:8px}.hgrid .h .chk{align-self:flex-end;margin-top:-34px}.hgrid .card{grid-column:1/-1;margin-bottom:0}
 :root[data-am="off"] *,:root[data-am="off"] *::before,:root[data-am="off"] *::after{transition:none!important;animation:none!important}
 :root[data-am="calm"] *{animation-duration:2.4s!important;transition-duration:.5s!important}
-:root[data-font="hand"]{--fd:'Segoe Print','Bradley Hand','Comic Sans MS','Chalkboard SE',cursive;--fb:'Segoe Print','Bradley Hand','Comic Sans MS','Chalkboard SE',cursive}
-:root[data-font="bold"]{--fd:'Arial Black','Helvetica Neue',Impact,sans-serif;--fb:'Helvetica Neue',Arial,sans-serif}
-:root[data-font="elegant"]{--fd:Palatino,'Palatino Linotype','Book Antiqua',Georgia,serif;--fb:Palatino,'Palatino Linotype',Georgia,serif}
 .q{display:flex;align-items:center;gap:10px;margin:6px 0}.q .qt{flex:1}.q.ok .qt{opacity:.55;text-decoration:line-through}
 .moods{display:flex;gap:6px;margin:8px 0}.moods button{flex:1;font-size:1.5rem;padding:8px 0;border-radius:14px;border:1px solid var(--bd);background:var(--sf2)}.moods button.on{background:var(--ac);border-color:var(--ac)}
 .goal{display:flex;justify-content:space-between;gap:10px;align-items:center}.goal b{font-size:1.15rem;color:var(--ac)}
 .avs{display:flex;flex-wrap:wrap;gap:6px}.avs button{font-size:1.4rem;width:44px;height:44px;border-radius:12px;border:1px solid var(--bd);background:var(--sf)}.avs button.on{background:var(--ac)}
 html{--ho:0}
-:root[data-fw="light"] body{font-weight:300}:root[data-fw="bold"] body{font-weight:600}
+:root[data-fw="bold"] body{font-weight:600}
 .scene.sc-sunset{background:linear-gradient(#ff8f5a 0,#ffd9a0 52%,#5f9c4f 52%,#2f6a38 100%)}.scene.sc-sunset::before{content:'🌇'}
 .scene.sc-night{background:linear-gradient(#0a0e2c 0,#2b3270 52%,#1d4a3a 52%,#10281f 100%)}.scene.sc-night::before{content:'🌙'}.sc-night .tile small{color:#e8edff!important}
 .scene.sc-snow{background:linear-gradient(#9db6d3 0,#e9f1f9 52%,#f5f9fd 52%,#d5e1ed 100%)}.scene.sc-snow::before{content:'❄️'}
@@ -127,12 +119,70 @@ html{--ho:0}
 .arena{position:relative;height:280px;border-radius:16px;background:var(--sf2);overflow:hidden;margin-top:10px;touch-action:manipulation}
 .tgt{position:absolute;width:64px;height:64px;font-size:2rem;border-radius:50%;border:0;background:var(--ac);transform:translate(-50%,-50%)}
 .cols{display:flex;gap:8px;flex-wrap:wrap}.cols button{width:34px;height:34px;border-radius:50%;border:2px solid var(--bd)}.cols button.on{outline:3px solid var(--tx)}
+/* iOS style */
+:root[data-font="system"]{--fd:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Segoe UI',Roboto,'Helvetica Neue',system-ui,sans-serif;--fb:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',Roboto,'Helvetica Neue',system-ui,sans-serif}
+:root[data-bg="ios"]{--bg:#000;--sf:#1c1c1e;--sf0:#1c1c1e;--sf2:#2c2c2e;--bd:rgba(84,84,88,.65);--tx:#fff;--mu:#98989f;--ac:hsl(var(--h) min(100%,calc(100%*var(--sm,1))) 56%);--ok:#30d158;--on:#fff;--hi:transparent;--sh:transparent;--navbg:rgba(28,28,30,.82)}
+@media (prefers-color-scheme:light){:root[data-bg="ios"]:not([data-theme="dark"]){--bg:#f2f2f7;--sf:#fff;--sf0:#fff;--sf2:#e9e9ee;--bd:rgba(60,60,67,.2);--tx:#000;--mu:#6c6c70;--ac:hsl(var(--h) min(100%,calc(100%*var(--sm,1))) 48%);--ok:#34c759;--navbg:rgba(249,249,249,.85)}}
+:root[data-bg="ios"][data-theme="light"]{--bg:#f2f2f7;--sf:#fff;--sf0:#fff;--sf2:#e9e9ee;--bd:rgba(60,60,67,.2);--tx:#000;--mu:#6c6c70;--ac:hsl(var(--h) min(100%,calc(100%*var(--sm,1))) 48%);--ok:#34c759;--navbg:rgba(249,249,249,.85)}
+:root[data-bg="ios"] body{background:var(--bg)}
+:root[data-card="ios"] .card,:root[data-card="ios"] .lvl{background:var(--sf);border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:var(--r,14px)}
+:root[data-card="ios"] .h{background:var(--sf);border:0;border-bottom:.5px solid var(--bd);border-radius:0;margin-bottom:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+:root[data-card="ios"] .cat+.h{border-radius:var(--r,14px) var(--r,14px) 0 0}
+:root[data-card="ios"] .h:not(:has(+ .h)){border-radius:0 0 var(--r,14px) var(--r,14px);border-bottom:0;margin-bottom:14px}
+:root[data-card="ios"] .cat+.h:not(:has(+ .h)){border-radius:var(--r,14px)}
+:root[data-card="ios"] .hgrid .h{border-radius:var(--r,14px);border:0;margin:0}
+:root[data-card="ios"] h1{font-size:2.15rem;font-weight:700;letter-spacing:-.025em}
+:root[data-card="ios"] .btn{border-radius:12px;font-weight:600}
+:root[data-card="ios"] .pill{border:0;background:var(--sf2)}:root[data-card="ios"] .pill.on{background:var(--ac);color:var(--on)}
+:root[data-card="ios"] .seg{background:var(--sf2)}:root[data-card="ios"] .seg button.on{background:var(--sf);color:var(--tx);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+:root[data-nav="ios"] nav{border-radius:0;border-top:.5px solid var(--bd);padding-top:4px;-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%)}
+:root[data-nav="ios"] nav button.on{background:none;color:var(--ac)}
+/* health and calendar */
+.hrings{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center}.hr svg{width:100%;max-width:78px;margin:0 auto;display:block}.hr b{display:block;font-size:.95rem;margin-top:4px;font-variant-numeric:tabular-nums}.hr small{display:block;font-size:.7rem}
+.bars{display:flex;align-items:flex-end;gap:6px;height:76px;margin-top:8px}.bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:3px}.bars i{display:block;width:100%;background:var(--ac);border-radius:5px 5px 2px 2px;min-height:2px;opacity:.9}.bars i.goal{background:var(--ok)}.bars small{font-size:.62rem}
+.bcircle{width:170px;height:170px;border-radius:50%;margin:18px auto;background:radial-gradient(circle,var(--ok),color-mix(in srgb,var(--ok) 40%,transparent));opacity:.9;transform:scale(.6);transition:transform .25s linear}
+.seg{flex-wrap:wrap}.t3 .goal{margin:6px 0}.t3 .done span{text-decoration:line-through;opacity:.6}.yr{display:grid;grid-template-columns:auto repeat(31,1fr);gap:2px;align-items:center;font-size:.55rem}.yr i{aspect-ratio:1;border-radius:2px;background:var(--sf2);display:block}.yr i.l1{background:color-mix(in srgb,var(--ok) 35%,var(--sf2))}.yr i.l2{background:color-mix(in srgb,var(--ok) 65%,var(--sf2))}.yr i.l3{background:var(--ok)}.yr i.n{background:transparent}.qd{font:800 2.2rem var(--fd);font-variant-numeric:tabular-nums}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.cal .wh{font-size:.68rem;text-align:center;color:var(--mu);font-weight:700;padding:4px 0}
+.cd{aspect-ratio:1;border-radius:12px;border:0;background:var(--sf2);position:relative;font-weight:600;color:var(--tx);font-size:.9rem}.cd.met{background:var(--ok);color:var(--on)}.cd.part{background:color-mix(in srgb,var(--ok) 38%,var(--sf2))}.cd.miss{opacity:.55}.cd.rest{opacity:.8}.cd.fut{background:transparent;border:1px dashed var(--bd)}.cd.now{outline:2px solid var(--ac);outline-offset:1px}.cd.sel{box-shadow:0 0 0 3px var(--tx)}.cd.none{visibility:hidden}.gf{position:absolute;right:1px;top:-1px;font-size:.72rem;font-style:normal}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--mu);margin-top:10px}.legend b{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
 .boss{display:flex;gap:12px;align-items:center}.boss .big{font-size:2.2rem}.boss .bar{height:10px;margin-top:6px}
 .thumb{display:block;max-width:100%;max-height:180px;border-radius:12px;margin:8px 0}
 .swatch{width:100%;height:44px;padding:2px;border-radius:12px;border:1px solid var(--bd);background:var(--sf2)}
-:root[data-font="terminal"]{--fd:'JetBrains Mono',ui-monospace,Consolas,monospace}
 
+@font-face{font-family:'Young Serif';src:url('fonts/YoungSerif-Regular.woff') format('woff');font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Instrument Sans';src:url('fonts/InstrumentSans-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Instrument Sans';src:url('fonts/InstrumentSans-Bold.woff') format('woff');font-weight:500 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Bricolage Grotesque';src:url('fonts/BricolageGrotesque-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Bricolage Grotesque';src:url('fonts/BricolageGrotesque-Bold.woff') format('woff');font-weight:500 800;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('fonts/JetBrainsMono-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('fonts/JetBrainsMono-Bold.woff') format('woff');font-weight:500 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Lora';src:url('fonts/Lora-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Lora';src:url('fonts/Lora-Bold.woff') format('woff');font-weight:500 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Outfit';src:url('fonts/Outfit-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Outfit';src:url('fonts/Outfit-Bold.woff') format('woff');font-weight:500 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Nothing You Could Do';src:url('fonts/NothingYouCouldDo-Regular.woff') format('woff');font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Work Sans';src:url('fonts/WorkSans-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Work Sans';src:url('fonts/WorkSans-Bold.woff') format('woff');font-weight:500 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Big Shoulders';src:url('fonts/BigShoulders-Bold.woff') format('woff');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Gloock';src:url('fonts/Gloock-Regular.woff') format('woff');font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Crimson Pro';src:url('fonts/CrimsonPro-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Crimson Pro';src:url('fonts/CrimsonPro-Bold.woff') format('woff');font-weight:500 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Pixelify Sans';src:url('fonts/PixelifySans-Medium.woff') format('woff');font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Tektur';src:url('fonts/Tektur-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Tektur';src:url('fonts/Tektur-Medium.woff') format('woff');font-weight:500 700;font-style:normal;font-display:swap}
 html{font-size:calc(16px*var(--fs,1))}
+:root[data-font="sharp"]{--fd:'Bricolage Grotesque',system-ui,sans-serif;--fb:'Instrument Sans',system-ui,sans-serif}
+:root[data-font="terminal"]{--fd:'JetBrains Mono',ui-monospace,Consolas,monospace;--fb:'JetBrains Mono',ui-monospace,Consolas,monospace}
+:root[data-font="serif"]{--fd:'Lora',Georgia,serif;--fb:'Lora',Georgia,serif}
+:root[data-font="rounded"]{--fd:'Outfit',system-ui,sans-serif;--fb:'Outfit',system-ui,sans-serif}
+:root[data-font="hand"]{--fd:'Nothing You Could Do',cursive;--fb:'Nothing You Could Do',cursive}
+:root[data-font="bold"]{--fd:'Big Shoulders',system-ui,sans-serif;--fb:'Work Sans',system-ui,sans-serif}
+:root[data-font="elegant"]{--fd:'Gloock',Georgia,serif;--fb:'Crimson Pro',Georgia,serif}
+:root[data-font="pixel"]{--fd:'Pixelify Sans',monospace;--fb:'Pixelify Sans',monospace}
+:root[data-font="tech"]{--fd:'Tektur',sans-serif;--fb:'Tektur',sans-serif}
+:root[data-font="hand"] body{font-size:1.12rem}:root[data-fw="bold"] body{font-weight:700}
+.rng{position:relative;padding-top:26px}.rv{position:absolute;top:0;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:3px 10px;border-radius:99px;font-weight:700;font-size:.82rem;opacity:0;transition:opacity .12s;pointer-events:none;white-space:nowrap;z-index:2}.rv.on{opacity:1}
+.vb{display:none;position:fixed;top:calc(64px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:8px 16px;border-radius:99px;font-weight:700;font-size:.95rem;opacity:0;pointer-events:none;transition:opacity .15s;z-index:30}.vb.on{opacity:1}
 *{box-sizing:border-box;margin:0}
 body{
   background:
@@ -227,9 +277,13 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .h.lock{opacity:.5}
 .h b{color:var(--ac);white-space:nowrap}
 .static{cursor:default}
-[data-dense="1"] .h{padding:7px 12px;margin-bottom:5px;border-radius:14px}
-[data-dense="1"] .h .ic{width:34px;height:34px;font-size:1.15rem}
-[data-dense="1"] .h .nm small{display:inline;margin-left:8px}
+html[data-dense="1"] .h{padding:5px 10px!important;margin-bottom:3px!important;border-radius:11px!important;gap:9px;min-height:0}
+html[data-dense="1"] .h .ic{width:28px!important;height:28px!important;font-size:1rem!important;border-radius:9px!important}
+html[data-dense="1"] .h .nm{font-size:.92rem;line-height:1.25}
+html[data-dense="1"] .h .nm small{display:inline!important;margin-left:6px;font-size:.72rem}
+html[data-dense="1"] .chk{width:22px;height:22px}html[data-dense="1"] .chk svg{width:12px;height:12px}
+html[data-dense="1"] .cat{margin:10px 2px 4px}
+html[data-dense="1"] .card{padding:10px 12px!important;margin-bottom:8px!important}
 @keyframes pop{50%{transform:scale(1.35)}}
 
 .btn{background:var(--ac);color:var(--on);border:0;border-radius:calc(var(--r,20px)*.7);padding:12px 20px;font-weight:700}
@@ -361,6 +415,9 @@ const PACKS=[
 {id:'faith',n:'Faith and spirit',d:'Prayer or devotion, scripture, quiet reflection, gratitude, charity and an evening review. Works for any faith. Rename habits or set days to match your own practice.',h:[33,35,42,27,40,43,9]},
 {id:'blank',n:'Start empty',d:'Build your own list from the library.',h:[]}];
 const QUOTES=['Discipline is choosing what you want most over what you want now.','You don\'t rise to your goals. You fall to your daily systems.','Be the person who keeps promises to themselves.','Motivation starts it. Showing up finishes it.','One rep, one page, one call. That counts.','The urge passes in 10 minutes. The result lasts.','Your future physique is built on boring Tuesdays.','Confidence is just evidence from kept promises.'];
+QUOTES.push('You will never feel ready. Start anyway, and readiness will catch up.','Small promises kept every day build a person nobody can talk out of success.','Motivation starts the engine. Habit keeps the car moving when the engine is tired.','The person you want to become is built from the days nobody sees.','Do the hard thing first. The rest of the day gets lighter.','You do not need a perfect day. You need a day that counts.','Every time you keep a promise to yourself, you vote for the person you want to be.','Comfort is a nice place to visit and a terrible place to live.','You are not behind. You are exactly where your last choices put you, and the next one is yours.','Missing once is an accident. Missing twice is the start of a new habit. Never miss twice.','The pain of discipline weighs grams. The pain of regret weighs tons.','If it matters to you, schedule it. If it does not, stop pretending.','Progress is quiet. Do not wait for applause to keep going.','Your future self is watching what you do today and taking notes.','One percent better every day is thirty-seven times better in a year.','Stop negotiating with yourself at 6 a.m. The answer was decided last night.','Be someone your younger self would be proud to meet.','Energy follows action. Move first, and the feeling arrives later.','You cannot control how you feel, but you can always control the next small step.','A slow day in the right direction beats a sprint in the wrong one.','Do not fear the long road. Fear standing still for years.','Excuses are loud. Results are quiet and win anyway.','Hard days make you stronger only if you show up for them.','Success is boring up close. It looks like the same good choices on repeat.','The goal is not to feel motivated. The goal is to be reliable.','Make it easy to start and impossible to ignore.','What you tolerate is what you teach. Teach yourself to follow through.','You are one decision away from a different life, and decisions are free.','Fall seven times, get up eight. The count only ends when you stop.','Your habits are a letter to your future self. Write kindly and clearly.','Do not compare your chapter one to someone else\'s chapter twenty.','Someday is not a day of the week. Pick a day and begin.','Doing something badly beats planning it perfectly forever.','Confidence is the memory of promises kept.','Sleep, water, movement. Beat the basics and the rest of life gets easier.','Be patient with the process and impatient with the excuses.','Nobody is coming to save your schedule. Take it back yourself.','The mountain does not care about your mood. Climb a little anyway.','Pressure makes diamonds, but only the ones that stay in the fire.','You do not rise to the level of your goals. You fall to the level of your systems.','Gratitude turns what you have into enough, and enough into more.','Rest is part of the plan, not a break from it.','A calm mind is a trained mind. Train it daily.','The best time to start was years ago. The second best time is this minute.','Say no to the thing that feels good now so you can say yes to the life you want.','Little by little, a little becomes a lot.','You are allowed to be a work in progress and a masterpiece at the same time.','Courage is not the absence of fear. It is taking the first step while afraid.','Your mind quits long before your body does. Do not listen to it early.','Great things are done by ordinary people who refused to stop.','Show up on the boring days. That is where the real work lives.','Your streak is proof that you keep your word.','Replace "I have to" with "I get to" and watch the day change.','Build the life you do not need a vacation from.','Be the kind of person who finishes.','Fear is a compass. Walk toward the thing that scares you a little.','You will not regret the workout, the page, the early night, the honest word.','When you want to quit, remember why you started and take one more step.','Today\'s discipline is tomorrow\'s freedom.','It always seems impossible until the first step is taken.','Surround yourself with people who raise your standards without being asked.','Your time is the only thing you cannot earn back. Spend it like it matters.','A clear no protects a better yes.','The version of you that you are proud of is made one choice at a time.','Do it tired. Do it scared. Do it anyway.','Speak to yourself like someone you are responsible for helping.','Strong people are not the ones who never fall. They are the ones who keep a routine for getting up.','Stop waiting for the mood. Build the rhythm.','A bad day does not erase a good habit. Skip the guilt and resume.','Keep your phone away from your pillow and your goals close to your heart.','You become what you spend your attention on. Spend it well.','The gap between who you are and who you want to be is called action.','Change is uncomfortable for a month and rewarding for a lifetime.','Listen to your body, but do not let it take over the steering wheel.','Do not let a bad hour turn into a bad day.','Make your bed, make a plan, make progress.','If you are tired of starting over, stop quitting.','Success is the sum of small efforts repeated day in and day out.','Fall in love with the process and the results take care of themselves.','Pray, plan, and then work. Faith and effort belong together.','Be grateful before you are satisfied. It changes the whole story.','Hold the door for someone today. Kindness is also a discipline.','Your body hears everything your mind says. Say something worth hearing.','Do not trade what you want most for what you want now.','Trust the days you cannot see results. Roots grow before flowers.','Nothing changes if nothing changes. Change one thing today.','You are stronger than the craving, and the craving is weaker than your reason.','Real confidence is knowing you can count on yourself.','Walk, breathe, drink water, then decide again.','The urge passes in minutes. The pride lasts all day.','A clean space, a clear head, a calm start.','Learn something new every day, even if it is small.','Do one thing today that future you will thank you for.','Look back for lessons and forward for direction. Never stare at the past.','Your potential is not a plan. Turn it into one today.','Be honest about where you are, then be relentless about where you are going.','Forgive yourself quickly and begin again quickly.','Great mornings are made the night before.','Finish what you start, even when the excitement has gone. That is where character is built.','The harder the climb, the better the view, and the prouder the climber.','Starting is a skill. Practise it every day.','Decide who you are, then let your calendar prove it.','Perfection is a trap. Consistency is the way out.','What you do every day matters more than what you do once in a while.','Protect your morning and it will protect your day.','Stop collecting ideas and start collecting reps.','You do not find time. You make it and guard it.','Your effort today is a gift to someone you will become.','Be kind to your future self by acting today.','You are not your worst day. You are what you do after it.','Keep going. The version of your life you want is on the other side of consistency.');
+const quoteList=()=>QUOTES.concat(S.cq||[]);
+function todayQuote(){const l=quoteList(),dn=Math.floor(Date.parse(dk())/864e5),n=S.qs&&S.qs.d===dk()?S.qs.n:0;return l[((dn+n)%l.length+l.length)%l.length]}
 const RANKS=['Initiate','Cadet','Soldier','Veteran','Ranger','Captain','Warden','Commander','Legend'];
 const BADGES=[['🔥','60-day streak',s=>s.best>=60],['🌋','100-day streak',s=>s.best>=100],['🧠','1000 focus min',s=>s.focus>=1000],['🕉️','100 urges beaten',s=>s.urges>=100],['🔟','10 perfect days',s=>s.perfect>=10],['📆','30 perfect days',s=>s.perfect>=30],['💪','500 habits done',s=>s.done>=500],['🏔️','1000 habits done',s=>s.done>=1000],['⭐','Level 15',s=>s.lvl>=15],['🌌','Level 20',s=>s.lvl>=20],['🌿','5 garden items',s=>s.gn>=5],['🏞️','15 garden items',s=>s.gn>=15],['🌸','First harvest',s=>s.gh>=1],['🧺','25 harvests',s=>s.gh>=25],['💗','Fed 20 times',s=>s.gf>=20],['🦋','10 species',s=>s.sp>=10],['🏰','Garden rating 100',s=>s.gr>=100],['🎁','First reward claimed',s=>s.rwn>=1],['📓','10 journal lines',s=>s.jr>=10],['😊','7 moods logged',s=>s.mo>=7],['🎖️','20 quests done',s=>s.qn>=20],['🕹️','Quick tap 30+',s=>s.gm>=30],['🔥','3-day streak',s=>s.best>=3],['⚡','7-day streak',s=>s.best>=7],['🌟','14-day streak',s=>s.best>=14],['👑','30-day streak',s=>s.best>=30],['🎯','100 focus min',s=>s.focus>=100],['⏳','500 focus min',s=>s.focus>=500],['🛡️','5 urges beaten',s=>s.urges>=5],['🧱','25 urges beaten',s=>s.urges>=25],['💯','Perfect day',s=>s.perfect>=1],['✅','100 habits done',s=>s.done>=100],['🚀','Level 5',s=>s.lvl>=5],['🏆','Level 10',s=>s.lvl>=10],['🧾','5 habits verified',s=>s.vd>=5],['🤝','Trusted witness',s=>s.vc>=5],['🎁','10 chests opened',s=>(s.chests||0)>=10],['🗡️','Boss slayer',s=>(s.bosses||0)>=1]];
 const SHOP=[['🌱','Sprout',30,'p',1],['🪴','Snake plant',60,'p',1],['🌵','Cactus',90,'p',1],['🌺','Orchid',160,'p',2],['🌳','Oak tree',320,'p',3],['⛲','Fountain',250,'d',2],['🐢','Turtle',200,'a',2],['🦆','Duck',260,'a',3],['🐼','Panda',600,'a',4],['🦁','Lion',900,'a',6],['🐘','Elephant',1500,'a',8],
@@ -375,13 +432,14 @@ today:'<circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/>',
 focus:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9.5 2.5h5"/>',
 garden:'<path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c3-5 6-8 9-10"/>',
 progress:'<path d="M5 20V10M12 20V4M19 20v-7"/>',
+health:'<path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/>',
 habits:'<path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>',
 settings:'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>'};
-const TABS=[['today','Today'],['focus','Focus'],['garden','Garden'],['progress','Progress'],['habits','Habits'],['settings','Settings']];
+const TABS=[['today','Today'],['focus','Focus'],['garden','Garden'],['progress','Progress'],['health','Health'],['habits','Habits'],['settings','Settings']];
 const CHECK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 const K='ironwill.v2';
 
-const DEF=()=>({habits:[],fr:[],xd:{},pend:{},sh:0,shd:[],vc:0,vd:0,vs:[],tm:'auto',hp:true,vn:1,nd:true,gs:'auto',ho:0,fw:'normal',rs:'ring',fxp:'default',cq:[],qn:0,gh:0,gf:0,gm:0,gmd:{},sm:100,rad:20,fs:100,bgs:'aurora',cs:'glass',bl:18,op:100,bdw:1,sd:100,sp:100,dim:35,nv:'bar',ck:'circle',lay:'list',ics:'tile',am:'full',mw:'normal',amb:'off',bgi:'',mood:{},jr:{},qd:{},rw:[],rwn:0,goals:[],av:'🙂',ti:'',sn:false,chest:'',chests:0,bw:'',bosses:0,lbk:'',rm:{m:'07:30',e:'20:30',s:'20:00',tm:1,te:1,ts:1},log:{},focus:{},wlog:{},pd:{},uday:{},urges:0,xp:0,coins:0,water:0,name:'',lb:false,t:0,hue:150,font:'classic',dense:false,fx:true,hs:true,qt:true,ws:1,ud:5,thr:.6,garden:[],best:0,perfect:0,ob:false,mantra:'I keep the promises I make to myself.',swaps:['20 pushups','Drink water','Walk outside','Read 2 pages','Text a friend','Stretch 3 min','Study 10 min']});
+const DEF=()=>({habits:[],fr:[],xd:{},pend:{},sh:0,shd:[],vc:0,vd:0,vs:[],tm:'auto',hp:true,vn:1,nd:true,gs:'auto',ho:0,fw:'normal',rs:'ring',fxp:'default',cq:[],qn:0,gh:0,gf:0,gm:0,gmd:{},qs:{d:'',n:0},tt:{d:'',i:[]},qu:[],hl:{},wt:{},hgo:{w:2000,sl:8,ac:30,fv:5},un:'kg',meds:[],medl:{},hrw:{},sm:100,rad:20,fs:100,bgs:'aurora',cs:'glass',bl:18,op:100,bdw:1,sd:100,sp:100,dim:35,nv:'bar',ck:'circle',lay:'list',ics:'tile',am:'full',mw:'normal',amb:'off',bgi:'',mood:{},jr:{},qd:{},rw:[],rwn:0,goals:[],av:'🙂',ti:'',sn:false,chest:'',chests:0,bw:'',bosses:0,lbk:'',rm:{m:'07:30',e:'20:30',s:'20:00',tm:1,te:1,ts:1},log:{},focus:{},wlog:{},pd:{},uday:{},urges:0,xp:0,coins:0,water:0,name:'',lb:false,t:0,hue:150,font:'classic',dense:false,fx:true,hs:true,qt:true,ws:1,ud:5,thr:.6,garden:[],best:0,perfect:0,ob:false,mantra:'I keep the promises I make to myself.',swaps:['20 pushups','Drink water','Walk outside','Read 2 pages','Text a friend','Stretch 3 min','Study 10 min']});
 function norm(o){
  const s=Object.assign(DEF(),o&&typeof o==='object'&&!Array.isArray(o)?o:{});
  ['log','focus','wlog','pd','uday','xd','pend'].forEach(k=>{if(!s[k]||typeof s[k]!=='object'||Array.isArray(s[k]))s[k]={}});
@@ -395,7 +453,6 @@ function norm(o){
  s.swaps=(Array.isArray(s.swaps)?s.swaps:DEF().swaps).map(x=>String(x).slice(0,40)).filter(Boolean).slice(0,20);
  s.fr=(Array.isArray(s.fr)?s.fr:[]).filter(f=>f&&typeof f.n==='string').slice(0,30).map(f=>{const h={};if(f.h&&typeof f.h==='object')Object.keys(f.h).slice(-12).forEach(k=>{if(/^\d{4}-\d\d-\d\d$/.test(k)&&Number.isFinite(+f.h[k]))h[k]=+f.h[k]});return{n:f.n.slice(0,20),l:+f.l||1,x:+f.x||0,s:+f.s||0,b:+f.b||0,t:+f.t||0,w:typeof f.w==='string'?f.w:'',wx:+f.wx||0,h,g:typeof f.g==='string'&&/^[0-9a-f]{20,40}$/.test(f.g)?f.g:''}});
  s.hue=Math.min(360,Math.max(0,Math.round(+s.hue||0)));
- if(!['classic','sharp','terminal'].includes(s.font))s.font='classic';
  s.thr=Math.min(1,Math.max(.2,+s.thr||.6));s.ws=s.ws===0?0:1;s.ud=[3,5,10,15].includes(+s.ud)?+s.ud:5;
  s.name=String(s.name||'').slice(0,20);s.mantra=String(s.mantra||'').slice(0,200);
  s.shd=(Array.isArray(s.shd)?s.shd:[]).filter(x=>typeof x==='string').slice(-60);s.vs=(Array.isArray(s.vs)?s.vs:[]).filter(x=>typeof x==='string').slice(-300);
@@ -404,10 +461,10 @@ function norm(o){
  s.ns=!!s.ns;
  {const cl=(v,a,b,d)=>Number.isFinite(+v)?Math.min(b,Math.max(a,+v)):d;s.sm=cl(s.sm,40,150,100);s.rad=cl(s.rad,4,34,20);s.fs=cl(s.fs,88,130,100);
   const oneOf=(v,a,d)=>a.includes(v)?v:d;
-  s.bgs=oneOf(s.bgs,['aurora','fade','plain','grid','dots','stripes','mesh','noise','stars','image'],'aurora');
-  s.cs=oneOf(s.cs,['glass','frost','solid','outline','soft','neon','brutal','gradient','minimal'],'glass');
-  s.font=oneOf(s.font,['classic','sharp','terminal','serif','rounded','hand','bold','elegant'],'classic');s.sn=!!s.sn;
-  s.nv=oneOf(s.nv,['bar','float','icons'],'bar');s.ck=oneOf(s.ck,['circle','square','squircle','leaf'],'circle');s.lay=oneOf(s.lay,['list','grid'],'list');
+  s.bgs=oneOf(s.bgs,['aurora','fade','plain','grid','dots','stripes','mesh','noise','stars','ios','image'],'aurora');
+  s.cs=oneOf(s.cs,['glass','frost','solid','outline','soft','neon','brutal','gradient','minimal','ios'],'glass');
+  s.font=oneOf(s.font,['classic','sharp','terminal','serif','rounded','hand','bold','elegant','pixel','tech','system'],'classic');s.sn=!!s.sn;
+  s.nv=oneOf(s.nv,['bar','float','icons','ios'],'bar');s.ck=oneOf(s.ck,['circle','square','squircle','leaf'],'circle');s.lay=oneOf(s.lay,['list','grid'],'list');
   s.ics=oneOf(s.ics,['tile','bare','big'],'tile');s.am=oneOf(s.am,['full','calm','off'],'full');s.mw=oneOf(s.mw,['narrow','normal','wide'],'normal');s.amb=oneOf(s.amb,['off','rain','brown','ocean'],'off');
   s.bl=cl(s.bl,0,40,18);s.op=cl(s.op,20,200,100);s.bdw=Math.round(cl(s.bdw,0,3,1)*2)/2;s.sd=cl(s.sd,0,200,100);s.sp=cl(s.sp,60,150,100);s.dim=cl(s.dim,0,90,35);
   s.bgi=typeof s.bgi==='string'&&/^data:image\//.test(s.bgi)&&s.bgi.length<700000?s.bgi:'';if(s.bgs==='image'&&!s.bgi)s.bgs='aurora';
@@ -416,12 +473,23 @@ function norm(o){
   Object.keys(s.jr).forEach(k=>{if(typeof s.jr[k]!=='string'||!s.jr[k].trim())delete s.jr[k];else s.jr[k]=s.jr[k].slice(0,300)});
   Object.keys(s.qd).forEach(k=>{s.qd[k]=Array.isArray(s.qd[k])?s.qd[k].filter(Number.isInteger).slice(0,6):[]});
   s.rw=(Array.isArray(s.rw)?s.rw:[]).filter(r=>r&&typeof r.n==='string'&&r.n.trim()&&+r.c>0).slice(0,30).map(r=>({n:r.n.slice(0,40),c:Math.min(99999,Math.round(+r.c))}));
-  s.goals=(Array.isArray(s.goals)?s.goals:[]).filter(g=>g&&typeof g.n==='string'&&g.n.trim()&&/^\d{4}-\d\d-\d\d$/.test(g.d||'')).slice(0,10).map(g=>({n:g.n.slice(0,40),d:g.d}));
+  s.goals=(Array.isArray(s.goals)?s.goals:[]).filter(g=>g&&typeof g.n==='string'&&g.n.trim()&&/^\d{4}-\d\d-\d\d$/.test(g.d||'')).slice(0,30).map(g=>({n:g.n.slice(0,40),d:g.d,x:!!g.x})).sort((a,b)=>a.d.localeCompare(b.d));
   s.rwn=Math.max(0,Math.floor(+s.rwn||0));s.av=typeof s.av==='string'&&s.av.trim()?[...s.av].slice(0,2).join(''):'🙂';s.ti=typeof s.ti==='string'?s.ti.slice(0,30):'';
-  s.gs=oneOf(s.gs,['auto','day','sunset','night','snow','desert','sea'],'auto');s.fw=oneOf(s.fw,['normal','light','bold'],'normal');s.rs=oneOf(s.rs,['ring','pie','number'],'ring');
+  s.gs=oneOf(s.gs,['auto','day','sunset','night','snow','desert','sea'],'auto');s.fw=oneOf(s.fw,['normal','bold'],'normal');s.rs=oneOf(s.rs,['ring','pie','number'],'ring');
   s.fxp=oneOf(s.fxp,['default','party','nature','space','food','animals'],'default');s.ho=cl(s.ho,-60,60,0);
   s.cq=(Array.isArray(s.cq)?s.cq:[]).map(x=>String(x).trim().slice(0,140)).filter(Boolean).slice(0,30);
   ['qn','gh','gf','gm'].forEach(k=>{s[k]=Math.max(0,Math.floor(+s[k]||0))});if(!s.gmd||typeof s.gmd!=='object'||Array.isArray(s.gmd))s.gmd={};
+  s.qs=s.qs&&typeof s.qs==='object'&&typeof s.qs.d==='string'?{d:s.qs.d.slice(0,10),n:Math.max(0,Math.min(500,Math.floor(+s.qs.n||0)))}:{d:'',n:0};
+  {const day=k=>/^\d{4}-\d\d-\d\d$/.test(k);
+   if(!s.hl||typeof s.hl!=='object'||Array.isArray(s.hl))s.hl={};const nh={};
+   Object.keys(s.hl).filter(day).sort().slice(-400).forEach(k=>{const o=s.hl[k]||{};nh[k]={w:cl(o.w,0,10000,0),sl:cl(o.sl,0,24,0),sq:Math.round(cl(o.sq,0,5,0)),ac:cl(o.ac,0,1440,0),fv:Math.round(cl(o.fv,0,50,0)),mf:cl(o.mf,0,1440,0)}});s.hl=nh;
+   if(!s.wt||typeof s.wt!=='object'||Array.isArray(s.wt))s.wt={};const nw={};Object.keys(s.wt).filter(day).sort().slice(-400).forEach(k=>{const v=+s.wt[k];if(v>=20&&v<=400)nw[k]=Math.round(v*10)/10});s.wt=nw;
+   const g=s.hgo&&typeof s.hgo==='object'?s.hgo:{};s.hgo={w:cl(g.w,250,10000,2000),sl:cl(g.sl,3,14,8),ac:cl(g.ac,5,600,30),fv:Math.round(cl(g.fv,1,20,5))};
+   s.un=s.un==='lb'?'lb':'kg';s.meds=(Array.isArray(s.meds)?s.meds:[]).map(x=>String(x).trim().slice(0,30)).filter(Boolean).slice(0,12);
+   if(!s.medl||typeof s.medl!=='object'||Array.isArray(s.medl))s.medl={};const nm={};Object.keys(s.medl).filter(day).sort().slice(-14).forEach(k=>{nm[k]=(Array.isArray(s.medl[k])?s.medl[k]:[]).filter(i=>Number.isInteger(i)&&i>=0&&i<s.meds.length)});s.medl=nm;
+   if(!s.hrw||typeof s.hrw!=='object'||Array.isArray(s.hrw))s.hrw={};const nr={};Object.keys(s.hrw).filter(day).sort().slice(-7).forEach(k=>{nr[k]=(Array.isArray(s.hrw[k])?s.hrw[k]:[]).filter(x=>['w','sl','ac','fv'].includes(x))});s.hrw=nr}
+  {const day=k=>/^\d{4}-\d\d-\d\d$/.test(k||'');const t=s.tt&&typeof s.tt==='object'?s.tt:{};s.tt={d:day(t.d)?t.d:'',i:(Array.isArray(t.i)?t.i:[]).filter(x=>x&&typeof x.n==='string'&&x.n.trim()).slice(0,3).map(x=>({n:x.n.trim().slice(0,60),x:!!x.x,p:!!x.p}))};
+   s.qu=(Array.isArray(s.qu)?s.qu:[]).filter(q=>q&&typeof q.n==='string'&&q.n.trim()&&day(q.d)).slice(0,8).map(q=>({n:q.n.trim().slice(0,30),d:q.d,b:Math.round(cl(q.b,0,99999,0))}))}
   s.chest=typeof s.chest==='string'?s.chest:'';s.bw=typeof s.bw==='string'?s.bw:'';s.lbk=typeof s.lbk==='string'?s.lbk:'';
   s.chests=Math.max(0,Math.floor(+s.chests||0));s.bosses=Math.max(0,Math.floor(+s.bosses||0))}
  s.dense=!!s.dense;s.fx=s.fx!==false;s.hs=s.hs!==false;s.qt=s.qt!==false;s.lb=!!s.lb;s.ob=!!s.ob||s.habits.length>0;
@@ -460,7 +528,7 @@ const curWeek=()=>wkStart(dk());
 const weekXp=w=>{let t=0;for(let i=0;i<7;i++)t+=S.xd[addDays(w,i)]||0;return Math.max(0,t)};
 const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
 
-let deferredInstall=null,installNo=false,proofOpen=null,CF=null,CFcode='',CFmsg='',bm='week',tab='today',sub={focus:'timer',progress:'stats',settings:'you'},fcus=25,fDur=25,fEnd=0,tmr=null,uEnd=0,urgeT=null,packSel='balanced',DR=null,editing=null,armed=null,bkText='',curDay=dk();
+let calM=0,calSel='',BR=null,brT=null,deferredInstall=null,installNo=false,proofOpen=null,CF=null,CFcode='',CFmsg='',bm='week',tab='today',sub={focus:'timer',progress:'stats',health:'ov',settings:'you'},fcus=25,fDur=25,fEnd=0,tmr=null,uEnd=0,urgeT=null,packSel='balanced',DR=null,editing=null,armed=null,bkText='',curDay=dk();
 
 const FXP={default:['🎉','✨','🍃','⭐'],party:['🎉','🎊','🥳','🎈'],nature:['🍃','🌸','🌼','🦋'],space:['🚀','⭐','🌙','🪐'],food:['🍓','🍕','🍩','🍉'],animals:['🐶','🐱','🐼','🦊']};
 function fx(a){if(!S.fx)return;a=a||FXP[S.fxp]||FXP.default;for(let i=0;i<22;i++){const x=document.createElement('span');x.className='cf';x.textContent=a[i%a.length];x.style.left=Math.random()*100+'vw';x.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(x);setTimeout(()=>x.remove(),2600)}}
@@ -561,7 +629,8 @@ function today(){
  if(S.nd&&list.length&&p<S.thr-1e-9&&new Date().getHours()>=18)h+=`<div class="card nudge"><b>Evening check</b><p class="mu">${need} more to count today. Your ${s}-day streak is on the line.</p></div>`;
  {const y=back(1);if(S.sh>0&&hsOn(y).length&&pct(y)<S.thr-1e-9&&!S.shd.includes(y))h+=`<div class="card nudge"><b>You missed yesterday</b><p class="mu">Use a streak shield to protect your streak. You have ${S.sh}.</p><div class="row"><button class="btn" data-a="useshield">Use a shield</button></div></div>`}
  h+=chestCard();
- if(S.qt)h+=`<div class="quote"><b>${esc(S.mantra)}</b><small>${esc((S.cq.length?S.cq:QUOTES)[new Date().getDate()%(S.cq.length||QUOTES.length)])}</small></div>`;
+ if(S.habits.length)h+=top3Card();
+ if(S.qt)h+=`<div class="quote" data-a="qnext" role="button" tabindex="0" aria-label="Show another quote" style="cursor:pointer"><b>${esc(S.mantra)}</b><small>${esc(todayQuote())}</small><small style="display:block;opacity:.6;margin-top:4px">Tap for another</small></div>`;
  for(const c in CATS){const g=list.filter(x=>info(x).cat===c);if(!g.length)continue;
   h+=`<div class="cat"><span>${CATS[c]}</span><em>${g.filter(x=>done.includes(x.id)).length}/${g.length}</em></div>`;
   if(S.lay==='grid')h+='<div class="hgrid">';
@@ -617,7 +686,7 @@ function garden(){const own=S.garden,d=dk();
  h+=rewardCard();
  return h}
 
-function progress(){return pills('progress',[['stats','Stats'],['journal','Journal'],['ranks','Board'],['confirm','Confirm']])+(sub.progress==='ranks'?board():sub.progress==='confirm'?confirmView():sub.progress==='journal'?journalView():stats())}
+function progress(){return pills('progress',[['stats','Stats'],['cal','Calendar'],['year','Year'],['quit','Quit'],['journal','Journal'],['ranks','Board'],['confirm','Confirm']])+(sub.progress==='cal'?calView():sub.progress==='year'?yearView():sub.progress==='quit'?quitView():sub.progress==='ranks'?board():sub.progress==='confirm'?confirmView():sub.progress==='journal'?journalView():stats())}
 function rates(n){n=n||30;return S.habits.map(h=>{let s=0,c=0;for(let i=0;i<n;i++){const d=back(i);if(!sched(h,d))continue;s++;if((S.log[d]||[]).includes(h.id))c++}return{h,s,c,r:s?c/s:0}}).filter(x=>x.s).sort((a,b)=>b.r-a.r)}
 function review(){
  let xp=0,pxp=0,dc=0,dt=0,pf=0,fm=0;
@@ -661,7 +730,8 @@ const SH={},PROOF={};
 const proofReady=id=>{const e=PROOF[id];return !!e&&(!!e.file||e.note.trim().length>=8)};
 let AC=null;function chime(up){if(!S.sn)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime;[up?523:392,up?784:330].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,t+i*.09);g.gain.exponentialRampToValueAtTime(.12,t+i*.09+.02);g.gain.exponentialRampToValueAtTime(.0001,t+i*.09+.22);o.connect(g);g.connect(AC.destination);o.start(t+i*.09);o.stop(t+i*.09+.25)})}catch(e){}}
 const PRESETS=[['Forest',150,100,'dark','aurora','glass',20,'classic',{}],['Midnight',262,90,'dark','dots','glass',24,'sharp',{}],['Paper',46,55,'light','plain','outline',10,'serif',{}],['Neon',320,145,'dark','grid','neon',8,'terminal',{}],['Ocean',200,110,'auto','fade','solid',28,'rounded',{}],['Sunrise',22,120,'light','fade','solid',22,'rounded',{}],
-['Frosted',210,80,'dark','mesh','frost',26,'rounded',{bl:26,op:130}],['Soft UI',230,40,'light','plain','soft',26,'rounded',{sd:100}],['Brutalist',50,120,'light','plain','brutal',2,'bold',{bdw:2}],['Cyber',165,150,'dark','stars','neon',6,'terminal',{ck:'square'}],['Sakura',335,70,'light','mesh','gradient',30,'elegant',{ck:'leaf'}],['Minimal',0,10,'auto','plain','minimal',0,'classic',{ics:'bare',sp:90}],['Mocha',28,60,'dark','noise','solid',16,'serif',{}],['Aero',195,100,'light','mesh','frost',22,'classic',{bl:30,op:150}]];
+['Frosted',210,80,'dark','mesh','frost',26,'rounded',{bl:26,op:130}],['Soft UI',230,40,'light','plain','soft',26,'rounded',{sd:100}],['Brutalist',50,120,'light','plain','brutal',2,'bold',{bdw:2}],['Cyber',165,150,'dark','stars','neon',6,'terminal',{ck:'square'}],['Sakura',335,70,'light','mesh','gradient',30,'elegant',{ck:'leaf'}],['Minimal',0,10,'auto','plain','minimal',0,'classic',{ics:'bare',sp:90}],['Mocha',28,60,'dark','noise','solid',16,'serif',{}],['Aero',195,100,'light','mesh','frost',22,'classic',{bl:30,op:150}],['iOS Dark',211,100,'dark','ios','ios',14,'system',{nv:'ios',ics:'tile'}],['iOS Light',211,100,'light','ios','ios',14,'system',{nv:'ios'}]];
+const FONTL=[['classic','Classic',"'Young Serif',Georgia,serif"],['sharp','Sharp',"'Bricolage Grotesque',sans-serif"],['terminal','Terminal',"'JetBrains Mono',monospace"],['serif','Serif',"'Lora',Georgia,serif"],['rounded','Rounded',"'Outfit',sans-serif"],['hand','Handwritten',"'Nothing You Could Do',cursive"],['bold','Bold',"'Big Shoulders',sans-serif"],['elegant','Elegant',"'Gloock',Georgia,serif"],['pixel','Pixel',"'Pixelify Sans',monospace"],['tech','Tech',"'Tektur',sans-serif"],['system','iOS System','-apple-system,BlinkMacSystemFont,system-ui,sans-serif']];
 const MOODS=['😞','😕','😐','🙂','😄'],AVS=['🙂','😎','🤓','🥷','🦊','🐺','🦁','🐯','🐼','🐸','🦉','🐲','🦄','🚀','🔥','⚡','🌱','🌊','🏔️','🧘','🏋️','📚','🎯','👑'];
 const QP=[['Finish 3 habits',x=>x.nd>=3],['Complete a focus session',x=>x.fm>=15],['Beat an urge',x=>x.ur>=1],['Finish every habit today',x=>x.list>0&&x.nd>=x.list],['Log your mood',x=>x.mood],['Write a journal line',x=>x.jr],['Focus for 45 minutes',x=>x.fm>=45],['Do habits from 2 categories',x=>x.cats>=2],['Finish 5 habits',x=>x.nd>=5],['Reach 60% of today',x=>x.p>=.6]];
 function qctx(){const d=dk(),list=hsOn(d),done=S.log[d]||[];return{nd:done.length,list:list.length,p:pct(d),fm:S.focus[d]||0,ur:S.uday[d]||0,mood:!!S.mood[d],jr:!!S.jr[d],cats:new Set(list.filter(h=>done.includes(h.id)).map(h=>info(h).cat)).size}}
@@ -727,9 +797,10 @@ function addFriend(text){const f=decScore(text);if(!f)return toast('That is not 
  f.h=h;if(k>=0)S.fr[k]=f;else S.fr.push(f);
  save();render();toast(f.n+' is on your board')}
 function handleHash(){
- const h=String(location.hash||'').slice(1);if(!/^(IWR|IWC|IW1|IW2)\./.test(h))return;
+ const h=String(location.hash||'').slice(1);if(!/^(IWR|IWC|IW1|IW2|IWG)\./.test(h))return;
  try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
- if(h.startsWith('IWR.')){tab='progress';sub.progress='confirm';loadReq(h)}
+ if(h.startsWith('IWG.')){tab='progress';sub.progress='ranks';bm='week';render();addGistFriend(h.slice(4))}
+ else if(h.startsWith('IWR.')){tab='progress';sub.progress='confirm';loadReq(h)}
  else if(h.startsWith('IWC.')){tab='today';const c=dec(h,'IWC'),pd=S.pend[dk()]||{};const id=c&&Object.keys(pd).find(k=>pd[k].k===c.k);
   if(id)applyConf(id,h);else{render();toast('That confirmation is not for a habit waiting on this phone')}}
  else{tab='progress';sub.progress='ranks';bm='week';addFriend(h)}}
@@ -761,10 +832,10 @@ function localBoard(){
  h+=`<div class="seg">${[['xp','XP'],['streak','Streak'],['best','Best streak']].map(x=>`<button class="${lbSort===x[0]?'on':''}" data-a="ls" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>`;
  const all=[me,...S.fr.map((f,i)=>({...f,i}))].sort((a,b)=>b[key]-a[key]);
  return h+all.map((r,i)=>line(r,i,`Level ${r.l} · ${r.x} XP · ${r.s} day streak${r.me?'':' · '+ago(r.t)}`,key==='x'?r.x:r[key]+' d')).join('')}
-function liveCard(){const msg=GH.pub&&GH.pid?'Add me on Ironwill. My live score ID: '+GH.pid:'';
- return `<div class="card"><h3>Live friends</h3><p class="mu">Friends who share their score live update by themselves. Paste their live score ID or link.</p>
+function liveCard(){const inv=GH.pid?(hostLink()?hostLink()+'#IWG.'+GH.pid:GH.pid):'',msg=GH.pub&&GH.pid?'Follow my live score on Ironwill:\n'+inv:'';
+ return `<div class="card"><h3>Live friends</h3><p class="mu">Friends who share their score live update by themselves. When a friend sends you their invite link, just tap it and they are added. No pasting needed. You can also paste a link or ID below.</p>
  <label for="gfid">Friend's live score ID</label><textarea id="gfid" rows="1" placeholder="Paste a GitHub gist ID or link"></textarea><div class="row"><button class="btn" data-a="gfadd">Add live friend</button><button class="btn g" data-a="paste" data-t="#gfid">Paste</button><button class="btn g" data-a="gfref">Refresh</button></div>
- ${GH.pub&&GH.pid?`<label for="mygid">Your live score ID</label><textarea id="mygid" rows="1" readonly>${esc(GH.pid)}</textarea><div class="row">${sendRow(msg,'lv')}<button class="btn g" data-a="copygid">Copy ID</button></div>`:'<p class="hint">To share your own score live, connect GitHub in Settings, then Data.</p>'}</div>`}
+ ${GH.pub&&GH.pid?`<label for="mygid">Your invite link</label><textarea id="mygid" rows="2" readonly>${esc(inv)}</textarea><div class="row">${sendRow(msg,'lv')}<button class="btn g" data-a="copygid">Copy link</button></div><p class="hint">Friends do not need a GitHub account to follow you. To appear on their board too, they connect GitHub once under Settings, Data, and switch on Share my score live.</p>`:'<p class="hint">To share your own score live, connect GitHub under Settings, Data, and switch on Share my score live. Friends can follow you without a GitHub account.</p>'}</div>`}
 function board(){return liveCard()+localBoard()}
 
 function hform(){const f=DR;
@@ -837,7 +908,7 @@ function settings(){
  const tg=(a,on,label)=>`<button class="pill ${on?'on':''}" data-a="${a}" aria-pressed="${on}">${label}: ${on?'On':'Off'}</button>`;
  
  const pl=(k,arr)=>`<div class="row" style="margin-top:0">${arr.map(x=>`<button class="pill ${S[k]===x[0]?'on':''}" data-a="opt" data-k="${k}" data-v="${x[0]}" aria-pressed="${S[k]===x[0]}">${x[1]}</button>`).join('')}</div>`;
- const sl=(id,label,val,min,max,unit,step)=>`<label for="${id}">${label}: ${val}${unit}</label><input type="range" id="${id}" min="${min}" max="${max}" ${step?'step="'+step+'"':''} value="${val}">`;
+ const sl=(id,label,val,min,max,unit,step)=>{const p=(val-min)/((max-min)||1);return `<label for="${id}">${label}: ${val}${unit}</label><div class="rng"><output class="rv" style="left:calc(${p*100}% + ${(8-p*16).toFixed(1)}px)">${val}${unit}</output><input type="range" id="${id}" min="${min}" max="${max}" ${step?'step="'+step+'"':''} value="${val}" data-l="${label}" data-u="${unit}"></div>`};
  const earned=unlocked();
  const youX=`<div class="card"><h3>Avatar and title</h3><label>Avatar</label><div class="avs">${AVS.map(a=>`<button class="${S.av===a?'on':''}" data-a="av" data-v="${a}" aria-pressed="${S.av===a}">${a}</button>`).join('')}</div>
  <label for="sti">Title</label><select id="sti"><option value="">None</option>${earned.map(n=>`<option value="${esc(n)}" ${S.ti===n?'selected':''}>${esc(n)}</option>`).join('')}</select><p class="hint">Titles come from badges you have earned.</p></div>
@@ -845,18 +916,18 @@ function settings(){
  <div class="fm"><div><label for="gn">Goal</label><input type="text" id="gn" maxlength="40" placeholder="Exam day"></div><div><label for="gd">Date</label><input type="date" id="gd"></div></div><div class="row"><button class="btn g" data-a="gadd">Add goal</button></div></div>`;
  const themeC=`<div class="card"><h3>Theme</h3><label>Quick themes</label><div class="row" style="margin-top:0">${PRESETS.map((p,k)=>`<button class="pill" data-a="preset" data-v="${k}"><span class="sw" style="background:hsl(${p[1]} 60% 60%)"></span>${p[0]}</button>`).join('')}</div>
  <label>Colour</label><div class="row" style="margin-top:0">${HUES.map(x=>`<button class="pill ${S.hue===x[1]?'on':''}" data-a="hue" data-v="${x[1]}"><span class="sw" style="background:hsl(${x[1]} 60% 60%)"></span>${x[0]}</button>`).join('')}</div>
- <label for="hs">Fine tune hue</label><input type="range" id="hs" min="0" max="360" value="${S.hue}">
+ ${sl('hs','Fine tune hue',S.hue,0,360,'°')}
  <label for="scol">Pick any colour</label><input type="color" class="swatch" id="scol" value="${hsl2hex(S.hue,Math.round(62*S.sm/100))}">
  ${sl('ssm','Colour strength',S.sm,40,150,'%')}
  <label>Mode</label>${[['auto','Auto'],['light','Light'],['dark','Dark']].map(x=>`<button class="pill ${S.tm===x[0]?'on':''}" data-a="tm" data-v="${x[0]}" aria-pressed="${S.tm===x[0]}">${x[1]}</button>`).join(' ')}<p class="hint">Auto follows your phone's light or dark setting.</p></div>`;
- const surfC=`<div class="card"><h3>Surfaces</h3><label>Card style</label>${pl('cs',[['glass','Glass'],['frost','Frosted'],['solid','Solid'],['outline','Outline'],['soft','Soft'],['neon','Neon'],['brutal','Brutalist'],['gradient','Gradient'],['minimal','Minimal']])}
+ const surfC=`<div class="card"><h3>Surfaces</h3><label>Card style</label>${pl('cs',[['glass','Glass'],['frost','Frosted'],['solid','Solid'],['outline','Outline'],['soft','Soft'],['neon','Neon'],['brutal','Brutalist'],['gradient','Gradient'],['minimal','Minimal'],['ios','iOS']])}
  ${sl('sbl','Blur',S.bl,0,40,'px')}${sl('sop','Transparency (higher is more solid)',S.op,20,200,'%')}${sl('sbw','Border thickness',S.bdw,0,3,'px','.5')}${sl('ssd','Shadow depth',S.sd,0,200,'%')}${sl('srad','Corner roundness',S.rad,4,34,'px')}${sl('ssp','Spacing',S.sp,60,150,'%')}</div>`;
- const bgC=`<div class="card"><h3>Background</h3>${pl('bgs',[['aurora','Aurora'],['mesh','Mesh'],['fade','Fade'],['noise','Grain'],['stars','Stars'],['grid','Grid'],['dots','Dots'],['stripes','Stripes'],['plain','Plain']].concat(S.bgi?[['image','My photo']]:[]))}
+ const bgC=`<div class="card"><h3>Background</h3>${pl('bgs',[['aurora','Aurora'],['mesh','Mesh'],['fade','Fade'],['noise','Grain'],['stars','Stars'],['grid','Grid'],['dots','Dots'],['stripes','Stripes'],['plain','Plain'],['ios','iOS']].concat(S.bgi?[['image','My photo']]:[]))}
  <label for="bgimg">Use your own photo</label><input type="file" id="bgimg" accept="image/*">${S.bgi?`<div class="row"><button class="btn g" data-a="bgclr">Remove photo</button></div>`+sl('sdim','Dim the photo',S.dim,0,90,'%'):''}<p class="hint">The photo stays on this device and is included in your backup.</p></div>`;
- const layC=`<div class="card"><h3>Layout and type</h3><label>Typeface</label>${pl('font',[['classic','Classic'],['sharp','Sharp'],['terminal','Terminal'],['serif','Serif'],['rounded','Rounded'],['hand','Handwritten'],['bold','Bold'],['elegant','Elegant']])}
+ const layC=`<div class="card"><h3>Layout and type</h3><label>Typeface</label><div class="row" style="margin-top:0">${FONTL.map(x=>`<button class="pill ${S.font===x[0]?'on':''}" data-a="opt" data-k="font" data-v="${x[0]}" aria-pressed="${S.font===x[0]}" style="font-family:${x[2]}">${x[1]}</button>`).join('')}</div>
  ${sl('sfs','Text size',S.fs,88,130,'%')}<label>Habit list</label>${pl('lay',[['list','List'],['grid','Grid']])}<label>Habit icons</label>${pl('ics',[['tile','Tile'],['bare','Bare'],['big','Big']])}<label>Check shape</label>${pl('ck',[['circle','Circle'],['square','Square'],['squircle','Squircle'],['leaf','Leaf']])}
- <label>Navigation</label>${pl('nv',[['bar','Bar'],['float','Floating'],['icons','Icons only']])}<label>Page width</label>${pl('mw',[['narrow','Narrow'],['normal','Normal'],['wide','Wide']])}<label>Motion</label>${pl('am',[['full','Full'],['calm','Calm'],['off','None']])}</div>`;
- const moreC=`<div class="card"><h3>Extras</h3>${sl('sho','Second colour shift',S.ho,-60,60,'°')}<label>Text weight</label>${pl('fw',[['light','Light'],['normal','Normal'],['bold','Bold']])}<label>Progress style</label>${pl('rs',[['ring','Ring'],['pie','Pie'],['number','Number']])}<label>Celebration</label>${pl('fxp',[['default','Classic'],['party','Party'],['nature','Nature'],['space','Space'],['food','Food'],['animals','Animals']])}<label for="scq">Your own quotes, one per line</label><textarea id="scq" rows="4" placeholder="Leave empty to use the built in quotes">${esc(S.cq.join('\n'))}</textarea></div>
+ <label>Navigation</label>${pl('nv',[['bar','Bar'],['float','Floating'],['icons','Icons only'],['ios','iOS bar']])}<label>Page width</label>${pl('mw',[['narrow','Narrow'],['normal','Normal'],['wide','Wide']])}<label>Motion</label>${pl('am',[['full','Full'],['calm','Calm'],['off','None']])}</div>`;
+ const moreC=`<div class="card"><h3>Extras</h3>${sl('sho','Second colour shift',S.ho,-60,60,'°')}<label>Text weight</label>${pl('fw',[['normal','Normal'],['bold','Bold']])}<label>Progress style</label>${pl('rs',[['ring','Ring'],['pie','Pie'],['number','Number']])}<label>Celebration</label>${pl('fxp',[['default','Classic'],['party','Party'],['nature','Nature'],['space','Space'],['food','Food'],['animals','Animals']])}<label for="scq">Add your own quotes (optional), one per line</label><textarea id="scq" rows="3" placeholder="They are mixed in with the built in quotes">${esc(S.cq.join('\n'))}</textarea></div>
  <div class="card"><h3>Share your look</h3><p class="mu">Copy a code for this theme and send it to a friend. Paste theirs to wear it.</p><textarea id="thc" rows="2" readonly>${esc(themeCode())}</textarea><div class="row"><button class="btn" data-a="thcopy">Copy my theme</button></div><label for="thin">Paste a theme code</label><textarea id="thin" rows="2" placeholder="Starts with IWT."></textarea><div class="row"><button class="btn g" data-a="thuse">Use this theme</button><button class="btn g" data-a="paste" data-t="#thin">Paste</button></div></div>`;
  const togC=`<div class="card"><h3>Features</h3><div class="row" style="margin-top:0">${tg('dense',S.dense,'Compact list')}${tg('fx',S.fx,'Celebrations')}${tg('hs',S.hs,'Habit streaks')}${tg('qt',S.qt,'Daily quote')}${tg('hp',S.hp,'Vibration')}${tg('nd',S.nd,'Evening check')}${tg('sn',S.sn,'Sounds')}</div></div>`;
  const pg=sub.settings||'you';
@@ -871,12 +942,95 @@ function settings(){
  <div class="row"><button class="btn g" data-a="reset">${armed==='reset'?'Tap again to delete everything':'Reset all data'}</button></div>`:`${installCard()}<div class="card"><h3>You</h3><label for="sn">Name</label><input type="text" id="sn" maxlength="20" value="${esc(S.name)}"><label for="sm">Your identity statement</label><textarea id="sm" rows="2" maxlength="200">${esc(S.mantra)}</textarea><p class="hint">Shown on Today. Read it every morning.</p></div>${youX}`)}
 
 function render(){
- const v={today,focus:focusTab,garden,progress,habits,settings}[tab]();
- const t={today:greet(),focus:'Focus',garden:'Garden',progress:'Progress',habits:'Habits',settings:'Settings'}[tab];
+ const v={today,focus:focusTab,garden,progress,health,habits,settings}[tab]();
+ const t={today:greet(),focus:'Focus',garden:'Garden',progress:'Progress',health:'Health',habits:'Habits',settings:'Settings'}[tab];
  const dt=new Date().toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
  $('#app').innerHTML=`<div class="top"><div><div class="date">${esc(dt)}</div><h1>${t}</h1></div><div class="lvl">${esc(S.av)} Lv ${lvl()} · ${S.coins} coins · ${S.water} water<div class="bar"><i style="width:${lvlPct()}%"></i></div></div></div>${storeOK?'':'<div class="card nudge"><b>Progress cannot be saved here</b><p class="mu">This view blocks the browser storage the app needs, so everything resets when you close it. Open the app from its web link instead, and use Backup in Settings to keep a copy.</p></div>'}${v}`;
  if(tab==='progress'&&sub.progress==='ranks')ghAuto();
  $('#nav').innerHTML=TABS.map(n=>`<button data-a="go" data-v="${n[0]}" class="${tab===n[0]?'on':''}" ${tab===n[0]?'aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[n[0]]}</svg>${n[1]}</button>`).join('')}
+
+
+const sl=(id,label,val,min,max,unit,step)=>{const p=(val-min)/((max-min)||1);return `<label for="${id}">${label}: ${val}${unit}</label><div class="rng"><output class="rv" style="left:calc(${p*100}% + ${(8-p*16).toFixed(1)}px)">${val}${unit}</output><input type="range" id="${id}" min="${min}" max="${max}" ${step?'step="'+step+'"':''} value="${val}" data-l="${label}" data-u="${unit}"></div>`};
+/* ---------- top 3, quit, year ---------- */
+function ttItems(){return S.tt.d===dk()?S.tt.i:[]}
+function top3Card(){const it=ttItems();
+ return `<div class="card t3"><h3>Top 3 today</h3><p class="mu">The three things that matter most. Each one done is +10 XP.</p>${it.map((x,k)=>`<div class="goal ${x.x?'done':''}"><button class="pill ${x.x?'on':''}" data-a="ttog" data-i="${k}" aria-pressed="${x.x}">${x.x?'✓':'○'}</button><span style="flex:1;margin:0 10px">${esc(x.n)}</span><button class="pill" data-a="ttdel" data-i="${k}" aria-label="Remove">✕</button></div>`).join('')}
+ ${it.length<3?`<div class="fm"><div><label for="tn">Priority ${it.length+1}</label><input type="text" id="tn" maxlength="60" placeholder="Finish chapter 4"></div></div><div class="row"><button class="btn g" data-a="ttadd">Add</button></div>`:''}</div>`}
+function quitDays(q){return Math.max(0,Math.round((Date.parse(dk())-Date.parse(q.d))/864e5))}
+function quitView(){
+ const MS=[1,3,7,14,30,60,90,180,365];
+ return `<div class="card"><h3>Quit counters</h3><p class="mu">Count the days since you stopped something. If you slip, reset it. Your best run is kept.</p>${S.qu.map((q,k)=>{const n=quitDays(q),nx=MS.find(m=>m>n);return `<div class="card" style="margin:10px 0"><b>${esc(q.n)}</b><div class="qd">${n} <small class="mu" style="font:600 .9rem var(--fb)">day${n===1?'':'s'}</small></div><small class="mu">Best: ${Math.max(q.b,n)} days${nx?' · next milestone: '+nx+' days':' · every milestone reached'}</small><div class="row"><button class="pill" data-a="qslip" data-i="${k}">I slipped</button><button class="pill" data-a="qdel" data-i="${k}" aria-label="Remove ${esc(q.n)}">Remove</button></div></div>`}).join('')||'<p class="mu">Nothing yet.</p>'}
+ <div class="fm"><div><label for="qn">What are you quitting?</label><input type="text" id="qn" maxlength="30" placeholder="Junk food"></div></div><div class="row"><button class="btn" data-a="qadd">Start counting</button></div></div>`}
+function yearView(){
+ const y=new Date().getFullYear(),td=dk();let rows='';
+ for(let m=0;m<12;m++){const dim=new Date(y,m+1,0).getDate();rows+=`<span class="mu">${'JFMAMJJASOND'[m]}</span>`;
+  for(let d=1;d<=31;d++){if(d>dim){rows+='<i class="n"></i>';continue}const k=y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');const c=k>td?0:hsOn(k).length,p=c?pct(k):0;rows+=`<i class="${!c?'':p>=1?'l3':p>=S.thr-1e-9?'l2':p>0?'l1':''}" title="${k}"></i>`}}
+ let cnt=0,tot=0;for(let m=0;m<12;m++)for(let d=1;d<=new Date(y,m+1,0).getDate();d++){const k=y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');if(k>td)break;if(hsOn(k).length){tot++;if(pct(k)>=S.thr-1e-9)cnt++}}
+ return `<div class="card"><h3>${y} in pixels</h3><p class="mu">${cnt} counted days out of ${tot}. Brighter means a better day.</p><div class="yr" role="img" aria-label="Year overview">${rows}</div></div>`}
+
+/* ---------- calendar ---------- */
+function calView(){
+ const now=new Date(),m=new Date(now.getFullYear(),now.getMonth()+calM,1),y=m.getFullYear(),mo=m.getMonth(),td=dk(),first=m.getDay(),dim=new Date(y,mo+1,0).getDate();
+ if(!/^\d{4}-\d\d-\d\d$/.test(calSel))calSel=td;
+ const gm={};S.goals.forEach(g=>{(gm[g.d]=gm[g.d]||[]).push(g)});
+ let cells='';for(let i=0;i<first;i++)cells+='<span class="cd none"></span>';
+ for(let d=1;d<=dim;d++){const k=y+'-'+String(mo+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'),fut=k>td,n=hsOn(k).length,p=pct(k);
+  const c=fut?'fut':!n?'rest':p>=S.thr-1e-9?'met':p>0?'part':'miss',gs=gm[k];
+  cells+=`<button class="cd ${c} ${k===td?'now':''} ${k===calSel?'sel':''}" data-a="cdsel" data-v="${k}" aria-label="${k}${gs?', goal: '+esc(gs.map(g=>g.n).join(', ')):''}">${d}${gs?`<i class="gf">${gs.every(g=>g.x)?'✅':'🎯'}</i>`:''}</button>`}
+ const sel=calSel,list=hsOn(sel),done=S.log[sel]||[],gl=gm[sel]||[];
+ const up=S.goals.filter(g=>g.d>=td&&!g.x).slice(0,6);
+ return `<div class="card"><div class="row" style="justify-content:space-between;align-items:center;margin:0"><button class="pill" data-a="cmon" data-v="-1" aria-label="Previous month">‹</button><h3 style="margin:0">${esc(m.toLocaleDateString(undefined,{month:'long',year:'numeric'}))}</h3><button class="pill" data-a="cmon" data-v="1" aria-label="Next month">›</button></div>
+ <div class="cal" style="margin-top:10px">${DN.map(x=>`<span class="wh">${x[0]}</span>`).join('')}${cells}</div>
+ <div class="legend"><span><b style="background:var(--ok)"></b>Goal met</span><span><b style="background:color-mix(in srgb,var(--ok) 38%,var(--sf2))"></b>Some</span><span><b style="background:var(--sf2);opacity:.55"></b>Missed</span><span>🎯 Goal</span></div></div>
+ <div class="card"><h3>${esc(new Date(sel+'T12:00:00').toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'}))}</h3>
+ ${gl.map(g=>`<div class="goal" style="margin:6px 0"><span>${g.x?'✅':'🎯'} ${esc(g.n)}</span><button class="pill" data-a="gdone" data-i="${S.goals.indexOf(g)}">${g.x?'Undo':'Mark done'}</button></div>`).join('')}
+ ${list.length?list.map(h=>`<div class="goal" style="margin:4px 0"><span>${done.includes(h.id)?'✅':sel>td?'⏳':'⬜'} ${info(h).ic} ${esc(info(h).nm)}</span></div>`).join(''):'<p class="mu">No habits scheduled.</p>'}
+ <div class="fm"><div><label for="gn">Add a goal on this day</label><input type="text" id="gn" maxlength="40" placeholder="Exam day"></div><input type="hidden" id="gd" value="${sel}"></div><div class="row"><button class="btn g" data-a="gadd">Add goal</button></div></div>
+ <div class="card"><h3>Upcoming goals</h3>${up.length?up.map(g=>{const n=Math.round((Date.parse(g.d)-Date.parse(td))/864e5);return `<div class="goal" style="margin:6px 0"><span>🎯 ${esc(g.n)}<small style="display:block">${esc(g.d)}</small></span><b>${n?n+'d':'Today'}</b></div>`}).join(''):'<p class="mu">Tap a day above to add a goal.</p>'}</div>`}
+
+/* ---------- health ---------- */
+const HD=d=>S.hl[d||dk()]||{},HUN={w:'ml',sl:'h',ac:'min',fv:'serv'};
+function hring(p,col,big,small,lab){p=Math.max(0,Math.min(1,p));const c=2*Math.PI*30;return `<div class="hr"><svg viewBox="0 0 80 80" role="img" aria-label="${lab} ${Math.round(p*100)}%"><circle cx="40" cy="40" r="30" fill="none" stroke="var(--sf2)" stroke-width="9"/><circle cx="40" cy="40" r="30" fill="none" stroke="${col}" stroke-width="9" stroke-linecap="round" stroke-dasharray="${(c*p).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 40 40)"/></svg><b>${big}</b><small class="mu">${small}</small></div>`}
+function hbars(key,goal,days){const arr=[];for(let i=days-1;i>=0;i--){const d=back(i);arr.push([d,(HD(d)[key]||0)])}const mx=Math.max(goal,...arr.map(a=>a[1]),1);
+ return `<div class="bars" role="img" aria-label="Last ${days} days">${arr.map(a=>`<div><i class="${a[1]>=goal?'goal':''}" style="height:${Math.round(a[1]/mx*100)}%"></i><small class="mu">${DN[wd(a[0])][0]}</small></div>`).join('')}</div>`}
+function hrew(k){const d=dk(),g=S.hgo,v=HD(d)[k]||0,goal={w:g.w,sl:g.sl,ac:g.ac,fv:g.fv}[k];S.hrw[d]=S.hrw[d]||[];if(v>=goal&&!S.hrw[d].includes(k)){S.hrw[d].push(k);gain(8,{w:'Water goal met',sl:'Sleep goal met',ac:'Activity goal met',fv:'Fruit and veg goal met'}[k])}}
+function hadd(k,n){const d=dk();const o=S.hl[d]=S.hl[d]||{w:0,sl:0,sq:0,ac:0,fv:0,mf:0};o[k]=Math.max(0,+(((o[k]||0)+n)).toFixed(1));if(k==='w')S.water=S.water;S=norm(S);hrew(k);save();render()}
+const toKg=v=>S.un==='lb'?v/2.20462:v,fromKg=v=>S.un==='lb'?v*2.20462:v;
+function health(){
+ const g=S.hgo,o=HD(),sv=sub.health;
+ const tabs=pills('health',[['ov','Today'],['body','Body'],['breathe','Breathe']]);
+ const note='<p class="hint">For general wellbeing tracking only. This is not medical advice.</p>';
+ if(sv==='breathe')return tabs+breatheView()+note;
+ if(sv==='body'){
+  const ks=Object.keys(S.wt).sort().slice(-30),vals=ks.map(k=>fromKg(S.wt[k])),last=vals.length?vals[vals.length-1]:null;
+  let chart='';if(vals.length>1){const mn=Math.min(...vals),mx=Math.max(...vals),r=(mx-mn)||1,pts=vals.map((v,i)=>((i/(vals.length-1))*280+10).toFixed(1)+','+(70-((v-mn)/r)*60).toFixed(1)).join(' ');chart=`<svg viewBox="0 0 300 80" style="width:100%" role="img" aria-label="Weight trend"><polyline points="${pts}" fill="none" stroke="var(--ac)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="row" style="justify-content:space-between;margin:0"><small class="mu">${mn.toFixed(1)} ${S.un}</small><small class="mu">${mx.toFixed(1)} ${S.un}</small></div>`}
+  const dlt=vals.length>1?(last-vals[0]):0;
+  const mlist=S.meds.map((m,i)=>`<div class="goal" style="margin:6px 0"><button class="pill ${(S.medl[dk()]||[]).includes(i)?'on':''}" data-a="medt" data-i="${i}" aria-pressed="${(S.medl[dk()]||[]).includes(i)}">${(S.medl[dk()]||[]).includes(i)?'✓ Taken':'Mark taken'}</button><span style="flex:1;margin-left:10px">${esc(m)}</span><button class="pill" data-a="meddel" data-i="${i}" aria-label="Remove ${esc(m)}">✕</button></div>`).join('');
+  return tabs+`<div class="card"><h3>Weight</h3><p class="mu">${last!==null?`<b style="font-size:1.6rem;color:var(--tx)">${last.toFixed(1)} ${S.un}</b>${vals.length>1?` · ${dlt>0?'+':''}${dlt.toFixed(1)} over ${vals.length} entries`:''}`:'No entries yet.'}</p>${chart}
+  <div class="fm"><div><label for="wtv">Today's weight (${S.un})</label><input type="number" id="wtv" inputmode="decimal" step="0.1" min="20" max="400" placeholder="${S.un==='kg'?'70.0':'155.0'}"></div></div><div class="row"><button class="btn" data-a="wtlog">Log weight</button><button class="btn g" data-a="wtunit">Switch to ${S.un==='kg'?'lb':'kg'}</button></div></div>
+  <div class="card"><h3>Supplements and medicine</h3><p class="mu">A simple daily checklist. It resets every day.</p>${mlist||'<p class="mu">Nothing added.</p>'}<div class="fm"><div><label for="mdn">Add item</label><input type="text" id="mdn" maxlength="30" placeholder="Vitamin D"></div></div><div class="row"><button class="btn g" data-a="medadd">Add</button></div></div>
+  <div class="card"><h3>Daily targets</h3>${sl('hgw','Water',g.w,500,5000,' ml','250')}${sl('hgs','Sleep',g.sl,4,12,' h','.5')}${sl('hga','Active minutes',g.ac,10,180,' min','5')}${sl('hgf','Fruit and veg',g.fv,1,12,' serv')}</div>`+note}
+ const sq=['😴','😕','😐','🙂','🌟'];
+ return tabs+`<div class="card"><div class="hrings">${hring((o.w||0)/g.w,'#4aa8ff',o.w||0,'ml water','Water')}${hring((o.sl||0)/g.sl,'#a98bff',(o.sl||0)+'h','sleep','Sleep')}${hring((o.ac||0)/g.ac,'#ff7a5c',o.ac||0,'min active','Activity')}${hring((o.fv||0)/g.fv,'var(--ok)',o.fv||0,'fruit and veg','Fruit and veg')}</div></div>
+ <div class="card"><h3>Water</h3><p class="mu">${o.w||0} of ${g.w} ml</p><div class="row"><button class="btn" data-a="hadd" data-k="w" data-n="250">+250 ml</button><button class="btn" data-a="hadd" data-k="w" data-n="500">+500 ml</button><button class="btn g" data-a="hadd" data-k="w" data-n="-250">Undo</button></div>${hbars('w',g.w,7)}</div>
+ <div class="card"><h3>Sleep</h3>${sl('hsl','Hours slept',o.sl||0,0,14,' h','.5')}<label>How rested do you feel?</label><div class="row" style="margin-top:0">${sq.map((e,i)=>`<button class="pill ${o.sq===i+1?'on':''}" data-a="hsq" data-v="${i+1}" aria-pressed="${o.sq===i+1}">${e}</button>`).join('')}</div>${hbars('sl',g.sl,7)}</div>
+ <div class="card"><h3>Movement</h3><p class="mu">${o.ac||0} of ${g.ac} min</p><div class="row"><button class="btn" data-a="hadd" data-k="ac" data-n="10">+10 min</button><button class="btn" data-a="hadd" data-k="ac" data-n="30">+30 min</button><button class="btn g" data-a="hadd" data-k="ac" data-n="-10">Undo</button></div>${hbars('ac',g.ac,7)}</div>
+ <div class="card"><h3>Fruit and veg</h3><p class="mu">${o.fv||0} of ${g.fv} servings</p><div class="row"><button class="btn" data-a="hadd" data-k="fv" data-n="1">+1 serving</button><button class="btn g" data-a="hadd" data-k="fv" data-n="-1">Undo</button></div></div>
+ <p class="hint">Hitting a target gives +8 XP once a day. Change targets under Body.</p>`+note}
+const BRP=[['box','Box 4-4-4-4',[['Breathe in',4],['Hold',4],['Breathe out',4],['Hold',4]]],['478','Relax 4-7-8',[['Breathe in',4],['Hold',7],['Breathe out',8]]],['calm','Calm 5-5',[['Breathe in',5],['Breathe out',5]]]];
+function breatheView(){
+ const mf=HD().mf||0;
+ if(BR)return `<div class="card" style="text-align:center"><h3>${esc(BR.p[1])}</h3><div class="bcircle" id="bc"></div><h2 id="bt" style="margin:0">Get ready</h2><p class="mu" id="bl"></p><div class="row" style="justify-content:center"><button class="btn g" data-a="brstop">Stop</button></div></div>`;
+ return `<div class="card"><h3>Breathing</h3><p class="mu">Slow breathing for one to three minutes. Mindful time today: <b>${mf} min</b></p>${BRP.map(p=>`<div class="row"><button class="btn" data-a="brgo" data-v="${p[0]}" data-m="1">${esc(p[1])} · 1 min</button><button class="btn g" data-a="brgo" data-v="${p[0]}" data-m="3">3 min</button></div>`).join('')}</div>`}
+function brTick(){
+ if(!BR){clearInterval(brT);return}
+ const c=$('#bc'),t=$('#bt'),l=$('#bl');if(!c){clearInterval(brT);BR=null;return}
+ const el=(Date.now()-BR.t0)/1000,tot=BR.m*60;
+ if(el>=tot){const m=BR.m;clearInterval(brT);BR=null;hadd('mf',m);gain(5+m*2,'Breathing complete');return}
+ const cyc=BR.p[2].reduce((a,x)=>a+x[1],0);let r=el%cyc,i=0;while(r>=BR.p[2][i][1]){r-=BR.p[2][i][1];i++}
+ const ph=BR.p[2][i],f=r/ph[1],nm=ph[0];
+ c.style.transform='scale('+(nm==='Breathe in'?.6+.4*f:nm==='Breathe out'?1-.4*f:(i>0&&BR.p[2][i-1][0]==='Breathe in'?1:.6))+')';
+ t.textContent=nm;l.textContent=Math.ceil(tot-el)+' s left'}
 
 /* ---------- actions ---------- */
 function restoreText(t){try{const o=JSON.parse(t);if(!o||typeof o!=='object'||!Array.isArray(o.habits))throw 0;S=norm(o);S.ob=true;bkText='';look();save();render();toast('Backup restored')}catch(e){toast('That is not a valid Ironwill backup')}}
@@ -968,6 +1122,7 @@ function act(a,ds){
   case'hit':{if(!GM)break;GM.n++;GM.x=10+Math.random()*80;GM.y=10+Math.random()*80;const t=$('#tgt'),g=$('#gs');if(t){t.style.left=GM.x+'%';t.style.top=GM.y+'%'}if(g)g.textContent=GM.n+' hits';buzz();break}
   case'thcopy':copyText(themeCode(),'Theme code copied','#thc');break;
   case'thuse':{const o=dec($('#thin').value,'IWT');if(!o)return toast('That is not a theme code');const t={};THEMEK.forEach(k=>{if(o[k]!==undefined)t[k]=o[k]});S=norm({...S,...t});look();save();render();toast('Theme applied');break}
+  case'qnext':{const d=dk();S.qs=S.qs&&S.qs.d===d?{d,n:S.qs.n+1}:{d,n:1};save();render();break}
   case'opt':{if(!['nv','ck','lay','ics','am','mw','amb','font','bgs','cs','gs','fw','rs','fxp'].includes(ds.k))break;S[ds.k]=ds.v;S=norm(S);look();save();if(ds.k==='amb'&&tmr)ambStart();render();break}
   case'mood':{const v=+ds.v;if(!(v>=1&&v<=5))break;S.mood[dk()]=v;save();render();break}
   case'qclaim':{const i=+ds.v,d=dk(),got=S.qd[d]=S.qd[d]||[];if(got.includes(i)||!todayQ().includes(i)||!QP[i]||!QP[i][1](qctx()))break;
@@ -977,7 +1132,25 @@ function act(a,ds){
   case'rwdel':S.rw.splice(+ds.i,1);save();render();break;
   case'rwbuy':{const r=S.rw[+ds.i];if(!r)break;if(S.coins<r.c)return toast('Not enough coins yet');S.coins-=r.c;S.rwn++;chime(1);fx(['🎉','🎁','✨']);save();render();toast('Enjoy: '+r.n+'. You earned it.');break}
   case'av':S.av=ds.v;save();render();break;
-  case'gadd':{const n=($('#gn').value||'').trim().slice(0,40),d=$('#gd').value;if(!n||!/^\d{4}-\d\d-\d\d$/.test(d||''))return toast('Enter a goal name and a date');if(S.goals.length>=10)return toast('Ten goals is the limit');S.goals.push({n,d});S.goals.sort((a,b)=>a.d.localeCompare(b.d));save();render();break}
+  case'gadd':{const n=($('#gn').value||'').trim().slice(0,40),d=$('#gd').value;if(!n||!/^\d{4}-\d\d-\d\d$/.test(d||''))return toast('Enter a goal name and a date');if(S.goals.length>=30)return toast('Thirty goals is the limit');S.goals.push({n,d,x:false});S.goals.sort((a,b)=>a.d.localeCompare(b.d));save();render();break}
+  case'cdsel':if(/^\d{4}-\d\d-\d\d$/.test(ds.v||'')){calSel=ds.v;render()}break;
+  case'cmon':calM=Math.max(-36,Math.min(36,calM+(+ds.v===-1?-1:1)));calSel='';render();break;
+  case'gdone':{const g=S.goals[+ds.i];if(g){g.x=!g.x;if(g.x)gain(15,'Goal achieved');else save();render()}break}
+  case'hadd':{if(!['w','ac','fv'].includes(ds.k))break;const n=Math.max(-500,Math.min(500,+ds.n||0));hadd(ds.k,n);break}
+  case'hsq':{const d=dk();S.hl[d]=S.hl[d]||{w:0,sl:0,sq:0,ac:0,fv:0,mf:0};S.hl[d].sq=Math.max(1,Math.min(5,+ds.v||1));save();render();break}
+  case'wtlog':{const v=parseFloat(($('#wtv')||{}).value);const kg=Math.round(toKg(v)*10)/10;if(!(kg>=20&&kg<=400))return toast('Enter a realistic weight');S.wt[dk()]=kg;save();render();toast('Weight logged');break}
+  case'wtunit':S.un=S.un==='kg'?'lb':'kg';save();render();break;
+  case'medadd':{const n=(($('#mdn')||{}).value||'').trim().slice(0,30);if(!n)return toast('Type a name first');if(S.meds.length>=12)return toast('Twelve items is the limit');S.meds.push(n);save();render();break}
+  case'meddel':{const i=+ds.i;if(i>=0&&i<S.meds.length){S.meds.splice(i,1);S.medl={};save();render()}break}
+  case'medt':{const d=dk(),a=S.medl[d]=S.medl[d]||[],i=+ds.i,k=a.indexOf(i);if(k>=0)a.splice(k,1);else if(i>=0&&i<S.meds.length){a.push(i);if(a.length===S.meds.length)gain(5,'All taken today')}save();render();break}
+  case'brgo':{const p=BRP.find(x=>x[0]===ds.v);if(!p)break;BR={p,m:+ds.m===3?3:1,t0:Date.now()};render();clearInterval(brT);brT=setInterval(brTick,100);break}
+  case'brstop':BR=null;clearInterval(brT);render();break;
+  case'ttadd':{const n=(($('#tn')||{}).value||'').trim().slice(0,60);if(!n)return toast('Type a priority first');if(S.tt.d!==dk())S.tt={d:dk(),i:[]};if(S.tt.i.length>=3)return toast('Three is the limit');S.tt.i.push({n,x:false,p:false});save();render();break}
+  case'ttog':{if(S.tt.d!==dk())break;const x=S.tt.i[+ds.i];if(!x)break;x.x=!x.x;if(x.x&&!x.p){x.p=true;gain(10,'Priority done')}else save();render();break}
+  case'ttdel':{if(S.tt.d!==dk())break;const i=+ds.i;if(i>=0&&i<S.tt.i.length)S.tt.i.splice(i,1);save();render();break}
+  case'qadd':{const n=(($('#qn')||{}).value||'').trim().slice(0,30);if(!n)return toast('Type what you are quitting');if(S.qu.length>=8)return toast('Eight counters is the limit');S.qu.push({n,d:dk(),b:0});save();render();break}
+  case'qslip':{const q=S.qu[+ds.i];if(q){q.b=Math.max(q.b,quitDays(q));q.d=dk();save();render();toast('Reset. Start again today.')}break}
+  case'qdel':{const i=+ds.i;if(i>=0&&i<S.qu.length)S.qu.splice(i,1);save();render()}break;
   case'gdel':S.goals.splice(+ds.i,1);save();render();break;
   case'bgclr':S.bgi='';if(S.bgs==='image')S.bgs='aurora';look();save();render();break;
   case'sn':S.sn=!S.sn;save();render();chime(1);break;
@@ -1012,7 +1185,7 @@ function act(a,ds){
   case'ghoff':twostep('ghoff',()=>{GH=GH0();ghSave();render();toast('Disconnected')});break;
   case'gfadd':addGistFriend($('#gfid').value);break;
   case'gfref':toast('Refreshing...');ghFriends().then(n=>toast(n?'Updated '+n+' friend'+(n>1?'s':''):'No live friends to update'));break;
-  case'copygid':copyText(GH.pid,'ID copied','#mygid');break;
+  case'copygid':copyText(GH.pid?(hostLink()?hostLink()+'#IWG.'+GH.pid:GH.pid):'','Link copied','#mygid');break;
   case'reset':twostep('reset',()=>{
    try{localStorage.removeItem(GHK)}catch(e){}GH=GH0();
    try{localStorage.removeItem(K)}catch(e){}
@@ -1027,9 +1200,15 @@ function hex2hsl(hx){const m=/^#([0-9a-f]{6})$/i.exec(hx);if(!m)return null;cons
  const l=(mx+mn)/2,sa=d?d/(1-Math.abs(2*l-1)):0;return{h,s:Math.round(sa*100)}}
 const THEMEK=['hue','sm','tm','bgs','cs','rad','font','bl','op','bdw','sd','sp','nv','ck','lay','ics','am','mw','ho','fw','rs','fxp','gs'];
 const themeCode=()=>{const o={};THEMEK.forEach(k=>{o[k]=S[k]});return enc(o,'IWT')};
+const HG={hgw:['w',500,5000],hgs:['sl',4,12],hga:['ac',10,180],hgf:['fv',1,12]};
 const SL={sho:['ho',-60,60],ssm:['sm',40,150],srad:['rad',4,34],sfs:['fs',88,130],sbl:['bl',0,40],sop:['op',20,200],sbw:['bdw',0,3],ssd:['sd',0,200],ssp:['sp',60,150],sdim:['dim',0,90]};
+app.addEventListener('pointerdown',e=>{try{const t=e.target;if(t&&t.type==='range'){const rv=t.parentElement.querySelector('.rv');if(rv){rv.classList.add('on');clearTimeout(rv._t);rv._t=setTimeout(()=>rv.classList.remove('on'),1500)}}}catch(x){}});
+function bubble(t){try{let b=document.getElementById('vb');if(!b){b=document.createElement('div');b.id='vb';b.className='vb';document.body.appendChild(b)}b.textContent=t;b.classList.add('on');clearTimeout(bubble.t);bubble.t=setTimeout(()=>b.classList.remove('on'),900)}catch(e){}}
 app.addEventListener('input',e=>{
  const id=e.target.id,v=e.target.value;
+ if(e.target.type==='range'&&e.target.getAttribute&&e.target.getAttribute('data-l')){const u=e.target.getAttribute('data-u')||'',t=e.target.getAttribute('data-l')+': '+v+u;try{const w=e.target.parentElement,lb=w&&w.previousElementSibling;if(lb&&lb.tagName==='LABEL')lb.textContent=t;const rv=w&&w.querySelector('.rv');if(rv){const mn=+e.target.min,mx=+e.target.max,p=(+v-mn)/((mx-mn)||1);rv.textContent=v+u;rv.style.left='calc('+(p*100)+'% + '+(8-p*16).toFixed(1)+'px)';rv.classList.add('on');clearTimeout(rv._t);rv._t=setTimeout(()=>rv.classList.remove('on'),1200)}}catch(x){}}
+ if(HG[id]){const c=HG[id];S.hgo[c[0]]=Math.min(c[2],Math.max(c[1],+v||c[1]));return}
+ if(id==='hsl'){const d=dk();S.hl[d]=S.hl[d]||{w:0,sl:0,sq:0,ac:0,fv:0,mf:0};S.hl[d].sl=Math.min(14,Math.max(0,+v||0));return}
  if(SL[id]){const c=SL[id];S[c[0]]=Math.min(c[2],Math.max(c[1],+v||c[1]));look();return}
  if(id==='pnote'&&proofOpen){PROOF[proofOpen]=PROOF[proofOpen]||{note:'',url:''};PROOF[proofOpen].note=v;return}
  if(id==='hf-n'&&DR)DR.c=v;
@@ -1038,6 +1217,7 @@ app.addEventListener('input',e=>{
 });
 app.addEventListener('change',e=>{
  const id=e.target.id,v=e.target.value;
+ if(HG[id]||id==='hsl'){if(id==='hsl')hrew('sl');S=norm(S);save();render();return}
  if(SL[id]){const c=SL[id];S[c[0]]=Math.min(c[2],Math.max(c[1],+v||c[1]));look();save();render();return}
  if(id==='scol'){const c=hex2hsl(v);if(c){S.hue=c.h;S.sm=Math.min(150,Math.max(40,Math.round(c.s/62*100)));look();save();render()}return}
  if(id==='pnote'){render();return}
