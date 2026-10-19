@@ -8,8 +8,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Ironwill">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" href="ironwill-icon-192.png">
+<link rel="apple-touch-icon" href="ironwill-icon-192.png">
 <title>Ironwill</title>
 <style>
 /* Layout: one 720px column, glass cards over a ground tinted by a single user-set hue, six-tab bar pinned to the bottom. */
@@ -539,7 +539,7 @@ const nonce=()=>Math.random().toString(36).slice(2,10);
 async function notify(t,b){try{
  if(!S.ns||!('Notification' in window)||Notification.permission!=='granted')return;
  const reg=navigator.serviceWorker&&await navigator.serviceWorker.getRegistration();
- if(reg&&reg.showNotification)reg.showNotification(t,{body:b,icon:'icon-192.png',badge:'icon-192.png',tag:'ironwill'});else new Notification(t,{body:b,icon:'icon-192.png'})}catch(e){}}
+ if(reg&&reg.showNotification)reg.showNotification(t,{body:b,icon:'ironwill-icon-192.png',badge:'ironwill-icon-192.png',tag:'ironwill'});else new Notification(t,{body:b,icon:'ironwill-icon-192.png'})}catch(e){}}
 function copyText(t,ok,ta){const fail=()=>{const e=ta&&$(ta);if(e){e.focus();e.select()}toast('Select and copy the text')};try{navigator.clipboard.writeText(t).then(()=>toast(ok),fail)}catch(e){fail()}}
 function gain(x,msg){const before=lvl();S.xp+=x;S.coins+=x;{const dd=dk();S.xd[dd]=(S.xd[dd]||0)+x}if(lvl()>before){fx();toast('Level '+lvl()+' reached: '+rank(lvl()))}else if(msg)toast(msg+(x?' +'+x+' XP':''));const s=streak();if(s>S.best)S.best=s;save()}
 
